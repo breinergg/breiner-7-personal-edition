@@ -1,4 +1,4 @@
-<div class="desktop-screen">
+<div class="desktop-screen" [class.desktop-screen--logging-out]="isLoggingOut">
   <!-- Background layers -->
   <div class="bg-base"></div>
   <div class="bg-vignette"></div>
@@ -74,7 +74,7 @@
 
   <!-- Desktop icons (dispersos en el escritorio) -->
   <div class="desktop-icons" #iconsArea (pointerdown)="onIconsAreaPointerDown($event)">
-    @for (icon of desktopIcons; track icon.label) {
+    @for (icon of desktopIcons; track icon.id) {
       <div
         class="desktop-icon"
         [class.desktop-icon--dragging]="draggingIcon === icon"
@@ -715,7 +715,7 @@
 
   <!-- Taskbar -->
   <div class="taskbar">
-    <button class="start-button" title="Inicio" (click)="toggleStartMenu()">
+    <button class="start-button" [title]="copy.startButton" (click)="toggleStartMenu()">
       <!-- BGM7 Logo -->
       <svg class="start-logo" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -751,8 +751,8 @@
       <button
         class="taskbar-app taskbar-app--pinned"
         type="button"
-        title="GitHub — breinergg"
-        aria-label="Abrir perfil de GitHub"
+        [title]="copy.githubTitle"
+        [attr.aria-label]="copy.openGithub"
         (click)="openGithubProfile()"
       >
         <svg class="taskbar-app-icon taskbar-app-icon--github" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -763,8 +763,8 @@
       <button
         class="taskbar-app taskbar-app--pinned"
         type="button"
-        title="LinkedIn — Breiner Gonzalez Machado"
-        aria-label="Abrir perfil de LinkedIn"
+        [title]="copy.linkedInTitle"
+        [attr.aria-label]="copy.openLinkedIn"
         (click)="openLinkedInProfile()"
       >
         <svg class="taskbar-app-icon taskbar-app-icon--linkedin" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -811,8 +811,8 @@
       <button
         class="taskbar-app taskbar-app--pinned"
         type="button"
-        title="Explorador de archivos"
-        aria-label="Abrir explorador de archivos"
+        [title]="copy.fileExplorer"
+        [attr.aria-label]="copy.openFileExplorer"
         (click)="openExplorerWindow()"
       >
         <svg class="taskbar-app-icon taskbar-app-icon--explorer" viewBox="0 1.5 22 19.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -906,11 +906,11 @@
     </div>
 
     <div class="taskbar-tray">
-      <button class="language-button" title="Idioma del teclado">ES</button>
+      <button class="language-button" [title]="copy.keyboardLanguage">{{ lang.language() }}</button>
 
       <div class="tray-icons">
         <!-- Iconos ocultos: triángulo sólido con contorno -->
-        <button class="tray-icon tray-icon--chevron" title="Mostrar iconos ocultos" aria-label="Iconos ocultos">
+        <button class="tray-icon tray-icon--chevron" [title]="copy.showHiddenIcons" [attr.aria-label]="copy.hiddenIcons">
           <svg class="tray-icon-svg" viewBox="0 0 16 16" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs>
               <linearGradient id="trayChevronFill" x1="0" y1="0" x2="0" y2="1">
@@ -925,7 +925,7 @@
         </button>
 
         <!-- Red: monitor + cable ethernet (estilo Win7) -->
-        <button class="tray-icon tray-icon--network" title="Red" aria-label="Red">
+        <button class="tray-icon tray-icon--network" [title]="copy.network" [attr.aria-label]="copy.network">
           <svg class="tray-icon-svg" viewBox="0 0 32 24" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs>
               <linearGradient id="trayMonitorBezel" x1="0" y1="0" x2="0" y2="1">
@@ -978,7 +978,7 @@
         </button>
 
         <!-- Volumen: altavoz con ondas -->
-        <button class="tray-icon tray-icon--volume" title="Volumen" aria-label="Volumen">
+        <button class="tray-icon tray-icon--volume" [title]="copy.volume" [attr.aria-label]="copy.volume">
           <svg class="tray-icon-svg" viewBox="0 0 24 16" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs>
               <linearGradient id="traySpeakerFill" x1="0" y1="0" x2="0" y2="1">
@@ -1003,12 +1003,12 @@
         </button>
       </div>
 
-      <div class="clock-container" title="Fecha y hora">
+      <div class="clock-container" [title]="copy.dateAndTime">
         <div class="clock-time">{{ currentTime }}</div>
         <div class="clock-date">{{ currentDate }}</div>
       </div>
 
-      <button class="show-desktop" title="Mostrar el escritorio" aria-label="Mostrar el escritorio"></button>
+      <button class="show-desktop" [title]="copy.showDesktop" [attr.aria-label]="copy.showDesktop"></button>
     </div>
   </div>
 
@@ -1016,11 +1016,12 @@
   <app-start-menu
     [isVisible]="isStartMenuVisible"
     (documentOpen)="onStartMenuDocumentOpen($event)"
+    (logout)="logout()"
   ></app-start-menu>
 
   @if (historiaWindow.isOpen && !historiaWindow.isMinimized) {
     <app-win7-window
-      title="Mi Historia.docx - Word"
+      [title]="copy.windows.historia"
       icon="word"
       [left]="historiaWindow.left"
       [top]="historiaWindow.top"
@@ -1038,7 +1039,7 @@
 
   @if (gonzaiWindow.isOpen && !gonzaiWindow.isMinimized) {
     <app-win7-window
-      title="Gonzai.docx - Word"
+      [title]="copy.windows.gonzai"
       icon="word"
       [left]="gonzaiWindow.left"
       [top]="gonzaiWindow.top"
@@ -1056,7 +1057,7 @@
 
   @if (previdocsWindow.isOpen && !previdocsWindow.isMinimized) {
     <app-win7-window
-      title="PreviDocs.docx - Word"
+      [title]="copy.windows.previdocs"
       icon="word"
       [left]="previdocsWindow.left"
       [top]="previdocsWindow.top"
@@ -1074,7 +1075,7 @@
 
   @if (contactoWindow.isOpen && !contactoWindow.isMinimized) {
     <app-win7-window
-      title="Correo"
+      [title]="copy.windows.mail"
       icon="mail"
       [left]="contactoWindow.left"
       [top]="contactoWindow.top"
@@ -1092,7 +1093,7 @@
 
   @if (proyectosWindow.isOpen && !proyectosWindow.isMinimized) {
     <app-win7-window
-      title="Proyectos FullStack"
+      [title]="copy.windows.proyectos"
       icon="folder"
       [left]="proyectosWindow.left"
       [top]="proyectosWindow.top"
@@ -1113,7 +1114,7 @@
 
   @if (explorerWindow.isOpen && !explorerWindow.isMinimized) {
     <app-win7-window
-      title="Equipo"
+      [title]="copy.windows.computer"
       icon="folder"
       [left]="explorerWindow.left"
       [top]="explorerWindow.top"
@@ -1134,7 +1135,7 @@
 
   @if (habilidadesWindow.isOpen && !habilidadesWindow.isMinimized) {
     <app-win7-window
-      title="Habilidades.xlsx - Excel"
+      [title]="copy.windows.habilidades"
       icon="excel"
       [left]="habilidadesWindow.left"
       [top]="habilidadesWindow.top"
@@ -1152,7 +1153,7 @@
 
   @if (galeriaWindow.isOpen && !galeriaWindow.isMinimized) {
     <app-win7-window
-      title="Galería"
+      [title]="copy.windows.galeria"
       icon="photo"
       [left]="galeriaWindow.left"
       [top]="galeriaWindow.top"
@@ -1170,7 +1171,7 @@
 
   @if (papeleraWindow.isOpen && !papeleraWindow.isMinimized) {
     <app-win7-window
-      title="Papelera de reciclaje"
+      [title]="copy.windows.papelera"
       icon="bin"
       [left]="papeleraWindow.left"
       [top]="papeleraWindow.top"
@@ -1188,4 +1189,15 @@
 
   <!-- Gadget Flotante -->
   <app-gadget></app-gadget>
+
+  @if (isLoggingOut) {
+    <div class="logout-overlay" aria-live="polite" aria-busy="true">
+      <div class="logout-content">
+        <div class="aero-spinner" aria-hidden="true">
+          <div class="spinner-ring"></div>
+        </div>
+        <span class="logout-text">{{ logoutPhaseText }}</span>
+      </div>
+    </div>
+  }
 </div>

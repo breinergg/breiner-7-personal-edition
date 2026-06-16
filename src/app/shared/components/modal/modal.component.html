@@ -4,7 +4,7 @@
     <!-- Barra superior -->
     <div class="modal-header">
       <span class="modal-title">{{ titulo }}</span>
-      <button class="btn-close" (click)="cancelar()" aria-label="Cerrar">
+      <button class="btn-close" (click)="cancelar()" [attr.aria-label]="lang.shared.close">
         <svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M1.2 1.2l7.6 7.6M8.8 1.2L1.2 8.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
@@ -19,9 +19,9 @@
     <!-- Barra inferior con botones -->
     <div class="modal-footer">
       @if (mostrarCancelar) {
-        <button class="btn-secondary" (click)="cancelar()">Cancelar</button>
+        <button class="btn-secondary" (click)="cancelar()">{{ lang.shared.cancel }}</button>
       }
-      <button class="btn-primary" (click)="aceptar()">Aceptar</button>
+      <button class="btn-primary" (click)="aceptar()">{{ lang.shared.accept }}</button>
     </div>
 
   </div>

@@ -74,17 +74,50 @@
           <path d="M 8 38 L 8 24.5 L 10 22.5 L 38.5 22.5 L 39.5 38 Z" fill="url(#winTitleFolderFront)" stroke="rgba(190,160,95,0.5)" stroke-width="0.6" stroke-linejoin="round"/>
         </svg>
       } @else if (icon === 'excel') {
-        <svg class="win7-window-icon" viewBox="0 0 16 16" aria-hidden="true">
+        <svg class="win7-window-icon win7-window-icon--excel" viewBox="3 7 28 29" aria-hidden="true">
           <defs>
-            <linearGradient id="winTitleExcelBadge" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#33a867"/>
-              <stop offset="100%" stop-color="#185c32"/>
+            <linearGradient id="winTitleXlsBadgeBg" x1="0" y1="0" x2="0.2" y2="1">
+              <stop offset="0%" stop-color="#f3faf4"/>
+              <stop offset="28%" stop-color="#dff3e2"/>
+              <stop offset="65%" stop-color="#b9deb8"/>
+              <stop offset="100%" stop-color="#7bc47e"/>
             </linearGradient>
+            <linearGradient id="winTitleXlsBadgeGlass" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.75)"/>
+              <stop offset="45%" stop-color="rgba(255,255,255,0.18)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </linearGradient>
+            <linearGradient id="winTitleXlsXDarkGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3d8f4a"/>
+              <stop offset="100%" stop-color="#145a32"/>
+            </linearGradient>
+            <filter id="winTitleXlsXShadow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0.5" dy="0.75" stdDeviation="0.25" flood-color="#0a3018" flood-opacity="0.55"/>
+            </filter>
+            <filter id="winTitleXlsSheetStackShadow" x="-40%" y="-40%" width="180%" height="180%">
+              <feDropShadow dx="0.4" dy="0.55" stdDeviation="0.2" flood-color="#1a3d22" flood-opacity="0.35"/>
+            </filter>
           </defs>
-          <rect x="1" y="2" width="14" height="12" rx="0.5" fill="#ffffff" stroke="#8a8a8a" stroke-width="0.4"/>
-          <rect x="1.5" y="2.5" width="13" height="11" fill="#fafafa" stroke="#d8d8d8" stroke-width="0.25"/>
-          <rect x="1.5" y="2.5" width="7" height="7" fill="url(#winTitleExcelBadge)" stroke="#1f6b34" stroke-width="0.35"/>
-          <text x="5" y="7.2" font-family="Segoe UI, Arial, sans-serif" font-size="5.5" font-weight="700" fill="#ffffff" text-anchor="middle">X</text>
+          <path d="M 9.2 9.5 Q 4.8 9.8 4.8 14.2 V 33.2 Q 4.8 35.2 6.8 35.2 H 27.2 Q 29.2 35.2 29.2 33.2 V 10.2 Q 29.2 8.2 27.2 8.2 H 11.2 Q 9.5 8.2 9.2 9.5 Z"
+                fill="url(#winTitleXlsBadgeBg)" stroke="#1f6b34" stroke-width="0.65"/>
+          <path d="M 6.5 10.5 L 24 10.5 L 15 24 L 6.5 18 Z" fill="url(#winTitleXlsBadgeGlass)" opacity="0.55"/>
+          <path d="M 6.5 10.5 Q 6.5 8.8 8.5 8.8 H 27.2 Q 29 8.8 29 10.5 V 13.5 H 6.5 Z" fill="rgba(255,255,255,0.38)"/>
+          <g transform="translate(20.8, 26.5) rotate(28)" filter="url(#winTitleXlsSheetStackShadow)">
+            <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35" fill="#ffffff" opacity="0.42" transform="translate(1.35, 1.25)"/>
+            <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35" fill="#ffffff" opacity="0.68" transform="translate(0.65, 0.6)"/>
+            <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35" fill="#ffffff" stroke="#c8e6c9" stroke-width="0.45"/>
+            <g stroke="#b2dfaa" stroke-width="0.38">
+              <line x1="-5.2" y1="-2.8" x2="5.8" y2="-2.8"/>
+              <line x1="-5.2" y1="-0.8" x2="5.8" y2="-0.8"/>
+              <line x1="-5.2" y1="1.2" x2="5.8" y2="1.2"/>
+              <line x1="-3.2" y1="-4" x2="-3.2" y2="4.2"/>
+              <line x1="-0.8" y1="-4" x2="-0.8" y2="4.2"/>
+              <line x1="1.6" y1="-4" x2="1.6" y2="4.2"/>
+            </g>
+          </g>
+          <text x="11.8" y="27.5" font-family="'Segoe UI', Arial, sans-serif" font-size="17.5" font-weight="800"
+                fill="url(#winTitleXlsXDarkGrad)" filter="url(#winTitleXlsXShadow)" text-anchor="middle">X</text>
+          <path d="M 7.6 14.2 L 9.4 16.4" stroke="rgba(255,255,255,0.6)" stroke-width="0.75" stroke-linecap="round"/>
         </svg>
       } @else if (icon === 'photo') {
         <svg class="win7-window-icon win7-window-icon--photo" viewBox="0 0 16 14" aria-hidden="true">
@@ -111,9 +144,9 @@
     </div>
 
     <div class="win7-window-controls">
-      <button type="button" class="win7-window-btn win7-window-btn--minimize" (click)="onMinimize($event)" title="Minimizar" aria-label="Minimizar"></button>
-      <button type="button" class="win7-window-btn win7-window-btn--maximize" title="Maximizar" aria-label="Maximizar" disabled></button>
-      <button type="button" class="win7-window-btn win7-window-btn--close" (click)="onClose($event)" title="Cerrar" aria-label="Cerrar"></button>
+      <button type="button" class="win7-window-btn win7-window-btn--minimize" (click)="onMinimize($event)" [title]="lang.shared.minimize" [attr.aria-label]="lang.shared.minimize"></button>
+      <button type="button" class="win7-window-btn win7-window-btn--maximize" [title]="lang.shared.maximize" [attr.aria-label]="lang.shared.maximize" disabled></button>
+      <button type="button" class="win7-window-btn win7-window-btn--close" (click)="onClose($event)" [title]="lang.shared.close" [attr.aria-label]="lang.shared.close"></button>
     </div>
   </div>
 

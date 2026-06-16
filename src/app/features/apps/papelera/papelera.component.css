@@ -228,3 +228,50 @@
   font-size: 11px;
   color: #333;
 }
+
+@media (max-width: 768px) {
+  .recycle-body {
+    flex-direction: column;
+  }
+
+  .recycle-nav-pane {
+    width: 100%;
+    max-height: 72px;
+    border-right: none;
+    border-bottom: 1px solid #c8c8c8;
+  }
+
+  .recycle-content {
+    min-height: 0;
+  }
+
+  .recycle-empty {
+    padding: 16px 12px;
+    max-width: 100%;
+  }
+
+  .recycle-toolbar {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .recycle-address {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .recycle-empty-icon {
+    width: 72px;
+    height: 84px;
+  }
+
+  .recycle-empty-title {
+    font-size: 14px;
+  }
+
+  .recycle-empty-text {
+    font-size: 12px;
+  }
+}

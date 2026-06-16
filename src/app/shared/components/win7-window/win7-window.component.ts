@@ -8,10 +8,12 @@ import {
   Output,
   SimpleChanges
 } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 export type Win7WindowIcon = 'word' | 'mail' | 'folder' | 'excel' | 'photo' | 'bin' | 'generic';
 
-const TASKBAR_HEIGHT = 40;
+const TASKBAR_HEIGHT_DESKTOP = 40;
+const TASKBAR_HEIGHT_MOBILE = 36;
 const VIEWPORT_MARGIN = 8;
 const MIN_WINDOW_WIDTH = 320;
 const MIN_WINDOW_HEIGHT = 240;
@@ -23,6 +25,8 @@ const MIN_WINDOW_HEIGHT = 240;
   styleUrl: './win7-window.component.css'
 })
 export class Win7WindowComponent implements OnInit, OnChanges, OnDestroy {
+  constructor(readonly lang: LanguageService) {}
+
   @Input({ required: true }) title = '';
   @Input() icon: Win7WindowIcon = 'generic';
   @Input() left = 120;
@@ -73,8 +77,12 @@ export class Win7WindowComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
+  private getTaskbarHeight(): number {
+    return window.innerWidth <= 768 ? TASKBAR_HEIGHT_MOBILE : TASKBAR_HEIGHT_DESKTOP;
+  }
+
   private getWorkAreaHeight(): number {
-    return Math.max(MIN_WINDOW_HEIGHT, window.innerHeight - TASKBAR_HEIGHT - VIEWPORT_MARGIN);
+    return Math.max(MIN_WINDOW_HEIGHT, window.innerHeight - this.getTaskbarHeight() - VIEWPORT_MARGIN);
   }
 
   private getWorkAreaWidth(): number {
@@ -84,7 +92,7 @@ export class Win7WindowComponent implements OnInit, OnChanges, OnDestroy {
   private getMaxTop(): number {
     return Math.max(
       VIEWPORT_MARGIN,
-      window.innerHeight - TASKBAR_HEIGHT - this.displayHeight - VIEWPORT_MARGIN
+      window.innerHeight - this.getTaskbarHeight() - this.displayHeight - VIEWPORT_MARGIN
     );
   }
 
@@ -110,10 +118,10 @@ export class Win7WindowComponent implements OnInit, OnChanges, OnDestroy {
     this.positionLeft = Math.max(VIEWPORT_MARGIN, Math.min(this.positionLeft, maxLeft));
     this.positionTop = Math.max(VIEWPORT_MARGIN, Math.min(this.positionTop, maxTop));
 
-    if (this.positionTop + this.displayHeight > window.innerHeight - TASKBAR_HEIGHT - VIEWPORT_MARGIN) {
+    if (this.positionTop + this.displayHeight > window.innerHeight - this.getTaskbarHeight() - VIEWPORT_MARGIN) {
       this.positionTop = Math.max(
         VIEWPORT_MARGIN,
-        window.innerHeight - TASKBAR_HEIGHT - this.displayHeight - VIEWPORT_MARGIN
+        window.innerHeight - this.getTaskbarHeight() - this.displayHeight - VIEWPORT_MARGIN
       );
     }
   }

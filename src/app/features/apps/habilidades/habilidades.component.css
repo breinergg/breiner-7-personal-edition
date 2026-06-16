@@ -385,3 +385,32 @@
 .excel-sheet-tab:disabled {
   opacity: 0.45;
 }
+
+@media (max-width: 768px) {
+  .excel-sheet {
+    min-width: 100%;
+  }
+
+  .excel-sheet-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .excel-formula-bar {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .excel-header-row,
+  .excel-row {
+    height: 20px;
+  }
+
+  .excel-corner,
+  .excel-col-header,
+  .excel-row-header {
+    font-size: 9px;
+  }
+}

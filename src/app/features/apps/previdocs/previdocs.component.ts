@@ -1,10 +1,7 @@
 import { Component, HostListener } from '@angular/core';
-
-interface DemoSlide {
-  src: string;
-  alt: string;
-  caption: string;
-}
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { LanguageService } from '../../../shared/services/language.service';
+import { DemoSlideCopy } from '../../../shared/constants/i18n/apps-i18n';
 
 @Component({
   selector: 'app-previdocs',
@@ -13,36 +10,29 @@ interface DemoSlide {
   styleUrl: './previdocs.component.css'
 })
 export class PrevidocsComponent {
-  readonly demoSlides: DemoSlide[] = [
-    {
-      src: '/previdocs-imagenes/P1.webp',
-      alt: 'Panel principal y dashboard de PreviDocs',
-      caption: 'Dashboard interactivo con métricas en tiempo real de pacientes, historias y sesiones.'
-    },
-    {
-      src: '/previdocs-imagenes/p2.webp',
-      alt: 'Gestión de pacientes e historias clínicas',
-      caption: 'Formularios exhaustivos para registro de historias clínicas, diagnósticos y planes de tratamiento.'
-    },
-    {
-      src: '/previdocs-imagenes/p3.webp',
-      alt: 'Seguimiento de sesiones terapéuticas',
-      caption: 'Registro secuencial de sesiones con evolución clínica y autocompletado de diagnósticos.'
-    },
-    {
-      src: '/previdocs-imagenes/p4.webp',
-      alt: 'Generación de reportes PDF',
-      caption: 'Reportes multipágina con diagrama familiar, impresión diagnóstica y firma digital.'
-    },
-    {
-      src: '/previdocs-imagenes/p5.webp',
-      alt: 'Interfaz de consulta y búsqueda inteligente',
-      caption: 'Búsqueda integrada en bases locales y externas para agilizar la consulta clínica.'
-    }
-  ];
-
   activeSlide = 0;
   zoomOpen = false;
+
+  constructor(
+    readonly lang: LanguageService,
+    private sanitizer: DomSanitizer
+  ) {}
+
+  get demoSlides(): DemoSlideCopy[] {
+    return this.lang.apps.previdocs.demoSlides;
+  }
+
+  get documentHtml(): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(this.lang.apps.previdocs.bodyHtml);
+  }
+
+  captureLabel(index: number): string {
+    return this.lang.apps.wordCarousel.captureN.replace('{{n}}', String(index + 1));
+  }
+
+  enlargedViewLabel(): string {
+    return this.lang.apps.wordCarousel.enlargedView.replace('{{n}}', String(this.activeSlide + 1));
+  }
 
   @HostListener('document:keydown.escape')
   onEscapeKey() {

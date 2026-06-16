@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { LanguageService } from '../../../shared/services/language.service';
 
 export interface GalleryPhoto {
   src: string;
@@ -14,18 +15,28 @@ export interface GalleryPhoto {
 export class GaleriaComponent {
   @ViewChild('scrollContainer') scrollContainer?: ElementRef<HTMLElement>;
 
-  readonly photos: GalleryPhoto[] = [
-    { src: '/galeria/semillero.webp', title: 'Semillero GIDSYC' },
-    { src: '/galeria/evento-ingenieria.webp', title: 'Evento de Tech' },
-    { src: '/galeria/diplomado-liderazgo.webp', title: 'Diplomado en Liderazgo Transformacional' },
-    { src: '/galeria/1er-dia-practicas.webp', title: 'Primer día de Prácticas Profesionales' },
-    { src: '/galeria/voluntario.webp', title: 'Voluntario en Unimagdalena' },
-    { src: '/galeria/amigos-del-alma.webp', title: 'Amigos' },
-    { src: '/galeria/EL-TEAM-A.webp', title: 'El Team A' },
-    { src: '/galeria/inicios-en-la-u.webp', title: 'Inicios en la U' }
-  ];
-
   activeIndex = 0;
+
+  constructor(readonly lang: LanguageService) {}
+
+  get photos(): GalleryPhoto[] {
+    const titles = this.lang.apps.galeria.photoTitles;
+    const sources = [
+      '/galeria/semillero.webp',
+      '/galeria/evento-ingenieria.webp',
+      '/galeria/diplomado-liderazgo.webp',
+      '/galeria/1er-dia-practicas.webp',
+      '/galeria/voluntario.webp',
+      '/galeria/amigos-del-alma.webp',
+      '/galeria/EL-TEAM-A.webp',
+      '/galeria/inicios-en-la-u.webp'
+    ];
+    return sources.map((src, index) => ({ src, title: titles[index] }));
+  }
+
+  get photosCountLabel(): string {
+    return this.lang.apps.galeria.photosCount.replace('{{count}}', String(this.photos.length));
+  }
 
   onScroll(event: Event) {
     const container = event.target as HTMLElement;

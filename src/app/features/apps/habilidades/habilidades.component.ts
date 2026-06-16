@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LanguageService } from '../../../shared/services/language.service';
 
 export type HabilidadesSheet = 'habilidades' | 'tecnologias';
 
@@ -6,13 +7,6 @@ export interface ChartSkill {
   technology: string;
   value: number;
   barTone: 'aspnet' | 'spring' | 'postgres' | 'angular' | 'flutter';
-}
-
-export interface TechnologyRow {
-  category: string;
-  technology: string;
-  level: string;
-  experience: string;
 }
 
 @Component({
@@ -33,34 +27,17 @@ export class HabilidadesComponent {
     { technology: 'Flutter', value: 55, barTone: 'flutter' }
   ];
 
-  readonly technologyRows: TechnologyRow[] = [
-    { category: 'Lenguaje', technology: 'Java', level: 'Intermedio', experience: '1 año' },
-    { category: 'Lenguaje', technology: 'C#', level: 'Intermedio Avanzado', experience: '1 año' },
-    { category: 'Lenguaje', technology: 'JavaScript', level: 'Intermedio', experience: '2 años' },
-    { category: 'Lenguaje', technology: 'Dart', level: 'Intermedio', experience: '6 meses' },
-    { category: 'Lenguaje', technology: 'SQL', level: 'Intermedio', experience: '2 años' },
-    { category: 'Lenguaje', technology: 'HTML', level: 'Intermedio', experience: '2 años' },
-    { category: 'Lenguaje', technology: 'CSS', level: 'Intermedio', experience: '2 años' },
-    { category: 'Lenguaje', technology: 'C', level: 'Básico', experience: '6 meses' },
-    { category: 'Lenguaje', technology: 'C++', level: 'Básico', experience: '1 año' },
-    { category: 'Framework', technology: 'Spring Boot', level: 'Intermedio', experience: '1 año' },
-    { category: 'Framework', technology: 'ASP.NET Core', level: 'Intermedio Avanzado', experience: '1 año' },
-    { category: 'Framework', technology: 'Angular', level: 'Intermedio', experience: '6 meses' },
-    { category: 'Framework', technology: 'Flutter', level: 'Intermedio', experience: '6 meses' },
-    { category: 'Plataforma', technology: '.NET', level: 'Intermedio Avanzado', experience: '1 año' },
-    { category: 'Base de Datos', technology: 'PostgreSQL', level: 'Intermedio', experience: '2 años' }
-  ];
-
   activeSheet: HabilidadesSheet = 'habilidades';
+
+  constructor(readonly lang: LanguageService) {}
 
   selectSheet(sheet: HabilidadesSheet) {
     this.activeSheet = sheet;
   }
 
   get formulaBarText(): string {
-    return this.activeSheet === 'habilidades'
-      ? 'Tecnologías principales'
-      : 'Tecnologías';
+    const copy = this.lang.apps.habilidades;
+    return this.activeSheet === 'habilidades' ? copy.mainTechnologies : copy.technologies;
   }
 
   barWidthPercent(value: number): number {
@@ -72,24 +49,25 @@ export class HabilidadesComponent {
       return '';
     }
 
+    const { columns, technologyRows } = this.lang.apps.habilidades;
+
     if (row === 1) {
-      if (col === 1) return 'Categoría';
-      if (col === 2) return 'Tecnología';
-      if (col === 3) return 'Nivel';
-      if (col === 4) return 'Experiencia';
+      if (col === 1) return columns.category;
+      if (col === 2) return columns.technology;
+      if (col === 3) return columns.level;
+      if (col === 4) return columns.experience;
       return '';
     }
 
-    const rowIndex = row - 2;
-    if (rowIndex < 0 || rowIndex >= this.technologyRows.length) {
+    const dataRow = technologyRows[row - 2];
+    if (!dataRow) {
       return '';
     }
 
-    const entry = this.technologyRows[rowIndex];
-    if (col === 1) return entry.category;
-    if (col === 2) return entry.technology;
-    if (col === 3) return entry.level;
-    if (col === 4) return entry.experience;
+    if (col === 1) return dataRow.category;
+    if (col === 2) return dataRow.technology;
+    if (col === 3) return dataRow.level;
+    if (col === 4) return dataRow.experience;
     return '';
   }
 

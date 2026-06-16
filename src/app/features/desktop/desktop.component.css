@@ -75,7 +75,7 @@
 
 .desktop-icons {
   position: absolute;
-  inset: 0 0 40px 0;
+  inset: 0 0 calc(40px + env(safe-area-inset-bottom, 0px)) 0;
   z-index: 10;
   pointer-events: none;
 }
@@ -190,7 +190,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40px;
+  height: calc(40px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
   display: flex;
   align-items: stretch;
   font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -514,7 +516,7 @@
   }
 
   .taskbar {
-    height: 36px;
+    height: calc(36px + env(safe-area-inset-bottom, 0px));
   }
 
   .start-button {
@@ -548,4 +550,191 @@
   .language-button {
     font-size: 10px;
   }
+
+  .desktop-icons {
+    inset: 0 0 calc(36px + env(safe-area-inset-bottom, 0px)) 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    pointer-events: auto;
+  }
+
+  .clock-date {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .desktop-icons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    gap: 6px 4px;
+    padding: 8px 6px 12px;
+    align-content: start;
+  }
+
+  .desktop-icon {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100%;
+    max-width: 112px;
+    justify-self: center;
+    touch-action: manipulation;
+  }
+
+  .taskbar-apps {
+    gap: 4px;
+    overflow: hidden;
+  }
+
+  .taskbar-app-btn--github,
+  .taskbar-app-btn--linkedin {
+    display: none;
+  }
+
+  .tray-icon--chevron,
+  .tray-icon--network {
+    display: none;
+  }
+
+  .taskbar-tray {
+    gap: 6px;
+  }
+
+  .show-desktop {
+    width: 4px;
+  }
+}
+
+@media (max-width: 360px) {
+  .desktop-icon {
+    max-width: 100px;
+    padding: 4px 2px;
+  }
+
+  .icon-svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon-label {
+    font-size: 9px;
+    line-height: 1.15;
+  }
+
+  .start-button {
+    padding: 4px 8px;
+  }
+}
+
+/* ===================== LOGOUT TRANSITION ===================== */
+
+.desktop-screen--logging-out {
+  animation: desktopLogoutFade 0.85s ease forwards;
+}
+
+@keyframes desktopLogoutFade {
+  from {
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(3px);
+  }
+}
+
+.logout-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 55% 50% at 88% 85%, rgba(248, 255, 255, 0.9) 0%, transparent 48%),
+    radial-gradient(ellipse 70% 60% at 85% 82%, rgba(210, 245, 255, 0.75) 0%, transparent 52%),
+    radial-gradient(ellipse 85% 70% at 82% 78%, rgba(140, 220, 255, 0.55) 0%, transparent 58%),
+    linear-gradient(170deg,
+      #1a5a8d 0%,
+      #2878bd 16%,
+      #3898e8 32%,
+      #58bcff 48%,
+      #3898e8 64%,
+      #1a5a8d 88%,
+      #134875 96%
+    );
+  animation: logoutOverlayIn 0.65s ease-out;
+}
+
+@keyframes logoutOverlayIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.logout-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: logoutContentIn 0.55s ease-out;
+}
+
+@keyframes logoutContentIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logout-text {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.35s ease;
+}
+
+.aero-spinner {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.spinner-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #ffffff 0deg,
+    #f0fbff 18deg,
+    #80e8ff 45deg,
+    #33ccff 80deg,
+    #00b4ff 120deg,
+    #0099ff 165deg,
+    #0088f0 210deg,
+    rgba(0, 130, 255, 0.55) 260deg,
+    rgba(0, 145, 255, 0.25) 310deg,
+    #ffffff 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 2.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 2.5px));
+  animation: aeroSpin 1s linear infinite;
+  filter:
+    drop-shadow(0 0 5px rgba(0, 180, 255, 0.85))
+    drop-shadow(0 0 12px rgba(0, 153, 255, 0.55))
+    drop-shadow(0 0 20px rgba(0, 140, 255, 0.25));
+}
+
+@keyframes aeroSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

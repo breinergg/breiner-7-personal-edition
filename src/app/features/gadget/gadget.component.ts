@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
+import { LanguageService } from '../../shared/services/language.service';
 
 const STORAGE_KEY = 'breiner7-gadget-position';
 const GAUGE_MIN = -150;
@@ -26,7 +27,7 @@ interface GaugeZone {
   styleUrl: './gadget.component.css'
 })
 export class GadgetComponent implements OnInit, OnDestroy {
-  isVisible = true;
+  isVisible = false;
   isMinimized = false;
   isInfoVisible = false;
   isDragging = false;
@@ -44,8 +45,10 @@ export class GadgetComponent implements OnInit, OnDestroy {
   readonly largeZones = this.buildColorZones();
   readonly smallZones = this.buildColorZones();
 
+  constructor(readonly lang: LanguageService) {}
+
   get infoModalMessage(): string {
-    return `Breiner destaca ${this.projects} proyectos en su repositorio y actualmente maneja ${this.technologies} tecnologías.`;
+    return this.lang.gadget.infoMessage(this.projects, this.technologies);
   }
 
   private dragOffsetX = 0;
@@ -156,7 +159,6 @@ export class GadgetComponent implements OnInit, OnDestroy {
   private valueToNeedleRotation(value: number): number {
     const ratio = Math.max(0, Math.min(value / 10, 1));
     const scaleAngle = GAUGE_MIN + ratio * (GAUGE_MAX - GAUGE_MIN);
-    // La aguja apunta hacia arriba (-90°) en reposo; alinear con la escala.
     return scaleAngle + 90;
   }
 

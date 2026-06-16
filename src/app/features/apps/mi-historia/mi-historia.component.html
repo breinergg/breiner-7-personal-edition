@@ -1,50 +1,20 @@
 <div class="word-app">
   <div class="word-ribbon">
-    <span class="word-ribbon-tab word-ribbon-tab--active">Inicio</span>
-    <span class="word-ribbon-tab">Insertar</span>
-    <span class="word-ribbon-tab">Diseño de página</span>
+    <span class="word-ribbon-tab word-ribbon-tab--active">{{ lang.shared.wordHome }}</span>
+    <span class="word-ribbon-tab">{{ lang.shared.wordInsert }}</span>
+    <span class="word-ribbon-tab">{{ lang.shared.wordPageDesign }}</span>
   </div>
 
   <div class="word-workspace">
     <article class="word-page">
-      <h1 class="word-title">Mi Historia</h1>
+      <h1 class="word-title">{{ lang.apps.miHistoria.title }}</h1>
 
-      <p>
-        Mi pasión por la tecnología comenzó con algo tan sencillo como un computador en casa. Recuerdo cuando
-        mi padre compró aquel equipo que se convirtió en mucho más que una herramienta: fue la puerta de
-        entrada a un mundo lleno de posibilidades. Entre videojuegos, búsquedas en internet, tareas escolares
-        y horas de curiosidad frente a la pantalla, nació un interés que con el tiempo se transformó en una
-        verdadera vocación.
-      </p>
-
-      <p>
-        Aquellas experiencias despertaron en mí el deseo de comprender cómo funcionaban las computadoras,
-        cómo se construían los programas y cómo la tecnología podía transformar la vida de las personas. Fue
-        esa curiosidad la que me llevó a elegir Ingeniería de Sistemas como mi camino profesional.
-      </p>
-
-      <p>
-        Hoy, después de cinco años de universidad, incontables horas de estudio, proyectos, errores, aciertos
-        y grandes amistades, miro hacia atrás y entiendo que cada paso tuvo un propósito. Cada desafío superado
-        me permitió desarrollar habilidades, adquirir conocimientos y crecer tanto profesional como
-        personalmente.
-      </p>
-
-      <p>
-        Esta página es el resultado de ese recorrido. No es solo un repositorio de proyectos, sino una
-        representación de mi historia, de lo que he aprendido y de todo lo que aún me queda por descubrir.
-        También es un homenaje a aquellos primeros momentos que despertaron mi pasión por la computación y una
-        muestra de que, cuando la curiosidad se combina con esfuerzo, disciplina y dedicación, los sueños
-        pueden convertirse en realidad.
-      </p>
-
-      <p>
-        Bienvenido a mi historia, a mis proyectos y a una parte del camino que me ha convertido en quien soy
-        hoy.
-      </p>
+      @for (paragraph of lang.apps.miHistoria.paragraphs; track $index) {
+        <p>{{ paragraph }}</p>
+      }
 
       <p class="word-signature">
-        Con aprecio,<br />
+        {{ lang.apps.miHistoria.signatureLine }}<br />
         <strong>Breiner Gonzalez Machado</strong>
       </p>
     </article>

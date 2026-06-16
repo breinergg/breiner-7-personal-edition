@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { StartMenuComponent } from '../start-menu/start-menu.component';
 import { GadgetComponent } from '../gadget/gadget.component';
 import { Win7WindowComponent } from '../../shared/components/win7-window/win7-window.component';
@@ -10,27 +11,31 @@ import { ProyectosFullstackComponent } from '../apps/proyectos-fullstack/proyect
 import { HabilidadesComponent } from '../apps/habilidades/habilidades.component';
 import { GaleriaComponent } from '../apps/galeria/galeria.component';
 import { PapeleraComponent } from '../apps/papelera/papelera.component';
+import { LanguageService } from '../../shared/services/language.service';
+import { DesktopCopy } from '../../shared/constants/i18n/desktop-i18n';
+import { isMobileInteraction } from '../../shared/utils/mobile-interaction';
 
 type DesktopIconType = 'doc' | 'folder' | 'img' | 'xls' | 'pdf' | 'msg' | 'bin' | 'gadget' | 'github' | 'linkedin';
 
 interface DesktopIcon {
+  id: string;
   label: string;
   type: DesktopIconType;
   top: number;
   left: number;
 }
 
-const DEFAULT_DESKTOP_ICONS: DesktopIcon[] = [
-  { label: 'Mi Historia.docx', type: 'doc', top: 16, left: 16 },
-  { label: 'Proyectos FullStack', type: 'folder', top: 16, left: 112 },
-  { label: 'Galería', type: 'img', top: 16, left: 208 },
-  { label: 'Gadget', type: 'gadget', top: 16, left: 304 },
-  { label: 'Habilidades.xlsx', type: 'xls', top: 112, left: 16 },
-  { label: 'Hoja de Vida.pdf', type: 'pdf', top: 112, left: 112 },
-  { label: 'Contacto', type: 'msg', top: 112, left: 208 },
-  { label: 'GitHub', type: 'github', top: 208, left: 112 },
-  { label: 'LinkedIn', type: 'linkedin', top: 208, left: 208 },
-  { label: 'Papelera de\nreciclaje', type: 'bin', top: 208, left: 16 }
+const DESKTOP_ICON_LAYOUT: Omit<DesktopIcon, 'label'>[] = [
+  { id: 'historia', type: 'doc', top: 16, left: 16 },
+  { id: 'proyectos', type: 'folder', top: 16, left: 112 },
+  { id: 'galeria', type: 'img', top: 16, left: 208 },
+  { id: 'gadget', type: 'gadget', top: 16, left: 304 },
+  { id: 'habilidades', type: 'xls', top: 112, left: 16 },
+  { id: 'cv', type: 'pdf', top: 112, left: 112 },
+  { id: 'contacto', type: 'msg', top: 112, left: 208 },
+  { id: 'github', type: 'github', top: 208, left: 112 },
+  { id: 'linkedin', type: 'linkedin', top: 208, left: 208 },
+  { id: 'papelera', type: 'bin', top: 208, left: 16 }
 ];
 
 const GRID_ORIGIN_X = 16;
@@ -40,6 +45,7 @@ const GRID_SIZE_Y = 96;
 const ICON_WIDTH = 88;
 const ICON_HEIGHT = 100;
 const DRAG_THRESHOLD = 5;
+const DOUBLE_TAP_WINDOW_MS = 400;
 const STORAGE_KEY = 'breiner7-desktop-icon-positions';
 const CV_PDF_URL = '/hv/HOJA-DE-VIDA.pdf';
 const GITHUB_URL = 'https://github.com/breinergg';
@@ -66,10 +72,12 @@ export class DesktopComponent implements OnInit, OnDestroy {
 
   currentTime = '';
   currentDate = '';
-  desktopIcons: DesktopIcon[] = structuredClone(DEFAULT_DESKTOP_ICONS);
+  desktopIcons: DesktopIcon[] = [];
   draggingIcon: DesktopIcon | null = null;
   selectedIcon: DesktopIcon | null = null;
   isStartMenuVisible = false;
+  isLoggingOut = false;
+  logoutPhaseText = '';
   historiaWindow: AppWindowState = {
     isOpen: false,
     isMinimized: false,
@@ -135,6 +143,7 @@ export class DesktopComponent implements OnInit, OnDestroy {
   };
 
   private timeInterval: ReturnType<typeof setInterval> | undefined;
+  private logoutTimer: ReturnType<typeof setTimeout> | undefined;
   private nextZIndex = 100;
   private isDragging = false;
   private dragOffsetX = 0;
@@ -144,16 +153,41 @@ export class DesktopComponent implements OnInit, OnDestroy {
   private dragOriginLeft = 0;
   private dragOriginTop = 0;
   private lastIconDragAt = 0;
+  private pendingTapIconId: string | null = null;
+  private pendingTapAt = 0;
 
   ngOnInit() {
+    this.lang.syncFromStorage();
+    this.desktopIcons = this.buildDesktopIcons();
+    this.logoutPhaseText = this.copy.logoutClosing;
     this.loadIconPositions();
     this.updateTime();
     this.timeInterval = setInterval(() => this.updateTime(), 1000);
   }
 
+  constructor(
+    private router: Router,
+    readonly lang: LanguageService
+  ) {}
+
+  get copy(): DesktopCopy {
+    return this.lang.desktop;
+  }
+
+  private buildDesktopIcons(): DesktopIcon[] {
+    const labels = this.copy.icons;
+    return DESKTOP_ICON_LAYOUT.map((icon) => ({
+      ...icon,
+      label: labels[icon.id]
+    }));
+  }
+
   ngOnDestroy() {
     if (this.timeInterval) {
       clearInterval(this.timeInterval);
+    }
+    if (this.logoutTimer) {
+      clearTimeout(this.logoutTimer);
     }
   }
 
@@ -162,10 +196,7 @@ export class DesktopComponent implements OnInit, OnDestroy {
       return;
     }
 
-    event.preventDefault();
     const target = event.currentTarget as HTMLElement | null;
-    target?.setPointerCapture(event.pointerId);
-
     const point = this.getContainerPoint(event.clientX, event.clientY);
 
     this.draggingIcon = icon;
@@ -177,10 +208,17 @@ export class DesktopComponent implements OnInit, OnDestroy {
     this.dragOffsetY = point.y - icon.top;
     this.dragOriginLeft = icon.left;
     this.dragOriginTop = icon.top;
+
+    if (!this.isIconDragEnabled()) {
+      return;
+    }
+
+    event.preventDefault();
+    target?.setPointerCapture(event.pointerId);
   }
 
   onIconPointerMove(event: PointerEvent, icon: DesktopIcon) {
-    if (this.draggingIcon !== icon) {
+    if (this.draggingIcon !== icon || !this.isIconDragEnabled()) {
       return;
     }
 
@@ -203,17 +241,101 @@ export class DesktopComponent implements OnInit, OnDestroy {
       return;
     }
 
-    (event.currentTarget as HTMLElement | null)?.releasePointerCapture(event.pointerId);
+    const wasDragging = this.isDragging;
 
-    if (this.isDragging) {
+    if (this.isIconDragEnabled()) {
+      (event.currentTarget as HTMLElement | null)?.releasePointerCapture(event.pointerId);
+    }
+
+    if (wasDragging) {
       const snapped = this.snapToGrid(icon.left, icon.top);
       this.placeIconAt(icon, snapped.left, snapped.top);
       this.saveIconPositions();
       this.lastIconDragAt = Date.now();
+    } else if (!this.isIconDragEnabled()) {
+      this.activateIcon(icon, event);
+    } else if (event.pointerType === 'touch') {
+      this.handleIconActivationTap(icon, event);
     }
 
     this.draggingIcon = null;
     this.isDragging = false;
+  }
+
+  private isIconDragEnabled(): boolean {
+    return !isMobileInteraction();
+  }
+
+  private handleIconActivationTap(icon: DesktopIcon, event: Event) {
+    const now = Date.now();
+
+    if (this.pendingTapIconId === icon.id && now - this.pendingTapAt <= DOUBLE_TAP_WINDOW_MS) {
+      this.pendingTapIconId = null;
+      this.pendingTapAt = 0;
+      this.activateIcon(icon, event);
+      return;
+    }
+
+    this.pendingTapIconId = icon.id;
+    this.pendingTapAt = now;
+  }
+
+  private activateIcon(icon: DesktopIcon, event: Event) {
+    if (Date.now() - this.lastIconDragAt < 300) {
+      return;
+    }
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (icon.type === 'gadget') {
+      this.gadget?.showGadget();
+      return;
+    }
+
+    if (icon.type === 'doc') {
+      this.openHistoriaWindow();
+      return;
+    }
+
+    if (icon.type === 'msg') {
+      this.openContactoWindow();
+      return;
+    }
+
+    if (icon.type === 'folder') {
+      this.openProyectosWindow();
+      return;
+    }
+
+    if (icon.type === 'xls') {
+      this.openHabilidadesWindow();
+      return;
+    }
+
+    if (icon.type === 'img') {
+      this.openGaleriaWindow();
+      return;
+    }
+
+    if (icon.type === 'pdf') {
+      this.openCvPdf();
+      return;
+    }
+
+    if (icon.type === 'bin') {
+      this.openPapeleraWindow();
+      return;
+    }
+
+    if (icon.type === 'github') {
+      this.openGithubProfile();
+      return;
+    }
+
+    if (icon.type === 'linkedin') {
+      this.openLinkedInProfile();
+    }
   }
 
   onIconsAreaPointerDown(event: PointerEvent) {
@@ -275,7 +397,7 @@ export class DesktopComponent implements OnInit, OnDestroy {
 
       const saved = JSON.parse(raw) as Record<string, { left: number; top: number }>;
       for (const icon of this.desktopIcons) {
-        const position = saved[icon.label];
+        const position = saved[icon.id] ?? saved[icon.label];
         if (position) {
           const snapped = this.snapToGrid(position.left, position.top);
           icon.left = snapped.left;
@@ -283,13 +405,13 @@ export class DesktopComponent implements OnInit, OnDestroy {
         }
       }
     } catch {
-      this.desktopIcons = structuredClone(DEFAULT_DESKTOP_ICONS);
+      this.desktopIcons = this.buildDesktopIcons();
     }
   }
 
   private saveIconPositions() {
     const positions = Object.fromEntries(
-      this.desktopIcons.map(icon => [icon.label, { left: icon.left, top: icon.top }])
+      this.desktopIcons.map(icon => [icon.id, { left: icon.left, top: icon.top }])
     );
     localStorage.setItem(STORAGE_KEY, JSON.stringify(positions));
   }
@@ -299,61 +421,7 @@ export class DesktopComponent implements OnInit, OnDestroy {
   }
 
   onIconDoubleClick(event: MouseEvent, icon: DesktopIcon) {
-    if (Date.now() - this.lastIconDragAt < 300) {
-      return;
-    }
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (icon.type === 'gadget') {
-      this.gadget?.showGadget();
-      return;
-    }
-
-    if (icon.type === 'doc') {
-      this.openHistoriaWindow();
-      return;
-    }
-
-    if (icon.type === 'msg') {
-      this.openContactoWindow();
-      return;
-    }
-
-    if (icon.type === 'folder') {
-      this.openProyectosWindow();
-      return;
-    }
-
-    if (icon.type === 'xls') {
-      this.openHabilidadesWindow();
-      return;
-    }
-
-    if (icon.type === 'img') {
-      this.openGaleriaWindow();
-      return;
-    }
-
-    if (icon.type === 'pdf') {
-      this.openCvPdf();
-      return;
-    }
-
-    if (icon.type === 'bin') {
-      this.openPapeleraWindow();
-      return;
-    }
-
-    if (icon.type === 'github') {
-      this.openGithubProfile();
-      return;
-    }
-
-    if (icon.type === 'linkedin') {
-      this.openLinkedInProfile();
-    }
+    this.activateIcon(icon, event);
   }
 
   openCvPdf() {
@@ -477,6 +545,23 @@ export class DesktopComponent implements OnInit, OnDestroy {
   onStartMenuDocumentOpen(documentId: 'gonzai' | 'previdocs') {
     this.isStartMenuVisible = false;
     this.onExplorerDocumentOpen(documentId);
+  }
+
+  logout() {
+    if (this.isLoggingOut) {
+      return;
+    }
+
+    this.isStartMenuVisible = false;
+    this.isLoggingOut = true;
+    this.logoutPhaseText = this.copy.logoutClosing;
+
+    this.logoutTimer = setTimeout(() => {
+      this.logoutPhaseText = this.copy.logoutPreparingLogin;
+      this.logoutTimer = setTimeout(() => {
+        this.router.navigate(['/'], { state: { fromLogout: true } });
+      }, 1200);
+    }, 1500);
   }
 
   openContactoWindow() {

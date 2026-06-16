@@ -1,10 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { provideRouter, Router } from '@angular/router';
 import { DesktopComponent } from './desktop.component';
 
 describe('DesktopComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DesktopComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
   });
 
@@ -127,7 +129,7 @@ describe('DesktopComponent', () => {
 
     expect(icon.left % 96).toBe(16);
     expect(icon.top % 96).toBe(16);
-    expect(JSON.parse(localStorage.getItem('breiner7-desktop-icon-positions') ?? '{}')[icon.label]).toEqual({
+    expect(JSON.parse(localStorage.getItem('breiner7-desktop-icon-positions') ?? '{}')[icon.id]).toEqual({
       left: icon.left,
       top: icon.top
     });
@@ -151,6 +153,41 @@ describe('DesktopComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('app-win7-window')).toBeTruthy();
     expect(compiled.querySelector('.word-title')?.textContent?.trim()).toBe('Mi Historia');
+  });
+
+  it('should open Mi Historia window on mobile single tap', () => {
+    spyOn(window, 'matchMedia').and.returnValue({
+      matches: true,
+      media: '',
+      onchange: null,
+      addListener: () => undefined,
+      removeListener: () => undefined,
+      addEventListener: () => undefined,
+      removeEventListener: () => undefined,
+      dispatchEvent: () => false
+    } as MediaQueryList);
+
+    const fixture = TestBed.createComponent(DesktopComponent);
+    fixture.detectChanges();
+    const component = fixture.componentInstance;
+    const docIcon = component.desktopIcons.find(icon => icon.type === 'doc');
+
+    const tapEvent = {
+      button: 0,
+      pointerType: 'touch',
+      clientX: 40,
+      clientY: 40,
+      preventDefault: () => undefined,
+      stopPropagation: () => undefined,
+      currentTarget: {
+        setPointerCapture: () => undefined,
+        releasePointerCapture: () => undefined
+      }
+    } as unknown as PointerEvent;
+
+    component.onIconPointerDown(tapEvent, docIcon!);
+    component.onIconPointerUp(tapEvent, docIcon!);
+    expect(component.historiaWindow.isOpen).toBeTrue();
   });
 
   it('should open Contacto window on msg icon double click', () => {
@@ -421,4 +458,26 @@ describe('DesktopComponent', () => {
     expect(compiled.textContent).toContain('La papelera de reciclaje está vacía');
     expect(compiled.textContent).toContain('0 elementos');
   });
+
+  it('should navigate to login after logout transition', fakeAsync(() => {
+    const fixture = TestBed.createComponent(DesktopComponent);
+    fixture.detectChanges();
+    const component = fixture.componentInstance;
+    const router = TestBed.inject(Router);
+    spyOn(router, 'navigate');
+
+    component.logout();
+    fixture.detectChanges();
+
+    expect(component.isLoggingOut).toBeTrue();
+    expect(fixture.nativeElement.querySelector('.logout-overlay')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('.logout-text')?.textContent?.trim()).toBe('Cerrando sesión...');
+
+    tick(1500);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.logout-text')?.textContent?.trim()).toBe('Preparando inicio de sesión...');
+
+    tick(1200);
+    expect(router.navigate).toHaveBeenCalledWith(['/'], { state: { fromLogout: true } });
+  }));
 });

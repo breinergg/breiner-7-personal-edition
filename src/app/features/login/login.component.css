@@ -20,6 +20,38 @@
   justify-content: center;
 }
 
+.login-screen--entering .user-card {
+  animation: loginReturnIn 0.85s ease-out;
+}
+
+.login-screen--shutting-down .bg-base,
+.login-screen--shutting-down .bg-vignette,
+.login-screen--shutting-down .aurora-svg {
+  animation: loginShutdownFade 0.85s ease forwards;
+}
+
+@keyframes loginShutdownFade {
+  to {
+    opacity: 0.72;
+    filter: blur(1.5px);
+  }
+}
+
+.loading-container--shutdown .loading-text {
+  transition: opacity 0.35s ease;
+}
+
+@keyframes loginReturnIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
 /* ===================== BACKGROUND ===================== */
 
 .bg-base {
@@ -190,7 +222,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 36px;
+  height: calc(36px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
   background: linear-gradient(to bottom,
     rgba(0, 12, 28, 0.02) 0%,
     rgba(0, 8, 22, 0.08) 50%,
@@ -661,5 +695,32 @@
 
   .user-card {
     padding: 12px 16px;
+  }
+
+  .username {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .power-menu,
+  .accessibility-menu,
+  .language-menu {
+    max-width: calc(100vw - 24px);
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .win7-avatar-frame--login {
+    width: 72px;
+    height: 72px;
+  }
+
+  .user-card {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .bottom-bar {
+    padding: 0 4px;
   }
 }

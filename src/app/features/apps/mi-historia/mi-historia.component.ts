@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LanguageService } from '../../../shared/services/language.service';
 
 @Component({
   selector: 'app-mi-historia',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './mi-historia.component.html',
   styleUrl: './mi-historia.component.css'
 })
-export class MiHistoriaComponent {}
+export class MiHistoriaComponent {
+  constructor(readonly lang: LanguageService) {}
+}

@@ -1,9 +1,9 @@
 <div class="excel-app">
   <div class="excel-ribbon">
-    <span class="excel-ribbon-tab excel-ribbon-tab--active">Inicio</span>
-    <span class="excel-ribbon-tab">Insertar</span>
-    <span class="excel-ribbon-tab">Diseño de página</span>
-    <span class="excel-ribbon-tab">Fórmulas</span>
+    <span class="excel-ribbon-tab excel-ribbon-tab--active">{{ lang.shared.wordHome }}</span>
+    <span class="excel-ribbon-tab">{{ lang.shared.wordInsert }}</span>
+    <span class="excel-ribbon-tab">{{ lang.shared.wordPageDesign }}</span>
+    <span class="excel-ribbon-tab">{{ lang.shared.excelFormulas }}</span>
   </div>
 
   <div class="excel-formula-bar">
@@ -42,11 +42,11 @@
       </div>
 
       @if (activeSheet === 'habilidades') {
-        <div class="excel-chart-object" aria-label="Tecnologías principales">
+        <div class="excel-chart-object" [attr.aria-label]="lang.apps.habilidades.chartTitle">
           <div class="tech-chart">
-            <h2 class="tech-chart-title">Tecnologías principales</h2>
+            <h2 class="tech-chart-title">{{ lang.apps.habilidades.chartTitle }}</h2>
             <p class="tech-chart-subtitle">
-              Áreas en las que he desarrollado proyectos y adquirido experiencia.
+              {{ lang.apps.habilidades.chartSubtitle }}
             </p>
 
             <div class="tech-chart-body">
@@ -68,7 +68,7 @@
               </div>
             </div>
 
-            <p class="tech-chart-footer">Experiencia</p>
+            <p class="tech-chart-footer">{{ lang.apps.habilidades.experience }}</p>
           </div>
         </div>
       }
@@ -82,7 +82,7 @@
       [class.excel-sheet-tab--active]="activeSheet === 'habilidades'"
       (click)="selectSheet('habilidades')"
     >
-      Habilidades
+      {{ lang.apps.habilidades.sheetHabilidades }}
     </button>
     <button
       type="button"
@@ -90,7 +90,7 @@
       [class.excel-sheet-tab--active]="activeSheet === 'tecnologias'"
       (click)="selectSheet('tecnologias')"
     >
-      Tecnologías
+      {{ lang.apps.habilidades.sheetTecnologias }}
     </button>
   </div>
 </div>

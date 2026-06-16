@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StartMenuAppIconComponent } from './start-menu-app-icon/start-menu-app-icon.component';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { USER_AVATAR } from '../../shared/constants/user-avatar';
+import { LanguageService } from '../../shared/services/language.service';
 
 interface AppItem {
   icon: string;
@@ -27,28 +28,39 @@ interface SystemLink {
 export class StartMenuComponent {
   @Input() isVisible = false;
   @Output() documentOpen = new EventEmitter<'gonzai' | 'previdocs'>();
+  @Output() logout = new EventEmitter<void>();
 
   searchQuery = '';
   showRecommendationsModal = false;
-
-  readonly recommendationsMessage =
-    'Para una mejor experiencia, te recomendamos utilizar el modo de pantalla completa.\n\n' +
-    'Puedes activarlo presionando la tecla F11 en tu teclado. Así disfrutarás del escritorio con mayor inmersión y sin las distracciones del navegador.';
-
-  recentApps: AppItem[] = [
-    { icon: 'word', name: 'Word', hasSubmenu: true },
-    { icon: 'excel', name: 'Excel', hasSubmenu: true },
-    { icon: 'paint', name: 'Pintando', hasSubmenu: true },
-    { icon: 'cmd', name: 'Símbolo del sistema', hasSubmenu: true }
-  ];
-
-  systemLinks: SystemLink[] = [
-    { name: 'Previdocs', action: 'previdocs' },
-    { name: 'Gonzai', action: 'gonzai' },
-    { name: 'Recomendaciones', action: 'recomendaciones' }
-  ];
+  showShutdownMenu = false;
 
   userAvatar = USER_AVATAR.menu;
+
+  constructor(readonly lang: LanguageService) {}
+
+  get recentApps(): AppItem[] {
+    const copy = this.lang.startMenu;
+    return [
+      { icon: 'word', name: 'Word', hasSubmenu: true },
+      { icon: 'excel', name: 'Excel', hasSubmenu: true },
+      { icon: 'paint', name: copy.recentApps.paint, hasSubmenu: true },
+      { icon: 'cmd', name: copy.recentApps.cmd, hasSubmenu: true }
+    ];
+  }
+
+  get systemLinks(): SystemLink[] {
+    const copy = this.lang.startMenu;
+    return [
+      { name: 'Previdocs', action: 'previdocs' },
+      { name: 'Gonzai', action: 'gonzai' },
+      { name: copy.systemLinks.recommendations, action: 'recomendaciones' }
+    ];
+  }
+
+  @HostListener('document:click')
+  onDocumentClick() {
+    this.showShutdownMenu = false;
+  }
 
   toggleMenu(): void {
     this.isVisible = !this.isVisible;
@@ -82,11 +94,18 @@ export class StartMenuComponent {
     console.log('All programs clicked');
   }
 
-  onShutdownClick(): void {
-    console.log('Shutdown clicked');
+  onShutdownClick(event: Event): void {
+    event.stopPropagation();
+    this.showShutdownMenu = !this.showShutdownMenu;
   }
 
-  onShutdownMenuClick(): void {
-    console.log('Shutdown menu clicked');
+  onShutdownMenuClick(event: Event): void {
+    event.stopPropagation();
+    this.showShutdownMenu = !this.showShutdownMenu;
+  }
+
+  onLogoutClick(): void {
+    this.showShutdownMenu = false;
+    this.logout.emit();
   }
 }

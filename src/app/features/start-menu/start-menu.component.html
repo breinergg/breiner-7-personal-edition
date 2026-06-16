@@ -30,14 +30,14 @@
 
         <button class="all-programs-btn" (click)="onAllProgramsClick()">
           <span class="arrow-right">▶</span>
-          <span>Todos los programas</span>
+          <span>{{ lang.startMenu.allPrograms }}</span>
         </button>
 
         <div class="search-footer">
           <div class="search-box">
             <input
               type="text"
-              placeholder="Buscar programas y archivos"
+              [placeholder]="lang.startMenu.searchPlaceholder"
               class="search-input"
               (input)="onSearch($event)"
             />
@@ -75,16 +75,24 @@
       </div>
 
       <div class="shutdown-section">
-        <div class="shutdown-controls">
-          <button class="shutdown-btn" (click)="onShutdownClick()">
-            <span class="shutdown-text">Apagar</span>
+        <div class="shutdown-controls" [class.shutdown-controls--open]="showShutdownMenu">
+          <button class="shutdown-btn" (click)="onShutdownClick($event)">
+            <span class="shutdown-text">{{ lang.startMenu.shutdown }}</span>
           </button>
-          <button class="shutdown-menu-btn" (click)="onShutdownMenuClick()" aria-label="Opciones de apagado">
+          <button class="shutdown-menu-btn" (click)="onShutdownMenuClick($event)" [attr.aria-label]="lang.startMenu.shutdownOptions">
             <svg class="shutdown-arrow" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M1.5 0.8 L6.8 4 L1.5 7.2 Z" fill="currentColor"/>
             </svg>
           </button>
         </div>
+
+        @if (showShutdownMenu) {
+          <div class="shutdown-flyout" (click)="$event.stopPropagation()">
+            <button type="button" class="shutdown-flyout-item" (click)="onLogoutClick()">
+              {{ lang.startMenu.logOut }}
+            </button>
+          </div>
+        }
       </div>
     </div>
   </div>
@@ -92,8 +100,8 @@
 
 @if (showRecommendationsModal) {
   <app-modal
-    titulo="Recomendaciones"
-    [mensaje]="recommendationsMessage"
+    [titulo]="lang.startMenu.recommendationsTitle"
+    [mensaje]="lang.startMenu.recommendationsMessage"
     [mostrarCancelar]="false"
     (onAceptar)="closeRecommendationsModal()"
     (onCancelar)="closeRecommendationsModal()"

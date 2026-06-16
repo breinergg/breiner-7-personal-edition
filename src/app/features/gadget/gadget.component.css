@@ -1,7 +1,7 @@
 .gadget {
   position: fixed;
   width: 168px;
-  z-index: 9999;
+  z-index: 50;
   user-select: none;
   cursor: default;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
@@ -172,4 +172,38 @@
 .gauge-label--small {
   font-size: 4.8px;
   letter-spacing: 0.03em;
+}
+
+@media (max-width: 768px) {
+  .gadget {
+    max-width: calc(100vw - 16px);
+  }
+
+  .gadget-controls {
+    opacity: 1;
+  }
+
+  .gadget-meter {
+    width: 148px;
+    height: 86px;
+  }
+
+  .gadget {
+    width: 148px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gadget {
+    width: 132px;
+  }
+
+  .gadget-meter {
+    width: 132px;
+    height: 76px;
+  }
+
+  .gadget-caption-role {
+    font-size: 10px;
+  }
 }

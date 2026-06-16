@@ -1,109 +1,20 @@
 <div class="word-app">
   <div class="word-ribbon">
-    <span class="word-ribbon-tab word-ribbon-tab--active">Inicio</span>
-    <span class="word-ribbon-tab">Insertar</span>
-    <span class="word-ribbon-tab">Diseño de página</span>
+    <span class="word-ribbon-tab word-ribbon-tab--active">{{ lang.shared.wordHome }}</span>
+    <span class="word-ribbon-tab">{{ lang.shared.wordInsert }}</span>
+    <span class="word-ribbon-tab">{{ lang.shared.wordPageDesign }}</span>
   </div>
 
   <div class="word-workspace">
     <article class="word-page">
-      <h1 class="word-title">GonzAI — Sistema Inteligente de Gestión Empresarial</h1>
+      <div [innerHTML]="documentHtml"></div>
 
-      <h2 class="word-heading">Descripción General</h2>
-      <p>
-        GonzAI es una plataforma web integral diseñada para optimizar y automatizar los procesos operativos
-        de un negocio. Funciona como un sistema centralizado de gestión de ventas, control de inventario y
-        administración de cartera de clientes, con el valor añadido de integrar asistencia basada en
-        Inteligencia Artificial. La aplicación permite a los administradores tomar decisiones informadas a
-        través de paneles de control estadísticos (dashboards) y mantener un registro exacto de cada
-        movimiento financiero y logístico.
-      </p>
-
-      <h2 class="word-heading">Características Principales</h2>
-      <ul class="word-list">
-        <li>
-          <strong>Gestión de Ventas e Inventario:</strong> Módulo completo para el registro de ventas
-          diarias y control en tiempo real de los niveles de stock, incluyendo un historial detallado de
-          los movimientos de inventario y categorización de productos.
-        </li>
-        <li>
-          <strong>Administración de Clientes y Cartera:</strong> Sistema de seguimiento de clientes que
-          permite registrar movimientos, abonos y calcular saldos pendientes, identificando rápidamente a
-          los clientes con mayor deuda.
-        </li>
-        <li>
-          <strong>Asistente Inteligente (GonzAI):</strong> Integración de funcionalidades de IA con
-          registro de interacciones (ChatLogs) y capacidad para capturar y procesar preguntas no
-          reconocidas, mejorando continuamente la asistencia al usuario.
-        </li>
-        <li>
-          <strong>Seguridad y Control de Acceso:</strong> Sistema de autenticación robusto para proteger
-          la información sensible del negocio y restringir el acceso a usuarios no autorizados.
-        </li>
-      </ul>
-
-      <h2 class="word-heading">Arquitectura y Tecnologías (Stack Tecnológico)</h2>
-      <p>
-        El proyecto fue desarrollado utilizando una arquitectura moderna de cliente-servidor, separando
-        claramente las responsabilidades del frontend y el backend para asegurar la escalabilidad y el
-        mantenimiento del código.
-      </p>
-
-      <h3 class="word-subheading">Frontend (Client-Side)</h3>
-      <ul class="word-list">
-        <li>
-          <strong>Framework:</strong> Desarrollado como una Single Page Application (SPA) utilizando
-          Angular.
-        </li>
-        <li>
-          <strong>Arquitectura:</strong> Diseño modular basado en componentes con servicios inyectables
-          para el consumo de la API.
-        </li>
-        <li>
-          <strong>Seguridad:</strong> Implementación de Auth Guards para la protección de rutas y HTTP
-          Interceptors para la gestión y envío seguro de tokens de sesión.
-        </li>
-        <li>
-          <strong>UI/UX:</strong> Interfaz responsiva e intuitiva, estructurada con un diseño de layout
-          maestro para la navegación entre los distintos módulos.
-        </li>
-      </ul>
-
-      <h3 class="word-subheading">Backend (Server-Side)</h3>
-      <ul class="word-list">
-        <li>
-          <strong>Framework:</strong> API RESTful construida con C# y ASP.NET Core 8.
-        </li>
-        <li>
-          <strong>Patrones de Diseño:</strong> Arquitectura en capas (Controladores, Servicios y Acceso a
-          Datos) para desacoplar la lógica de negocio. Uso intensivo de DTOs (Data Transfer Objects)
-          implementados mediante Mapster para optimizar el envío de datos y proteger las entidades de la
-          base de datos.
-        </li>
-        <li>
-          <strong>Base de Datos:</strong> Persistencia de datos gestionada a través de Entity Framework
-          Core utilizando PostgreSQL (mediante Npgsql), garantizando integridad referencial y consultas
-          eficientes.
-        </li>
-        <li>
-          <strong>Autenticación:</strong> Seguridad implementada con JWT (JSON Web Tokens) e integración
-          de encriptación de contraseñas (BCrypt).
-        </li>
-      </ul>
-
-      <h2 class="word-heading word-heading--carousel">Imágenes de demostración</h2>
-      <p class="word-carousel-intro">
-        A continuación se presenta una selección de capturas representativas de la interfaz de GonzAI,
-        ilustrando los módulos principales, la experiencia de usuario y las capacidades analíticas del
-        sistema en un entorno de producción.
-      </p>
-
-      <section class="word-carousel" aria-label="Carrusel de capturas de GonzAI">
+      <section class="word-carousel" [attr.aria-label]="lang.apps.wordCarousel.carouselAria.gonzai">
         <div class="word-carousel-frame">
           <button
             type="button"
             class="word-carousel-nav word-carousel-nav--prev"
-            aria-label="Imagen anterior"
+            [attr.aria-label]="lang.apps.wordCarousel.prevImage"
             (click)="prevSlide()"
           >
             &#8249;
@@ -114,8 +25,8 @@
               <button
                 type="button"
                 class="word-carousel-zoom"
-                aria-label="Ampliar imagen"
-                title="Ampliar imagen"
+                [attr.aria-label]="lang.apps.wordCarousel.enlarge"
+                [title]="lang.apps.wordCarousel.enlarge"
                 (click)="openZoom()"
               >
                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -127,7 +38,7 @@
               <button
                 type="button"
                 class="word-carousel-image-btn"
-                aria-label="Ver imagen ampliada"
+                [attr.aria-label]="lang.apps.wordCarousel.viewEnlarged"
                 (click)="openZoom()"
               >
                 <img
@@ -145,21 +56,21 @@
           <button
             type="button"
             class="word-carousel-nav word-carousel-nav--next"
-            aria-label="Imagen siguiente"
+            [attr.aria-label]="lang.apps.wordCarousel.nextImage"
             (click)="nextSlide()"
           >
             &#8250;
           </button>
         </div>
 
-        <div class="word-carousel-dots" role="tablist" aria-label="Seleccionar captura">
+        <div class="word-carousel-dots" role="tablist" [attr.aria-label]="lang.apps.wordCarousel.selectCapture">
           @for (slide of demoSlides; track slide.src; let i = $index) {
             <button
               type="button"
               class="word-carousel-dot"
               [class.word-carousel-dot--active]="activeSlide === i"
               [attr.aria-selected]="activeSlide === i"
-              [attr.aria-label]="'Captura ' + (i + 1)"
+              [attr.aria-label]="captureLabel(i)"
               (click)="goToSlide(i)"
             ></button>
           }
@@ -173,15 +84,15 @@
   </div>
 
   @if (zoomOpen) {
-    <div class="word-zoom-overlay" role="dialog" aria-modal="true" aria-label="Vista ampliada de captura">
+    <div class="word-zoom-overlay" role="dialog" aria-modal="true" [attr.aria-label]="lang.apps.wordCarousel.viewEnlarged">
       <div class="word-zoom-window">
         <div class="word-zoom-titlebar">
-          <span class="word-zoom-title">Vista ampliada — Captura {{ activeSlide + 1 }}</span>
+          <span class="word-zoom-title">{{ enlargedViewLabel() }}</span>
           <button
             type="button"
             class="word-zoom-restore"
-            aria-label="Restaurar tamaño normal"
-            title="Restaurar"
+            [attr.aria-label]="lang.apps.wordCarousel.restoreSize"
+            [title]="lang.apps.wordCarousel.restore"
             (click)="closeZoom()"
           >
             <span class="word-zoom-restore-icon" aria-hidden="true"></span>

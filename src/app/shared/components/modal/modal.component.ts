@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-modal',
@@ -8,6 +9,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrl: './modal.component.css'
 })
 export class ModalComponent {
+  constructor(readonly lang: LanguageService) {}
   @Input() titulo: string = '';
   @Input() mensaje: string = '';
   @Input() mostrarCancelar: boolean = true;

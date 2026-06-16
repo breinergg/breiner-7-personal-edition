@@ -1,4 +1,4 @@
-<div class="login-screen">
+<div class="login-screen" [class.login-screen--entering]="sessionEntrance" [class.login-screen--shutting-down]="isShuttingDown">
 
   <!-- ============ BACKGROUND LAYERS ============ -->
   <div class="bg-base"></div>
@@ -88,7 +88,7 @@
   <div class="main-content">
 
     <!-- User profile card (estado inicial) -->
-    @if (!loading) {
+    @if (!statusActive) {
       <div class="user-card" (click)="selectUser(); $event.stopPropagation()">
         <div class="avatar-frame win7-avatar-frame win7-avatar-frame--login">
           <div class="avatar-inner win7-avatar-inner">
@@ -107,12 +107,12 @@
     }
 
     <!-- Loading state (Iniciando... / Preparando el escritorio...) -->
-    @if (loading) {
-      <div class="loading-container">
+    @if (statusActive) {
+      <div class="loading-container" [class.loading-container--shutdown]="isShuttingDown">
         <div class="aero-spinner">
           <div class="spinner-ring"></div>
         </div>
-        <span class="loading-text">{{ loadingText }}</span>
+        <span class="loading-text">{{ statusText }}</span>
       </div>
     }
 
@@ -121,10 +121,11 @@
 
   <!-- ============ BOTTOM BAR ============ -->
 
+  @if (!isShuttingDown) {
   <div class="bottom-bar">
 
     <div class="bottom-left">
-      <button class="btn-accessibility" (click)="toggleAccessibilityMenu($event)" aria-label="Facilidad de acceso" title="Facilidad de acceso">
+      <button class="btn-accessibility" (click)="toggleAccessibilityMenu($event)" [attr.aria-label]="copy.accessibilityLabel" [title]="copy.accessibilityLabel">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="4.5" r="2.5" fill="currentColor"/>
           <path d="M12 8C8 8 4.5 9.5 4.5 9.5L5.5 12.5C5.5 12.5 8.5 11.5 12 11.5S18.5 12.5 18.5 12.5L19.5 9.5C19.5 9.5 16 8 12 8Z" fill="currentColor"/>
@@ -180,18 +181,18 @@
     </div>
 
     <div class="bottom-right">
-      <button class="btn-language" (click)="toggleLanguageMenu($event)" title="Idioma">
-        {{ selectedLanguage }}
+      <button class="btn-language" (click)="toggleLanguageMenu($event)" [title]="copy.languageLabel">
+        {{ languageService.language() }}
       </button>
 
       <div class="power-group">
-        <button class="btn-power" (click)="shutdown(); $event.stopPropagation()" title="Apagar sistema" aria-label="Apagar sistema">
+        <button class="btn-power" (click)="shutdown(); $event.stopPropagation()" [title]="copy.shutDownLabel" [attr.aria-label]="copy.shutDownLabel">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 3v9" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
             <path d="M6.7 6.7A8 8 0 1 0 17.3 6.7" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
           </svg>
         </button>
-        <button class="btn-power-arrow" (click)="togglePowerMenu($event)" aria-label="Más opciones de energía" title="Opciones de energía">
+        <button class="btn-power-arrow" (click)="togglePowerMenu($event)" [attr.aria-label]="copy.morePowerOptionsLabel" [title]="copy.powerOptionsLabel">
           <svg viewBox="0 0 12 8" xmlns="http://www.w3.org/2000/svg">
             <path d="M2 2l4 4 4-4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -199,19 +200,18 @@
       </div>
     </div>
   </div>
+  }
 
 
   <!-- ============ DROPDOWN MENUS ============ -->
+
+  @if (!isShuttingDown) {
 
   @if (showPowerMenu) {
     <div class="dropdown-menu power-menu" (click)="stopPropagation($event)">
       <button class="dropdown-item" (click)="shutdown()">
         <svg viewBox="0 0 20 20" class="menu-icon"><path d="M10 2v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M6.5 5.5A6 6 0 1013.5 5.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
-        Apagar sistema
-      </button>
-      <button class="dropdown-item" (click)="restart()">
-        <svg viewBox="0 0 20 20" class="menu-icon"><path d="M4 10a6 6 0 0111.3-3H13v-2h5v5h-2V7.7A8 8 0 102 10h2z" fill="currentColor"/></svg>
-        Reiniciar experiencia
+        {{ copy.shutDownLabel }}
       </button>
     </div>
   }
@@ -219,23 +219,23 @@
   @if (showAccessibilityMenu) {
     <div class="dropdown-menu accessibility-menu" (click)="stopPropagation($event)">
       <button class="dropdown-item" (click)="aboutBreiner7()">
-        Acerca de Breiner 7
+        {{ copy.aboutBreiner7 }}
       </button>
     </div>
   }
 
   @if (showLanguageMenu) {
     <div class="dropdown-menu language-menu" (click)="stopPropagation($event)">
-      <div class="dropdown-header">Idioma</div>
+      <div class="dropdown-header">{{ copy.languageMenuHeader }}</div>
       <div class="dropdown-separator"></div>
       @for (lang of languages; track lang.code) {
         <button
           class="dropdown-item"
-          [class.active]="lang.code === selectedLanguage"
+          [class.active]="lang.code === languageService.language()"
           (click)="selectLanguage(lang)"
         >
           <span class="lang-code">{{ lang.code }}</span>
-          {{ lang.name }}
+          {{ getLanguageName(lang.code) }}
         </button>
       }
     </div>
@@ -244,12 +244,13 @@
   <!-- Modal Windows 7 - Acerca de -->
   @if (showAboutModal) {
     <app-modal
-      titulo="Acerca de Breiner 7"
-      [mensaje]="aboutModalMessage"
+      [titulo]="copy.aboutTitle"
+      [mensaje]="copy.aboutMessage"
       [mostrarCancelar]="false"
       (onAceptar)="closeAboutModal()"
       (onCancelar)="closeAboutModal()"
     ></app-modal>
+  }
   }
 
 </div>

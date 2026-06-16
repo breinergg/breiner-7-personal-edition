@@ -1,52 +1,52 @@
 <div class="explorer-app">
   <div class="explorer-menubar">
-    <span class="explorer-menu-item">Archivo</span>
-    <span class="explorer-menu-item">Editar</span>
-    <span class="explorer-menu-item">Ver</span>
-    <span class="explorer-menu-item">Herramientas</span>
-    <span class="explorer-menu-item">Ayuda</span>
+    <span class="explorer-menu-item">{{ explorer.menu.file }}</span>
+    <span class="explorer-menu-item">{{ explorer.menu.edit }}</span>
+    <span class="explorer-menu-item">{{ explorer.menu.view }}</span>
+    <span class="explorer-menu-item">{{ explorer.menu.tools }}</span>
+    <span class="explorer-menu-item">{{ explorer.menu.help }}</span>
   </div>
 
   <div class="explorer-toolbar">
-    <button type="button" class="explorer-nav-btn" disabled title="Atrás" aria-label="Atrás">◀</button>
-    <button type="button" class="explorer-nav-btn" disabled title="Adelante" aria-label="Adelante">▶</button>
+    <button type="button" class="explorer-nav-btn" disabled [title]="explorer.back" [attr.aria-label]="explorer.back">◀</button>
+    <button type="button" class="explorer-nav-btn" disabled [title]="explorer.forward" [attr.aria-label]="explorer.forward">▶</button>
     <button
       type="button"
       class="explorer-nav-btn"
       [disabled]="!canNavigateUp"
-      title="Subir"
-      aria-label="Subir"
+      [title]="explorer.up"
+      [attr.aria-label]="explorer.up"
       (click)="navigateUp()"
     >▲</button>
     <span class="explorer-toolbar-separator"></span>
     <div class="explorer-address">
-      <span class="explorer-address-label">Dirección:</span>
+      <span class="explorer-address-label">{{ explorer.address }}</span>
       <div class="explorer-address-bar">
         @if (currentLocation === 'disco-local') {
-          <span class="explorer-breadcrumb">Equipo</span>
+          <span class="explorer-breadcrumb">{{ explorer.computer }}</span>
           <span class="explorer-breadcrumb-sep">▸</span>
-          <span class="explorer-breadcrumb explorer-breadcrumb--current">Disco local (C:)</span>
+          <span class="explorer-breadcrumb explorer-breadcrumb--current">{{ explorer.localDisk }}</span>
         } @else if (currentLocation === 'documentos' || currentLocation === 'imagenes') {
-          <span class="explorer-breadcrumb">Equipo</span>
+          <span class="explorer-breadcrumb">{{ explorer.computer }}</span>
           <span class="explorer-breadcrumb-sep">▸</span>
-          <span class="explorer-breadcrumb">Disco local (C:)</span>
+          <span class="explorer-breadcrumb">{{ explorer.localDisk }}</span>
           <span class="explorer-breadcrumb-sep">▸</span>
-          <span class="explorer-breadcrumb">Usuarios</span>
+          <span class="explorer-breadcrumb">{{ explorer.users }}</span>
           <span class="explorer-breadcrumb-sep">▸</span>
           <span class="explorer-breadcrumb">Breiner</span>
           <span class="explorer-breadcrumb-sep">▸</span>
           <span class="explorer-breadcrumb explorer-breadcrumb--current">{{ currentFolderLabel }}</span>
         } @else {
-          <span class="explorer-breadcrumb">Equipo</span>
+          <span class="explorer-breadcrumb">{{ explorer.computer }}</span>
           <span class="explorer-breadcrumb-sep">▸</span>
-          <span class="explorer-breadcrumb">Disco local (C:)</span>
+          <span class="explorer-breadcrumb">{{ explorer.localDisk }}</span>
           <span class="explorer-breadcrumb-sep">▸</span>
-          <span class="explorer-breadcrumb">Usuarios</span>
+          <span class="explorer-breadcrumb">{{ explorer.users }}</span>
           <span class="explorer-breadcrumb-sep">▸</span>
           <span class="explorer-breadcrumb">Breiner</span>
           @if (currentLocation === 'proyectos') {
             <span class="explorer-breadcrumb-sep">▸</span>
-            <span class="explorer-breadcrumb">Escritorio</span>
+            <span class="explorer-breadcrumb">{{ explorer.desktop }}</span>
           }
           <span class="explorer-breadcrumb-sep">▸</span>
           <span class="explorer-breadcrumb explorer-breadcrumb--current">{{ currentFolderLabel }}</span>
@@ -57,7 +57,7 @@
       <input
         type="text"
         class="explorer-search-input"
-        [placeholder]="'Buscar en ' + currentFolderLabel"
+        [placeholder]="searchPlaceholder"
         readonly
       />
     </div>
@@ -66,7 +66,7 @@
   <div class="explorer-body">
     <aside class="explorer-nav-pane">
       <div class="explorer-nav-section">
-        <div class="explorer-nav-title">Favoritos</div>
+        <div class="explorer-nav-title">{{ explorer.favorites }}</div>
         <ul class="explorer-nav-list">
           <li
             class="explorer-nav-item"
@@ -74,7 +74,7 @@
             (click)="navigateToDesktop()"
           >
             <span class="explorer-nav-icon explorer-nav-icon--desktop" aria-hidden="true"></span>
-            Escritorio
+            {{ explorer.desktop }}
           </li>
           <li
             class="explorer-nav-item"
@@ -82,12 +82,12 @@
             (click)="navigateToProyectos()"
           >
             <span class="explorer-nav-icon explorer-nav-icon--folder" aria-hidden="true"></span>
-            Proyectos FullStack
+            {{ explorer.projects }}
           </li>
         </ul>
       </div>
       <div class="explorer-nav-section">
-        <div class="explorer-nav-title">Bibliotecas</div>
+        <div class="explorer-nav-title">{{ explorer.libraries }}</div>
         <ul class="explorer-nav-list">
           <li
             class="explorer-nav-item"
@@ -95,7 +95,7 @@
             (click)="navigateToDocumentos()"
           >
             <span class="explorer-nav-icon explorer-nav-icon--documents" aria-hidden="true"></span>
-            Documentos
+            {{ explorer.documents }}
           </li>
           <li
             class="explorer-nav-item"
@@ -103,12 +103,12 @@
             (click)="navigateToImagenes()"
           >
             <span class="explorer-nav-icon explorer-nav-icon--pictures" aria-hidden="true"></span>
-            Imágenes
+            {{ explorer.images }}
           </li>
         </ul>
       </div>
       <div class="explorer-nav-section">
-        <div class="explorer-nav-title">Equipo</div>
+        <div class="explorer-nav-title">{{ explorer.computer }}</div>
         <ul class="explorer-nav-list">
           <li
             class="explorer-nav-item"
@@ -116,7 +116,7 @@
             (click)="navigateToDiscoLocal()"
           >
             <span class="explorer-nav-icon explorer-nav-icon--drive" aria-hidden="true"></span>
-            Disco local (C:)
+            {{ explorer.localDisk }}
           </li>
         </ul>
       </div>
@@ -144,8 +144,8 @@
               <rect x="8" y="38" width="32" height="3" rx="0.5" fill="#98a8b8"/>
             </svg>
             <div class="explorer-disk-meta">
-              <div class="explorer-disk-title">Disco local (C:)</div>
-              <div class="explorer-disk-subtitle">Disco duro local</div>
+              <div class="explorer-disk-title">{{ explorer.localDisk }}</div>
+              <div class="explorer-disk-subtitle">{{ explorer.localHardDrive }}</div>
             </div>
           </div>
           <div class="explorer-disk-meter">
@@ -153,8 +153,8 @@
               <div class="explorer-disk-bar-fill" [style.width.%]="diskUsedPercent"></div>
             </div>
             <div class="explorer-disk-stats">
-              <span><strong>{{ diskUsedGb }} GB</strong> usados de {{ diskTotalGb }} GB</span>
-              <span class="explorer-disk-free">{{ diskFreeGb }} GB disponibles</span>
+              <span><strong>{{ diskUsedLabel }}</strong></span>
+              <span class="explorer-disk-free">{{ diskFreeLabel }}</span>
             </div>
           </div>
         </div>
@@ -164,22 +164,22 @@
         <table class="explorer-table">
           <thead>
             <tr>
-              <th>Nombre</th>
-              <th>Fecha de modificación</th>
-              <th>Tipo</th>
-              <th>Tamaño</th>
+              <th>{{ explorer.name }}</th>
+              <th>{{ explorer.modified }}</th>
+              <th>{{ explorer.type }}</th>
+              <th>{{ explorer.size }}</th>
             </tr>
           </thead>
           <tbody>
             @if (currentItems.length === 0) {
               <tr>
-                <td colspan="4" class="explorer-empty">Esta carpeta está vacía.</td>
+                <td colspan="4" class="explorer-empty">{{ explorer.emptyFolder }}</td>
               </tr>
             } @else {
               @for (file of currentItems; track file.id) {
                 <tr
                   [class.explorer-table-row--selected]="selectedFileId === file.id"
-                  (click)="selectFile(file)"
+                  (click)="onFileClick(file)"
                   (dblclick)="onFileDoubleClick(file)"
                 >
                   <td>
@@ -202,10 +202,50 @@
                           </svg>
                         }
                         @case ('xls') {
-                          <svg class="explorer-table-icon explorer-table-icon--svg" viewBox="0 0 16 16" aria-hidden="true">
-                            <rect x="2" y="1" width="12" height="14" rx="0.5" fill="#e8f5e9" stroke="#4caf50" stroke-width="0.6"/>
-                            <rect x="3" y="3" width="10" height="10" fill="#fff"/>
-                            <text x="8" y="10" font-size="6" font-weight="700" fill="#217346" text-anchor="middle">X</text>
+                          <svg class="explorer-table-icon explorer-table-icon--svg explorer-table-icon--xls" viewBox="3 7 28 29" aria-hidden="true">
+                            <defs>
+                              <linearGradient id="expXlsBadgeBg" x1="0" y1="0" x2="0.2" y2="1">
+                                <stop offset="0%" stop-color="#f3faf4"/>
+                                <stop offset="28%" stop-color="#dff3e2"/>
+                                <stop offset="65%" stop-color="#b9deb8"/>
+                                <stop offset="100%" stop-color="#7bc47e"/>
+                              </linearGradient>
+                              <linearGradient id="expXlsBadgeGlass" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.75)"/>
+                                <stop offset="45%" stop-color="rgba(255,255,255,0.18)"/>
+                                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                              </linearGradient>
+                              <linearGradient id="expXlsXDarkGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#3d8f4a"/>
+                                <stop offset="100%" stop-color="#145a32"/>
+                              </linearGradient>
+                              <filter id="expXlsXShadow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feDropShadow dx="0.5" dy="0.75" stdDeviation="0.25" flood-color="#0a3018" flood-opacity="0.55"/>
+                              </filter>
+                              <filter id="expXlsSheetStackShadow" x="-40%" y="-40%" width="180%" height="180%">
+                                <feDropShadow dx="0.4" dy="0.55" stdDeviation="0.2" flood-color="#1a3d22" flood-opacity="0.35"/>
+                              </filter>
+                            </defs>
+                            <path d="M 9.2 9.5 Q 4.8 9.8 4.8 14.2 V 33.2 Q 4.8 35.2 6.8 35.2 H 27.2 Q 29.2 35.2 29.2 33.2 V 10.2 Q 29.2 8.2 27.2 8.2 H 11.2 Q 9.5 8.2 9.2 9.5 Z"
+                                  fill="url(#expXlsBadgeBg)" stroke="#1f6b34" stroke-width="0.65"/>
+                            <path d="M 6.5 10.5 L 24 10.5 L 15 24 L 6.5 18 Z" fill="url(#expXlsBadgeGlass)" opacity="0.55"/>
+                            <path d="M 6.5 10.5 Q 6.5 8.8 8.5 8.8 H 27.2 Q 29 8.8 29 10.5 V 13.5 H 6.5 Z" fill="rgba(255,255,255,0.38)"/>
+                            <g transform="translate(20.8, 26.5) rotate(28)" filter="url(#expXlsSheetStackShadow)">
+                              <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35" fill="#ffffff" opacity="0.42" transform="translate(1.35, 1.25)"/>
+                              <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35" fill="#ffffff" opacity="0.68" transform="translate(0.65, 0.6)"/>
+                              <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35" fill="#ffffff" stroke="#c8e6c9" stroke-width="0.45"/>
+                              <g stroke="#b2dfaa" stroke-width="0.38">
+                                <line x1="-5.2" y1="-2.8" x2="5.8" y2="-2.8"/>
+                                <line x1="-5.2" y1="-0.8" x2="5.8" y2="-0.8"/>
+                                <line x1="-5.2" y1="1.2" x2="5.8" y2="1.2"/>
+                                <line x1="-3.2" y1="-4" x2="-3.2" y2="4.2"/>
+                                <line x1="-0.8" y1="-4" x2="-0.8" y2="4.2"/>
+                                <line x1="1.6" y1="-4" x2="1.6" y2="4.2"/>
+                              </g>
+                            </g>
+                            <text x="11.8" y="27.5" font-family="'Segoe UI', Arial, sans-serif" font-size="17.5" font-weight="800"
+                                  fill="url(#expXlsXDarkGrad)" filter="url(#expXlsXShadow)" text-anchor="middle">X</text>
+                            <path d="M 7.6 14.2 L 9.4 16.4" stroke="rgba(255,255,255,0.6)" stroke-width="0.75" stroke-linecap="round"/>
                           </svg>
                         }
                         @case ('pdf') {
@@ -257,12 +297,12 @@
 
   <div class="explorer-statusbar">
     @if (showDiskPanel) {
-      <span>{{ diskFreeGb }} GB disponibles de {{ diskTotalGb }} GB</span>
+      <span>{{ statusFreeLabel }}</span>
     } @else {
-      <span>{{ currentItems.length }} elementos</span>
+      <span>{{ statusElementsLabel }}</span>
     }
     @if (selectedFileId) {
-      <span class="explorer-statusbar-selected">1 elemento seleccionado</span>
+      <span class="explorer-statusbar-selected">{{ explorer.oneSelected }}</span>
     }
   </div>
 </div>

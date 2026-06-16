@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { WorbDocIconComponent } from '../../../shared/components/worb-doc-icon/worb-doc-icon.component';
+import { LanguageService } from '../../../shared/services/language.service';
+import { ExplorerCopy } from '../../../shared/constants/i18n/apps-i18n';
+import { isMobileInteraction } from '../../../shared/utils/mobile-interaction';
 
 export type ExplorerLocation =
   | 'desktop'
@@ -33,87 +36,58 @@ export interface ExplorerItem {
   opensDocument?: ExplorerDocumentId;
 }
 
-const PROYECTOS_FILES: ExplorerItem[] = [
-  { id: 'previdocs', name: 'PreviDocs.docx', type: 'Documento de Word', modified: '15/03/2026', size: '24 KB', iconKind: 'worb', opensDocument: 'previdocs' },
-  {
-    id: 'gonzai',
-    name: 'Gonzai.docx',
-    type: 'Documento de Word',
-    modified: '02/06/2026',
-    size: '18 KB',
-    iconKind: 'worb',
-    opensDocument: 'gonzai'
-  }
+interface ExplorerItemDef {
+  id: string;
+  typeKey: keyof ExplorerCopy['fileTypes'];
+  modified: string;
+  size: string;
+  iconKind: ExplorerIconKind;
+  opensLocation?: ExplorerLocation;
+  opensUrl?: string;
+  opensDocument?: ExplorerDocumentId;
+}
+
+const DESKTOP_ITEM_DEFS: ExplorerItemDef[] = [
+  { id: 'historia', typeKey: 'wordDocument', modified: '10/01/2026', size: '32 KB', iconKind: 'worb', opensDocument: 'historia' },
+  { id: 'proyectos-folder', typeKey: 'fileFolder', modified: '02/06/2026', size: '—', iconKind: 'folder', opensLocation: 'proyectos' },
+  { id: 'galeria', typeKey: 'photoApp', modified: '22/04/2026', size: '—', iconKind: 'img' },
+  { id: 'gadget', typeKey: 'systemMeter', modified: '11/06/2026', size: '128 KB', iconKind: 'gadget' },
+  { id: 'habilidades', typeKey: 'excelDocument', modified: '18/05/2026', size: '56 KB', iconKind: 'xls' },
+  { id: 'hoja-vida', typeKey: 'pdfDocument', modified: '12/06/2026', size: '28 KB', iconKind: 'pdf', opensUrl: '/hv/HOJA-DE-VIDA.pdf' },
+  { id: 'contacto', typeKey: 'mailShortcut', modified: '11/06/2026', size: '2 KB', iconKind: 'mail' },
+  { id: 'papelera', typeKey: 'recycleBin', modified: '11/06/2026', size: '—', iconKind: 'bin' }
 ];
 
-const DESKTOP_ITEMS: ExplorerItem[] = [
-  {
-    id: 'historia',
-    name: 'Mi Historia.docx',
-    type: 'Documento de Word',
-    modified: '10/01/2026',
-    size: '32 KB',
-    iconKind: 'worb',
-    opensDocument: 'historia'
-  },
-  {
-    id: 'proyectos-folder',
-    name: 'Proyectos FullStack',
-    type: 'Carpeta de archivos',
-    modified: '02/06/2026',
-    size: '—',
-    iconKind: 'folder',
-    opensLocation: 'proyectos'
-  },
-  { id: 'galeria', name: 'Galería', type: 'Aplicación de fotos', modified: '22/04/2026', size: '—', iconKind: 'img' },
-  { id: 'gadget', name: 'Gadget', type: 'Medidor del sistema', modified: '11/06/2026', size: '128 KB', iconKind: 'gadget' },
-  { id: 'habilidades', name: 'Habilidades.xlsx', type: 'Documento de Excel', modified: '18/05/2026', size: '56 KB', iconKind: 'xls' },
-  { id: 'hoja-vida', name: 'Hoja de Vida.pdf', type: 'Documento PDF', modified: '12/06/2026', size: '28 KB', iconKind: 'pdf', opensUrl: '/hv/HOJA-DE-VIDA.pdf' },
-  { id: 'contacto', name: 'Contacto', type: 'Acceso directo de correo', modified: '11/06/2026', size: '2 KB', iconKind: 'mail' },
-  { id: 'papelera', name: 'Papelera de reciclaje', type: 'Papelera de reciclaje', modified: '11/06/2026', size: '—', iconKind: 'bin' }
+const PROYECTOS_ITEM_DEFS: ExplorerItemDef[] = [
+  { id: 'previdocs', typeKey: 'wordDocument', modified: '15/03/2026', size: '24 KB', iconKind: 'worb', opensDocument: 'previdocs' },
+  { id: 'gonzai', typeKey: 'wordDocument', modified: '02/06/2026', size: '18 KB', iconKind: 'worb', opensDocument: 'gonzai' }
 ];
 
-const IMAGENES_FILES: ExplorerItem[] = [
-  { id: 'img-semillero', name: 'semillero.webp', type: 'Archivo WebP', modified: '11/06/2026', size: '214 KB', iconKind: 'img' },
-  { id: 'img-evento', name: 'evento-ingenieria.webp', type: 'Archivo WebP', modified: '11/06/2026', size: '186 KB', iconKind: 'img' },
-  { id: 'img-diplomado', name: 'diplomado-liderazgo.webp', type: 'Archivo WebP', modified: '11/06/2026', size: '205 KB', iconKind: 'img' },
-  { id: 'img-practicas', name: '1er-dia-practicas.webp', type: 'Archivo WebP', modified: '11/06/2026', size: '192 KB', iconKind: 'img' },
-  { id: 'img-voluntario', name: 'voluntario.webp', type: 'Archivo WebP', modified: '11/06/2026', size: '221 KB', iconKind: 'img' },
-  { id: 'img-amigos', name: 'amigos-del-alma.webp', type: 'Archivo WebP', modified: '11/06/2026', size: '189 KB', iconKind: 'img' },
-  { id: 'img-team-a', name: 'EL-TEAM-A.webp', type: 'Archivo WebP', modified: '12/06/2026', size: '210 KB', iconKind: 'img' },
-  { id: 'img-inicios', name: 'inicios-en-la-u.webp', type: 'Archivo WebP', modified: '11/06/2026', size: '198 KB', iconKind: 'img' }
+const IMAGENES_ITEM_DEFS: ExplorerItemDef[] = [
+  { id: 'img-semillero', typeKey: 'webpFile', modified: '11/06/2026', size: '214 KB', iconKind: 'img' },
+  { id: 'img-evento', typeKey: 'webpFile', modified: '11/06/2026', size: '186 KB', iconKind: 'img' },
+  { id: 'img-diplomado', typeKey: 'webpFile', modified: '11/06/2026', size: '205 KB', iconKind: 'img' },
+  { id: 'img-practicas', typeKey: 'webpFile', modified: '11/06/2026', size: '192 KB', iconKind: 'img' },
+  { id: 'img-voluntario', typeKey: 'webpFile', modified: '11/06/2026', size: '221 KB', iconKind: 'img' },
+  { id: 'img-amigos', typeKey: 'webpFile', modified: '11/06/2026', size: '189 KB', iconKind: 'img' },
+  { id: 'img-team-a', typeKey: 'webpFile', modified: '12/06/2026', size: '210 KB', iconKind: 'img' },
+  { id: 'img-inicios', typeKey: 'webpFile', modified: '11/06/2026', size: '198 KB', iconKind: 'img' }
 ];
 
-const DISCO_LOCAL_ITEMS: ExplorerItem[] = [
-  {
-    id: 'c-usuarios',
-    name: 'Usuarios',
-    type: 'Carpeta de archivos',
-    modified: '11/06/2026',
-    size: '—',
-    iconKind: 'folder',
-    opensLocation: 'desktop'
-  },
-  { id: 'c-program-files', name: 'Archivos de programa', type: 'Carpeta de archivos', modified: '10/06/2026', size: '—', iconKind: 'folder' },
-  { id: 'c-program-files-x86', name: 'Archivos de programa (x86)', type: 'Carpeta de archivos', modified: '10/06/2026', size: '—', iconKind: 'folder' },
-  { id: 'c-windows', name: 'Windows', type: 'Carpeta de archivos', modified: '11/06/2026', size: '—', iconKind: 'folder' },
-  { id: 'c-perflogs', name: 'PerfLogs', type: 'Carpeta de archivos', modified: '05/01/2026', size: '—', iconKind: 'folder' }
+const DISCO_LOCAL_ITEM_DEFS: ExplorerItemDef[] = [
+  { id: 'c-usuarios', typeKey: 'fileFolder', modified: '11/06/2026', size: '—', iconKind: 'folder', opensLocation: 'desktop' },
+  { id: 'c-program-files', typeKey: 'fileFolder', modified: '10/06/2026', size: '—', iconKind: 'folder' },
+  { id: 'c-program-files-x86', typeKey: 'fileFolder', modified: '10/06/2026', size: '—', iconKind: 'folder' },
+  { id: 'c-windows', typeKey: 'fileFolder', modified: '11/06/2026', size: '—', iconKind: 'folder' },
+  { id: 'c-perflogs', typeKey: 'fileFolder', modified: '05/01/2026', size: '—', iconKind: 'folder' }
 ];
 
-const LOCATION_ITEMS: Record<ExplorerLocation, ExplorerItem[]> = {
-  desktop: DESKTOP_ITEMS,
-  proyectos: PROYECTOS_FILES,
+const LOCATION_DEFS: Record<ExplorerLocation, ExplorerItemDef[]> = {
+  desktop: DESKTOP_ITEM_DEFS,
+  proyectos: PROYECTOS_ITEM_DEFS,
   documentos: [],
-  imagenes: IMAGENES_FILES,
-  'disco-local': DISCO_LOCAL_ITEMS
-};
-
-const LOCATION_LABELS: Record<ExplorerLocation, string> = {
-  desktop: 'Escritorio',
-  proyectos: 'Proyectos FullStack',
-  documentos: 'Documentos',
-  imagenes: 'Imágenes',
-  'disco-local': 'Disco local (C:)'
+  imagenes: IMAGENES_ITEM_DEFS,
+  'disco-local': DISCO_LOCAL_ITEM_DEFS
 };
 
 const UP_TARGET: Partial<Record<ExplorerLocation, ExplorerLocation>> = {
@@ -140,16 +114,22 @@ export class ProyectosFullstackComponent implements OnInit {
   currentLocation: ExplorerLocation = 'proyectos';
   selectedFileId: string | null = null;
 
+  constructor(readonly lang: LanguageService) {}
+
   ngOnInit() {
     this.currentLocation = this.initialLocation;
   }
 
+  get explorer() {
+    return this.lang.apps.explorer;
+  }
+
   get currentItems(): ExplorerItem[] {
-    return LOCATION_ITEMS[this.currentLocation];
+    return this.buildItems(LOCATION_DEFS[this.currentLocation]);
   }
 
   get currentFolderLabel(): string {
-    return LOCATION_LABELS[this.currentLocation];
+    return this.explorer.locationLabels[this.currentLocation];
   }
 
   get diskUsedPercent(): number {
@@ -166,6 +146,45 @@ export class ProyectosFullstackComponent implements OnInit {
 
   get canNavigateUp(): boolean {
     return UP_TARGET[this.currentLocation] !== undefined;
+  }
+
+  get searchPlaceholder(): string {
+    return this.explorer.searchIn.replace('{{folder}}', this.currentFolderLabel);
+  }
+
+  get diskUsedLabel(): string {
+    return this.explorer.gbUsed
+      .replace('{{used}}', String(this.diskUsedGb))
+      .replace('{{total}}', String(this.diskTotalGb));
+  }
+
+  get diskFreeLabel(): string {
+    return this.explorer.gbAvailable.replace('{{free}}', String(this.diskFreeGb));
+  }
+
+  get statusFreeLabel(): string {
+    return this.explorer.gbAvailableOf
+      .replace('{{free}}', String(this.diskFreeGb))
+      .replace('{{total}}', String(this.diskTotalGb));
+  }
+
+  get statusElementsLabel(): string {
+    return this.explorer.elements.replace('{{count}}', String(this.currentItems.length));
+  }
+
+  private buildItems(defs: ExplorerItemDef[]): ExplorerItem[] {
+    const { explorerItemNames, fileTypes } = this.explorer;
+    return defs.map((def) => ({
+      id: def.id,
+      name: explorerItemNames[def.id as keyof typeof explorerItemNames] ?? def.id,
+      type: fileTypes[def.typeKey],
+      modified: def.modified,
+      size: def.size,
+      iconKind: def.iconKind,
+      opensLocation: def.opensLocation,
+      opensUrl: def.opensUrl,
+      opensDocument: def.opensDocument
+    }));
   }
 
   navigateTo(location: ExplorerLocation) {
@@ -204,7 +223,19 @@ export class ProyectosFullstackComponent implements OnInit {
     this.selectedFileId = file.id;
   }
 
+  onFileClick(file: ExplorerItem) {
+    this.selectFile(file);
+
+    if (isMobileInteraction()) {
+      this.openFile(file);
+    }
+  }
+
   onFileDoubleClick(file: ExplorerItem) {
+    this.openFile(file);
+  }
+
+  private openFile(file: ExplorerItem) {
     if (file.opensLocation) {
       this.navigateTo(file.opensLocation);
       return;

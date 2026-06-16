@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LanguageService } from '../../../shared/services/language.service';
 
 @Component({
   selector: 'app-contacto',
@@ -11,15 +12,19 @@ export class ContactoComponent {
   readonly institutionalEmail = 'bmgonzalez@unimagdalena.edu.co';
   readonly phone = '3205061555';
 
+  constructor(readonly lang: LanguageService) {}
+
   sendPersonalEmail() {
-    const subject = encodeURIComponent('Contacto desde Breiner 7');
-    const body = encodeURIComponent('Hola Breiner,\n\n');
+    const copy = this.lang.apps.contacto;
+    const subject = encodeURIComponent(copy.mailSubject);
+    const body = encodeURIComponent(copy.mailBody);
     window.location.href = `mailto:${this.personalEmail}?subject=${subject}&body=${body}`;
   }
 
   sendInstitutionalEmail() {
-    const subject = encodeURIComponent('Contacto desde Breiner 7');
-    const body = encodeURIComponent('Hola Breiner,\n\n');
+    const copy = this.lang.apps.contacto;
+    const subject = encodeURIComponent(copy.mailSubject);
+    const body = encodeURIComponent(copy.mailBody);
     window.location.href = `mailto:${this.institutionalEmail}?subject=${subject}&body=${body}`;
   }
 }

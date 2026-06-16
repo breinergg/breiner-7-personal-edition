@@ -1,10 +1,7 @@
 import { Component, HostListener } from '@angular/core';
-
-interface DemoSlide {
-  src: string;
-  alt: string;
-  caption: string;
-}
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { LanguageService } from '../../../shared/services/language.service';
+import { DemoSlideCopy } from '../../../shared/constants/i18n/apps-i18n';
 
 @Component({
   selector: 'app-gonzai',
@@ -13,36 +10,29 @@ interface DemoSlide {
   styleUrl: './gonzai.component.css'
 })
 export class GonzaiComponent {
-  readonly demoSlides: DemoSlide[] = [
-    {
-      src: '/gonzai-imagenes/gg1.webp',
-      alt: 'Vista general del panel principal de GonzAI',
-      caption: 'Panel principal con acceso centralizado a los módulos del sistema.'
-    },
-    {
-      src: '/gonzai-imagenes/gg2.webp',
-      alt: 'Módulo de gestión de ventas e inventario',
-      caption: 'Registro de ventas y control de stock en tiempo real.'
-    },
-    {
-      src: '/gonzai-imagenes/gg33.webp',
-      alt: 'Administración de clientes y cartera',
-      caption: 'Seguimiento de clientes, abonos y saldos pendientes.'
-    },
-    {
-      src: '/gonzai-imagenes/gg4.webp',
-      alt: 'Asistente inteligente GonzAI',
-      caption: 'Interfaz del asistente con IA integrada para consultas operativas.'
-    },
-    {
-      src: '/gonzai-imagenes/gg5.webp',
-      alt: 'Dashboard estadístico de GonzAI',
-      caption: 'Indicadores y métricas para la toma de decisiones informadas.'
-    }
-  ];
-
   activeSlide = 0;
   zoomOpen = false;
+
+  constructor(
+    readonly lang: LanguageService,
+    private sanitizer: DomSanitizer
+  ) {}
+
+  get demoSlides(): DemoSlideCopy[] {
+    return this.lang.apps.gonzai.demoSlides;
+  }
+
+  get documentHtml(): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(this.lang.apps.gonzai.bodyHtml);
+  }
+
+  captureLabel(index: number): string {
+    return this.lang.apps.wordCarousel.captureN.replace('{{n}}', String(index + 1));
+  }
+
+  enlargedViewLabel(): string {
+    return this.lang.apps.wordCarousel.enlargedView.replace('{{n}}', String(this.activeSlide + 1));
+  }
 
   @HostListener('document:keydown.escape')
   onEscapeKey() {

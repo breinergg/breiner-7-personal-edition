@@ -285,3 +285,51 @@
 .mail-action-btn--primary:hover {
   background: linear-gradient(to bottom, #6aa8e0 0%, #3468a8 100%);
 }
+
+@media (max-width: 768px) {
+  .mail-workspace {
+    flex-direction: column;
+  }
+
+  .mail-sidebar {
+    width: 100%;
+    max-height: none;
+    border-right: none;
+    border-bottom: 1px solid #c8c8c8;
+  }
+
+  .mail-folder-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 0 8px 8px;
+  }
+
+  .mail-folder {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 0;
+    padding: 8px 10px;
+    border-radius: 3px;
+  }
+
+  .mail-reading-pane {
+    min-height: 0;
+  }
+
+  .mail-toolbar {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mail-toolbar-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+
+  .mail-message-body {
+    padding: 12px;
+    font-size: 13px;
+  }
+}

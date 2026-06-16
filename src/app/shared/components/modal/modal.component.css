@@ -259,9 +259,21 @@
 
 /* ================= RESPONSIVE ================= */
 
+@media screen and (max-width: 768px) {
+  .modal-window {
+    width: calc(100% - 24px);
+    max-width: 420px;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .modal-window {
     width: calc(100% - 32px);
     max-width: 420px;
+  }
+
+  .modal-body {
+    max-height: min(60vh, 420px);
+    overflow-y: auto;
   }
 }

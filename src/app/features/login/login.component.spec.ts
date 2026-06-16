@@ -1,12 +1,15 @@
 import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { LANGUAGE_STORAGE_KEY } from '../../shared/constants/login-i18n';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
   let router: Router;
 
   beforeEach(async () => {
+    localStorage.removeItem(LANGUAGE_STORAGE_KEY);
+
     await TestBed.configureTestingModule({
       imports: [LoginComponent, RouterModule.forRoot([])],
     }).compileComponents();
@@ -63,6 +66,7 @@ describe('LoginComponent', () => {
   it('should change text to "Preparando el escritorio..." after 1.5s', fakeAsync(() => {
     const fixture = TestBed.createComponent(LoginComponent);
     fixture.detectChanges();
+    spyOn(router, 'navigate');
     fixture.componentInstance.selectUser();
     tick(1500);
     fixture.detectChanges();
@@ -92,8 +96,55 @@ describe('LoginComponent', () => {
   it('should select language', () => {
     const fixture = TestBed.createComponent(LoginComponent);
     const app = fixture.componentInstance;
-    app.selectLanguage({ code: 'EN', name: 'Inglés' });
+    app.selectLanguage({ code: 'EN' });
     expect(app.selectedLanguage).toBe('EN');
     expect(app.showLanguageMenu).toBeFalse();
   });
+
+  it('should switch UI to English when EN is selected', () => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+    fixture.componentInstance.selectLanguage({ code: 'EN' });
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.btn-language')?.getAttribute('title')).toBe('Language');
+    expect(compiled.querySelector('.btn-power')?.getAttribute('title')).toBe('Shut down');
+  });
+
+  it('should show English loading messages when EN is selected', fakeAsync(() => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+    spyOn(router, 'navigate');
+    fixture.componentInstance.selectLanguage({ code: 'EN' });
+    fixture.componentInstance.selectUser();
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.loading-text')?.textContent?.trim()).toBe('Starting...');
+
+    tick(1500);
+    fixture.detectChanges();
+    expect(compiled.querySelector('.loading-text')?.textContent?.trim()).toBe('Preparing the desktop...');
+  }));
+
+  it('should show shutdown sequence messages', fakeAsync(() => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    fixture.detectChanges();
+
+    fixture.componentInstance.shutdown();
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(fixture.componentInstance.isShuttingDown).toBeTrue();
+    expect(compiled.querySelector('.user-card')).toBeFalsy();
+    expect(compiled.querySelector('.loading-container--shutdown')).toBeTruthy();
+    expect(compiled.querySelector('.loading-text')?.textContent?.trim()).toBe('Gracias por visitarnos...');
+    expect(compiled.querySelector('.bottom-bar')).toBeFalsy();
+
+    tick(1500);
+    fixture.detectChanges();
+    expect(compiled.querySelector('.loading-text')?.textContent?.trim()).toBe('Apagando sistema...');
+    fixture.componentInstance.ngOnDestroy();
+  }));
 });
