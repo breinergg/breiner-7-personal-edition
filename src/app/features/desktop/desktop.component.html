@@ -1,0 +1,1191 @@
+<div class="desktop-screen">
+  <!-- Background layers -->
+  <div class="bg-base"></div>
+  <div class="bg-vignette"></div>
+  
+  <!-- Aurora / Light streaks -->
+  <svg class="aurora-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1920 1080">
+    <defs>
+      <!-- Filtro de brillo para las auroras (efecto Aero) -->
+      <filter id="auroraGlowDesktop" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+        <feMerge>
+          <feMergeNode in="blur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    
+    <!-- LÍNEAS PRINCIPALES desde la esquina INFERIOR IZQUIERDA -->
+    <path d="M 45,1060 C 200,920 360,780 520,660 C 680,540 840,440 1000,360 C 1160,280 1320,220 1480,180"
+          stroke="rgba(180, 240, 255, 0.22)" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+    
+    <path d="M 60,1065 C 240,900 420,740 600,600 C 780,460 960,340 1140,240 C 1320,140 1500,60 1680,-20"
+          stroke="rgba(140, 220, 255, 0.18)" stroke-width="3.0" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+    
+    <path d="M 75,1070 C 260,920 440,770 620,640 C 800,510 980,400 1160,310 C 1340,220 1520,150 1700,100"
+          stroke="rgba(165, 216, 110, 0.16)" stroke-width="2.8" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+    
+    <path d="M 90,1058 C 280,900 470,740 660,600 C 850,460 1040,340 1230,240 C 1420,140 1610,60 1800,-20"
+          stroke="rgba(220, 245, 255, 0.16)" stroke-width="3.2" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+
+    <!-- LÍNEAS HACIA TOP-RIGHT -->
+    <path d="M 50,1060 C 100,940 140,820 160,700 C 180,580 180,460 160,340 C 140,220 100,100 40,-20"
+          stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.8" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+
+    <path d="M 40,1065 C 80,920 100,780 90,640 C 80,500 50,360 10,220 C -30,80 -80,-60 -130,-200"
+          stroke="rgba(140, 220, 255, 0.14)" stroke-width="2.0" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+
+    <path d="M 35,1070 C 60,950 70,830 60,710 C 50,590 20,470 -20,350 C -60,230 -100,110 -140,-10"
+          stroke="rgba(165, 255, 180, 0.11)" stroke-width="1.6" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+
+    <path d="M 55,1055 C 100,900 120,750 110,600 C 100,450 70,300 20,150 C -30,0 -80,-150 -130,-300"
+          stroke="rgba(220, 245, 255, 0.13)" stroke-width="2.2" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+
+    <!-- Aurora verde hacia TOP-RIGHT con hojas (Windows 7 nature accent) -->
+    <path d="M 30,1068 C 40,900 60,720 80,540 C 100,360 120,200 140,70"
+          stroke="rgba(164, 217, 49, 0.38)" stroke-width="2.0" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+
+    <path d="M 27,1065 C 45,880 70,690 90,500 C 110,310 125,160 135,55"
+          stroke="rgba(139, 195, 74, 0.30)" stroke-width="1.4" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+
+    <!-- Hojas al final de la aurora verde -->
+    <g opacity="0.8" filter="url(#auroraGlowDesktop)">
+      <ellipse cx="45" cy="78" rx="10" ry="5" fill="#8bc34a" transform="rotate(-35 45 78)" opacity="0.85"/>
+      <ellipse cx="75" cy="58" rx="8" ry="4" fill="#a5d86e" transform="rotate(25 75 58)" opacity="0.8"/>
+      <path d="M 95 48 C 102 42 110 44 112 50 C 108 54 100 52 95 48Z" fill="#7cb342" opacity="0.75"/>
+      <ellipse cx="58" cy="92" rx="7" ry="3.5" fill="#9ccc65" transform="rotate(-10 58 92)" opacity="0.7"/>
+    </g>
+
+    <!-- Acento blanco (flor/mariposa) -->
+    <g opacity="0.85">
+      <circle cx="125" cy="38" r="2.5" fill="rgba(255,255,255,0.9)"/>
+      <ellipse cx="128" cy="36" rx="4" ry="1.8" fill="rgba(255,255,255,0.55)" transform="rotate(-25 128 36)"/>
+      <ellipse cx="123" cy="40" rx="3.5" ry="1.5" fill="rgba(255,255,255,0.45)" transform="rotate(40 123 40)"/>
+    </g>
+
+    <!-- Acentos ultra-finos -->
+    <path d="M 50,1058 C 280,910 520,760 740,640 C 960,520 1200,440 1420,400 C 1640,360 1860,340 2080,300"
+          stroke="rgba(180, 240, 200, 0.10)" stroke-width="1.2" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+
+    <path d="M 45,1063 C 80,940 100,820 90,700 C 80,580 50,460 10,340"
+          stroke="rgba(200, 230, 255, 0.11)" stroke-width="1.4" fill="none" stroke-linecap="round" filter="url(#auroraGlowDesktop)"/>
+  </svg>
+
+  <!-- Desktop icons (dispersos en el escritorio) -->
+  <div class="desktop-icons" #iconsArea (pointerdown)="onIconsAreaPointerDown($event)">
+    @for (icon of desktopIcons; track icon.label) {
+      <div
+        class="desktop-icon"
+        [class.desktop-icon--dragging]="draggingIcon === icon"
+        [class.desktop-icon--selected]="selectedIcon === icon"
+        [style.top.px]="icon.top"
+        [style.left.px]="icon.left"
+        [title]="icon.label"
+        (pointerdown)="onIconPointerDown($event, icon)"
+        (pointermove)="onIconPointerMove($event, icon)"
+        (pointerup)="onIconPointerUp($event, icon)"
+        (pointercancel)="onIconPointerUp($event, icon)"
+        (dblclick)="onIconDoubleClick($event, icon)"
+      >
+        @switch (icon.type) {
+          @case ('doc') {
+            <svg class="icon-svg icon-svg--doc" viewBox="0 0 48 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="docSheetGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#edf3fb"/>
+                  <stop offset="35%" stop-color="#dce9f7"/>
+                  <stop offset="100%" stop-color="#b8cfe8"/>
+                </linearGradient>
+                <linearGradient id="docFoldGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#9eb5cf"/>
+                  <stop offset="100%" stop-color="#6d88a8"/>
+                </linearGradient>
+                <linearGradient id="docWFrameGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#6ea3db"/>
+                  <stop offset="45%" stop-color="#4a7ebb"/>
+                  <stop offset="100%" stop-color="#1e4a7a"/>
+                </linearGradient>
+                <linearGradient id="docWFrameShine" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+                <linearGradient id="docWLetterGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#5b9bd5"/>
+                  <stop offset="100%" stop-color="#2b579a"/>
+                </linearGradient>
+                <filter id="docWShadow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feDropShadow dx="0.7" dy="1" stdDeviation="0.35" flood-color="#163456" flood-opacity="0.5"/>
+                </filter>
+              </defs>
+
+              <!-- Hoja del documento -->
+              <path d="M 11.5 6.5 H 32.5 L 38.5 12.5 V 45.5 H 11.5 Z"
+                    fill="url(#docSheetGrad)" stroke="#587a9e" stroke-width="1.15" stroke-linejoin="round"/>
+              <!-- Esquina doblada (dog-ear) -->
+              <path d="M 32.5 6.5 H 38.5 V 12.5 Z" fill="url(#docFoldGrad)" stroke="#587a9e" stroke-width="0.6"/>
+              <path d="M 32.5 6.5 L 38.5 12.5 L 32.5 12.5 Z" fill="#7a95b3" opacity="0.85"/>
+              <!-- Brillo superior de la hoja -->
+              <path d="M 12.5 7.5 H 31.5" stroke="rgba(255,255,255,0.65)" stroke-width="0.7" stroke-linecap="round"/>
+
+              <!-- Contenido simulado: líneas y placeholder de imagen -->
+              <g fill="#4a7ebb">
+                <rect x="14" y="17" width="10" height="1.3" rx="0.3"/>
+                <rect x="14" y="19.8" width="9" height="1.3" rx="0.3"/>
+                <rect x="14" y="22.6" width="10.5" height="1.3" rx="0.3"/>
+                <rect x="14" y="25.4" width="8.5" height="1.3" rx="0.3"/>
+                <rect x="14" y="28.2" width="9.5" height="1.3" rx="0.3"/>
+              </g>
+              <rect x="28.5" y="17" width="8.5" height="8.5" rx="0.4"
+                    fill="rgba(255,255,255,0.35)" stroke="#4a7ebb" stroke-width="0.65"/>
+              <g fill="#4a7ebb">
+                <rect x="14" y="31.5" width="23" height="1.3" rx="0.3"/>
+                <rect x="14" y="34" width="23" height="1.3" rx="0.3"/>
+                <rect x="14" y="36.5" width="23" height="1.3" rx="0.3"/>
+                <rect x="14" y="39" width="23" height="1.3" rx="0.3"/>
+                <rect x="14" y="41.5" width="20" height="1.3" rx="0.3"/>
+              </g>
+
+              <!-- Badge Word (marco azul + W) -->
+              <rect x="5.5" y="10" width="22.5" height="22.5" rx="1"
+                    fill="url(#docWFrameGrad)" stroke="#1a4470" stroke-width="0.55"/>
+              <rect x="5.5" y="10" width="22.5" height="5" rx="1"
+                    fill="url(#docWFrameShine)" opacity="0.9"/>
+              <rect x="8" y="12.5" width="17.5" height="17.5" fill="#ffffff" stroke="#c8d8ea" stroke-width="0.35"/>
+              <text x="16.75" y="25.5"
+                    font-family="'Segoe UI', Arial, sans-serif"
+                    font-size="13.5"
+                    font-weight="700"
+                    fill="url(#docWLetterGrad)"
+                    filter="url(#docWShadow)"
+                    text-anchor="middle">W</text>
+            </svg>
+          }
+          @case ('folder') {
+            <svg class="icon-svg icon-svg--folder" viewBox="0 0 48 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="folderGlassBody" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,252,238,0.95)"/>
+                  <stop offset="40%" stop-color="rgba(255,232,170,0.78)"/>
+                  <stop offset="100%" stop-color="rgba(220,185,110,0.72)"/>
+                </linearGradient>
+                <linearGradient id="folderGlassTab" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.92)"/>
+                  <stop offset="100%" stop-color="rgba(255,228,160,0.75)"/>
+                </linearGradient>
+                <linearGradient id="folderGlassFront" x1="0" y1="0" x2="0.3" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.88)"/>
+                  <stop offset="50%" stop-color="rgba(255,240,190,0.72)"/>
+                  <stop offset="100%" stop-color="rgba(235,200,130,0.68)"/>
+                </linearGradient>
+                <linearGradient id="folderGlassInner" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(200,170,100,0.35)"/>
+                  <stop offset="100%" stop-color="rgba(255,235,190,0.2)"/>
+                </linearGradient>
+                <linearGradient id="folderPaperGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="100%" stop-color="#f4f4f4"/>
+                </linearGradient>
+                <filter id="folderGlassGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="0.5" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                <clipPath id="folderDocClip">
+                  <path d="M 9 15.5 L 38.5 15.5 L 38.5 38 L 9 38 Z"/>
+                </clipPath>
+              </defs>
+
+              <!-- Cuerpo trasero -->
+              <path d="M 8 38 L 8 17 L 8 14.5 L 11.5 11.5 L 24 11.5 L 27.5 15 L 39.5 15 L 39.5 38 Z"
+                    fill="url(#folderGlassBody)" stroke="rgba(190,160,95,0.55)" stroke-width="0.65" stroke-linejoin="round"/>
+              <!-- Borde derecho (grosor) -->
+              <path d="M 39.5 15 L 40.2 15.5 L 40.2 38 L 39.5 38 Z" fill="rgba(200,165,95,0.45)"/>
+              <!-- Pestaña -->
+              <path d="M 8 14.5 L 8 12 L 11.5 11.5 L 24 11.5 L 27.5 15 L 8 15 Z"
+                    fill="url(#folderGlassTab)" stroke="rgba(255,255,255,0.45)" stroke-width="0.45"/>
+              <!-- Etiqueta en la pestaña -->
+              <rect x="12" y="12.2" width="10" height="2" rx="0.3" fill="rgba(255,255,255,0.7)" stroke="rgba(210,180,110,0.4)" stroke-width="0.3"/>
+              <!-- Interior / fondo -->
+              <path d="M 9 16.5 L 38.5 16.5 L 38.5 23 L 9 23 Z" fill="url(#folderGlassInner)"/>
+
+              <!-- Documentos dentro -->
+              <g clip-path="url(#folderDocClip)">
+                <!-- Hojas de fondo -->
+                <path d="M 12 18.5 L 35.5 17.8 L 36 29.5 L 11.5 30.2 Z" fill="#ececec" stroke="#d0d0d0" stroke-width="0.25"/>
+                <path d="M 11 17.8 L 36.5 17 L 37.2 28.8 L 10.5 29.8 Z" fill="#f6f6f6" stroke="#d8d8d8" stroke-width="0.25"/>
+                <!-- Hoja principal -->
+                <path d="M 10.5 17 L 37.5 16.2 L 38.5 27.5 L 10 28.5 Z"
+                      fill="url(#folderPaperGrad)" stroke="#cccccc" stroke-width="0.35"/>
+                <rect x="11" y="17" width="26" height="2.2" fill="#5ba8d8" opacity="0.85"/>
+                <g fill="#c0c0c0">
+                  <rect x="11.5" y="20" width="11" height="0.6" rx="0.15"/>
+                  <rect x="11.5" y="21.4" width="9.5" height="0.6" rx="0.15"/>
+                  <rect x="11.5" y="22.8" width="10.5" height="0.6" rx="0.15"/>
+                  <rect x="11.5" y="24.2" width="8.5" height="0.6" rx="0.15"/>
+                  <rect x="11.5" y="25.6" width="9.8" height="0.6" rx="0.15"/>
+                </g>
+                <!-- Miniatura -->
+                <rect x="29" y="19.8" width="8" height="6.5" rx="0.25" fill="#b8dff5" stroke="#90c8e8" stroke-width="0.25"/>
+                <path d="M 29 24.5 L 32 21.8 L 33.5 23 L 36.5 21.8 L 36.8 24.8 L 29 24.8 Z" fill="#68c068"/>
+              </g>
+
+              <!-- Solapa frontal -->
+              <path d="M 8 38 L 8 24.5 L 10 22.5 L 38.5 22.5 L 39.5 38 Z"
+                    fill="url(#folderGlassFront)" stroke="rgba(190,160,95,0.5)" stroke-width="0.6" stroke-linejoin="round"/>
+              <!-- Línea de pliegue superior de la solapa -->
+              <path d="M 10 22.5 L 38.5 22.5" stroke="rgba(170,140,80,0.35)" stroke-width="0.55" stroke-linecap="round"/>
+              <!-- Costura lateral izquierda -->
+              <path d="M 8.5 17 L 8.5 37.5" stroke="rgba(180,150,85,0.28)" stroke-width="0.45" stroke-linecap="round"/>
+
+              <!-- Brillos liquid glass -->
+              <path d="M 9 12.5 L 25 12.5" stroke="rgba(255,255,255,0.8)" stroke-width="1" stroke-linecap="round" filter="url(#folderGlassGlow)"/>
+              <path d="M 10.5 23.5 L 10.5 36" stroke="rgba(255,255,255,0.65)" stroke-width="1.4" stroke-linecap="round" filter="url(#folderGlassGlow)"/>
+              <path d="M 11 24.5 L 11 35" stroke="rgba(255,255,255,0.3)" stroke-width="0.6" stroke-linecap="round"/>
+              <path d="M 28 23.8 L 36 23.8" stroke="rgba(255,255,255,0.35)" stroke-width="0.55" stroke-linecap="round"/>
+              <path d="M 9 16.5 L 36 16.5" stroke="rgba(255,255,255,0.4)" stroke-width="0.5" stroke-linecap="round"/>
+              <ellipse cx="30" cy="30" rx="6" ry="4" fill="rgba(255,255,255,0.08)"/>
+            </svg>
+          }
+          @case ('img') {
+            <svg class="icon-svg icon-svg--img" viewBox="0 0 48 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="imgSkyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#7ec8f5"/>
+                  <stop offset="100%" stop-color="#5eb0e8"/>
+                </linearGradient>
+                <linearGradient id="imgWaterGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#5aafd8"/>
+                  <stop offset="100%" stop-color="#3d8fc8"/>
+                </linearGradient>
+                <clipPath id="imgPhotoClip">
+                  <rect x="8.5" y="8.5" width="31" height="23" rx="0.4"/>
+                </clipPath>
+              </defs>
+
+              <!-- Sombra suave -->
+              <rect x="7.5" y="7.5" width="36" height="28" rx="1.6" fill="rgba(0,0,0,0.14)"/>
+              <!-- Marco blanco (foto) -->
+              <rect x="6" y="6" width="36" height="28" rx="1.5" fill="#ffffff" stroke="#d0d0d0" stroke-width="0.45"/>
+
+              <!-- Paisaje interior -->
+              <g clip-path="url(#imgPhotoClip)">
+                <rect x="8.5" y="8.5" width="31" height="12" fill="url(#imgSkyGrad)"/>
+                <!-- Nubes -->
+                <ellipse cx="15.5" cy="13" rx="4.2" ry="1.9" fill="#ffffff" opacity="0.92"/>
+                <ellipse cx="19.5" cy="12.3" rx="3.2" ry="1.5" fill="#ffffff" opacity="0.88"/>
+                <ellipse cx="23" cy="13.2" rx="2.8" ry="1.3" fill="#ffffff" opacity="0.85"/>
+                <ellipse cx="29" cy="14" rx="3.8" ry="1.7" fill="#ffffff" opacity="0.9"/>
+                <!-- Colinas verdes -->
+                <path d="M 8.5 26 L 8.5 21 L 14 17.5 L 21 20 L 28 15.5 L 35 18.5 L 39.5 16 L 39.5 26 Z" fill="#6cb85c"/>
+                <path d="M 8.5 26 L 8.5 23 L 16 19.5 L 24 22 L 32 18 L 39.5 20.5 L 39.5 26 Z" fill="#5aad4a"/>
+                <!-- Agua -->
+                <rect x="8.5" y="26" width="31" height="5.5" fill="url(#imgWaterGrad)"/>
+              </g>
+
+              <!-- Brillo en el marco -->
+              <path d="M 7 7.2 L 40.5 7.2" stroke="rgba(255,255,255,0.7)" stroke-width="0.6" stroke-linecap="round"/>
+              <path d="M 7.2 7 L 7.2 33" stroke="rgba(255,255,255,0.45)" stroke-width="0.45" stroke-linecap="round"/>
+            </svg>
+          }
+          @case ('xls') {
+            <svg class="icon-svg icon-svg--xls" viewBox="0 0 48 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="xlsSheetGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#fafafa"/>
+                  <stop offset="40%" stop-color="#f2f2f2"/>
+                  <stop offset="100%" stop-color="#e4e4e4"/>
+                </linearGradient>
+                <linearGradient id="xlsFoldGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#c8c8c8"/>
+                  <stop offset="100%" stop-color="#9a9a9a"/>
+                </linearGradient>
+                <linearGradient id="xlsBadgeBg" x1="0" y1="0" x2="0.2" y2="1">
+                  <stop offset="0%" stop-color="#f3faf4"/>
+                  <stop offset="28%" stop-color="#dff3e2"/>
+                  <stop offset="65%" stop-color="#b9deb8"/>
+                  <stop offset="100%" stop-color="#7bc47e"/>
+                </linearGradient>
+                <linearGradient id="xlsBadgeGlass" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.75)"/>
+                  <stop offset="45%" stop-color="rgba(255,255,255,0.18)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+                <linearGradient id="xlsXDarkGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#3d8f4a"/>
+                  <stop offset="100%" stop-color="#145a32"/>
+                </linearGradient>
+                <linearGradient id="xlsBarGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#b3d9f9"/>
+                  <stop offset="35%" stop-color="#7ec0f5"/>
+                  <stop offset="100%" stop-color="#42a5f5"/>
+                </linearGradient>
+                <linearGradient id="xlsBarGradHi" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#d4ebfc"/>
+                  <stop offset="100%" stop-color="#64b5f6"/>
+                </linearGradient>
+                <filter id="xlsXShadow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feDropShadow dx="0.5" dy="0.75" stdDeviation="0.25" flood-color="#0a3018" flood-opacity="0.55"/>
+                </filter>
+                <filter id="xlsSheetStackShadow" x="-40%" y="-40%" width="180%" height="180%">
+                  <feDropShadow dx="0.4" dy="0.55" stdDeviation="0.2" flood-color="#1a3d22" flood-opacity="0.35"/>
+                </filter>
+                <clipPath id="xlsSheetClip">
+                  <path d="M 12 7.5 H 32.5 L 38.5 13.5 V 45 H 12 Z"/>
+                </clipPath>
+              </defs>
+
+              <!-- Hoja del documento -->
+              <path d="M 11.5 6.5 H 32.5 L 38.5 12.5 V 45.5 H 11.5 Z"
+                    fill="url(#xlsSheetGrad)" stroke="#8a8a8a" stroke-width="1.1" stroke-linejoin="round"/>
+              <path d="M 32.5 6.5 H 38.5 V 12.5 Z" fill="url(#xlsFoldGrad)" stroke="#8a8a8a" stroke-width="0.55"/>
+              <path d="M 32.5 6.5 L 38.5 12.5 L 32.5 12.5 Z" fill="#a8a8a8" opacity="0.82"/>
+              <path d="M 12.5 7.5 H 31.5" stroke="rgba(255,255,255,0.75)" stroke-width="0.65" stroke-linecap="round"/>
+
+              <!-- Cuadrícula de hoja de cálculo -->
+              <g clip-path="url(#xlsSheetClip)" stroke="#d1d1d1" stroke-width="0.35">
+                <line x1="12" y1="14" x2="38.5" y2="14"/>
+                <line x1="12" y1="16.4" x2="38.5" y2="16.4"/>
+                <line x1="12" y1="18.8" x2="38.5" y2="18.8"/>
+                <line x1="12" y1="21.2" x2="38.5" y2="21.2"/>
+                <line x1="12" y1="23.6" x2="38.5" y2="23.6"/>
+                <line x1="12" y1="26" x2="38.5" y2="26"/>
+                <line x1="12" y1="28.4" x2="38.5" y2="28.4"/>
+                <line x1="12" y1="30.8" x2="38.5" y2="30.8"/>
+                <line x1="12" y1="33.2" x2="38.5" y2="33.2"/>
+                <line x1="12" y1="35.6" x2="38.5" y2="35.6"/>
+                <line x1="12" y1="38" x2="38.5" y2="38"/>
+                <line x1="12" y1="40.4" x2="38.5" y2="40.4"/>
+                <line x1="12" y1="42.8" x2="38.5" y2="42.8"/>
+                <line x1="14" y1="14" x2="14" y2="45"/>
+                <line x1="17" y1="14" x2="17" y2="45"/>
+                <line x1="20" y1="14" x2="20" y2="45"/>
+                <line x1="23" y1="14" x2="23" y2="45"/>
+                <line x1="26" y1="14" x2="26" y2="45"/>
+                <line x1="29" y1="14" x2="29" y2="45"/>
+                <line x1="32" y1="14" x2="32" y2="45"/>
+                <line x1="35" y1="14" x2="35" y2="45"/>
+                <line x1="38" y1="14" x2="38" y2="45"/>
+              </g>
+
+              <!-- Gráfico de barras (parte inferior) -->
+              <g clip-path="url(#xlsSheetClip)">
+                <rect x="15.5" y="38.5" width="5" height="6.5" rx="0.35" fill="url(#xlsBarGrad)"/>
+                <rect x="15.7" y="38.7" width="1.8" height="6" rx="0.2" fill="url(#xlsBarGradHi)" opacity="0.55"/>
+                <rect x="22" y="35.5" width="5" height="9.5" rx="0.35" fill="url(#xlsBarGrad)"/>
+                <rect x="22.2" y="35.7" width="1.8" height="9" rx="0.2" fill="url(#xlsBarGradHi)" opacity="0.55"/>
+                <rect x="28.5" y="32" width="5" height="13" rx="0.35" fill="url(#xlsBarGrad)"/>
+                <rect x="28.7" y="32.2" width="1.8" height="12.5" rx="0.2" fill="url(#xlsBarGradHi)" opacity="0.55"/>
+              </g>
+
+              <!-- Badge Excel (estilo Office 2010: X verde + hoja inclinada) -->
+              <path d="M 9.2 9.5 Q 4.8 9.8 4.8 14.2 V 33.2 Q 4.8 35.2 6.8 35.2 H 27.2 Q 29.2 35.2 29.2 33.2 V 10.2 Q 29.2 8.2 27.2 8.2 H 11.2 Q 9.5 8.2 9.2 9.5 Z"
+                    fill="url(#xlsBadgeBg)" stroke="#1f6b34" stroke-width="0.65"/>
+              <path d="M 6.5 10.5 L 24 10.5 L 15 24 L 6.5 18 Z"
+                    fill="url(#xlsBadgeGlass)" opacity="0.55"/>
+              <path d="M 6.5 10.5 Q 6.5 8.8 8.5 8.8 H 27.2 Q 29 8.8 29 10.5 V 13.5 H 6.5 Z"
+                    fill="rgba(255,255,255,0.38)"/>
+
+              <!-- Hoja de cálculo inclinada (capa inferior) -->
+              <g transform="translate(20.8, 26.5) rotate(28)" filter="url(#xlsSheetStackShadow)">
+                <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35"
+                      fill="#ffffff" opacity="0.42" transform="translate(1.35, 1.25)"/>
+                <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35"
+                      fill="#ffffff" opacity="0.68" transform="translate(0.65, 0.6)"/>
+                <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35"
+                      fill="#ffffff" stroke="#c8e6c9" stroke-width="0.45"/>
+                <g stroke="#b2dfaa" stroke-width="0.38">
+                  <line x1="-5.2" y1="-2.8" x2="5.8" y2="-2.8"/>
+                  <line x1="-5.2" y1="-0.8" x2="5.8" y2="-0.8"/>
+                  <line x1="-5.2" y1="1.2" x2="5.8" y2="1.2"/>
+                  <line x1="-5.2" y1="3.2" x2="5.8" y2="3.2"/>
+                  <line x1="-3.2" y1="-4" x2="-3.2" y2="4.2"/>
+                  <line x1="-0.8" y1="-4" x2="-0.8" y2="4.2"/>
+                  <line x1="1.6" y1="-4" x2="1.6" y2="4.2"/>
+                  <line x1="4" y1="-4" x2="4" y2="4.2"/>
+                </g>
+              </g>
+
+              <!-- X verde oscuro (capa superior, encima de la hoja) -->
+              <text x="11.8" y="27.5"
+                    font-family="'Segoe UI', Arial, sans-serif"
+                    font-size="17.5"
+                    font-weight="800"
+                    fill="url(#xlsXDarkGrad)"
+                    filter="url(#xlsXShadow)"
+                    text-anchor="middle">X</text>
+              <path d="M 7.6 14.2 L 9.4 16.4" stroke="rgba(255,255,255,0.6)" stroke-width="0.75" stroke-linecap="round"/>
+              <path d="M 7.2 17.2 L 8.6 19" stroke="rgba(255,255,255,0.38)" stroke-width="0.55" stroke-linecap="round"/>
+              <path d="M 14.8 24.5 L 16.2 26.8" stroke="rgba(10,50,25,0.35)" stroke-width="0.6" stroke-linecap="round"/>
+            </svg>
+          }
+          @case ('pdf') {
+            <svg class="icon-svg icon-svg--pdf" viewBox="0 0 48 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="pdfSheetGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="85%" stop-color="#f8f8f8"/>
+                  <stop offset="100%" stop-color="#ececec"/>
+                </linearGradient>
+                <linearGradient id="pdfFoldGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#f5f5f5"/>
+                  <stop offset="100%" stop-color="#c8c8c8"/>
+                </linearGradient>
+                <linearGradient id="pdfBannerGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ff5555"/>
+                  <stop offset="50%" stop-color="#e82222"/>
+                  <stop offset="100%" stop-color="#c41010"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Hoja del documento -->
+              <path d="M 11.5 6.5 H 32.5 L 38.5 12.5 V 45.5 H 11.5 Z"
+                    fill="url(#pdfSheetGrad)" stroke="#b0b0b0" stroke-width="0.55" stroke-linejoin="round"/>
+              <!-- Esquina doblada -->
+              <path d="M 32.5 6.5 H 38.5 V 12.5 Z" fill="url(#pdfFoldGrad)" stroke="#b0b0b0" stroke-width="0.45"/>
+              <path d="M 32.5 6.5 L 38.5 12.5 L 32.5 12.5 Z" fill="#d8d8d8" opacity="0.85"/>
+
+              <!-- Banner rojo PDF (sobresale a la izquierda) -->
+              <rect x="7.5" y="9" width="21" height="9.5" rx="0.4"
+                    fill="url(#pdfBannerGrad)" stroke="#a01010" stroke-width="0.4"/>
+              <path d="M 7.5 9.5 L 28.5 9.5" stroke="rgba(255,255,255,0.35)" stroke-width="0.5" stroke-linecap="round"/>
+              <text x="18" y="16.2"
+                    font-family="'Segoe UI', Arial, sans-serif"
+                    font-size="7.5"
+                    font-weight="700"
+                    fill="#ffffff"
+                    text-anchor="middle">PDF</text>
+
+              <!-- Logo central (triángulo rojo, solo contorno) -->
+              <path d="M 24 21 L 33 35 L 15 35 Z"
+                    fill="none" stroke="#eb0600" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          }
+          @case ('msg') {
+            <svg class="icon-svg icon-svg--msg" viewBox="0 0 48 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="msgEnvFill" x1="0.5" y1="0" x2="0.5" y2="1">
+                  <stop offset="0%" stop-color="#3d7db8"/>
+                  <stop offset="100%" stop-color="#1e5088"/>
+                </linearGradient>
+                <linearGradient id="msgEnvGlass" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+                  <stop offset="35%" stop-color="rgba(255,255,255,0.12)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Cuerpo del sobre -->
+              <rect x="7.5" y="20" width="33" height="25.5" rx="1.2" fill="url(#msgEnvFill)"/>
+
+              <!-- Solapa superior -->
+              <path d="M 7.5 20 L 40.5 20 L 24 34.5 Z" fill="url(#msgEnvFill)"/>
+
+              <!-- Pliegue superior -->
+              <path d="M 7.5 20 L 24 34.5 L 40.5 20"
+                    fill="none" stroke="rgba(255,255,255,0.32)" stroke-width="0.5"/>
+
+              <!-- Brillos liquid glass -->
+              <path d="M 8.5 20.8 L 8.5 43.5"
+                    stroke="rgba(255,255,255,0.58)" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M 9.2 21.5 L 9.2 42.5"
+                    stroke="rgba(255,255,255,0.2)" stroke-width="0.5" stroke-linecap="round"/>
+              <path d="M 8.5 20.2 L 40.5 20.2"
+                    stroke="rgba(255,255,255,0.52)" stroke-width="0.75" stroke-linecap="round"/>
+              <path d="M 7.5 20 L 24 34.5 L 40.5 20"
+                    fill="url(#msgEnvGlass)" opacity="0.4"/>
+
+              <!-- Borde exterior glass -->
+              <path d="M 8.5 20.2 L 40.5 20.2"
+                    fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.55" stroke-linecap="round"/>
+              <path d="M 7.5 20 L 24 34.5 L 40.5 20"
+                    fill="none" stroke="rgba(255,255,255,0.42)" stroke-width="0.55" stroke-linejoin="round"/>
+              <path d="M 7.5 20 L 7.5 44.5 Q 7.5 45.5 8.5 45.5 L 39.5 45.5 Q 40.5 45.5 40.5 44.5 L 40.5 20"
+                    fill="none" stroke="rgba(255,255,255,0.42)" stroke-width="0.55" stroke-linejoin="round"/>
+            </svg>
+          }
+          @case ('bin') {
+            <svg class="icon-svg icon-svg--bin" viewBox="0 0 48 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="binChrome" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="18%" stop-color="#eef1f5"/>
+                  <stop offset="45%" stop-color="#aeb8c4"/>
+                  <stop offset="72%" stop-color="#dce1e8"/>
+                  <stop offset="100%" stop-color="#8a949e"/>
+                </linearGradient>
+                <linearGradient id="binChromeShine" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="35%" stop-color="rgba(255,255,255,0.15)"/>
+                  <stop offset="100%" stop-color="#c8d0da"/>
+                </linearGradient>
+                <linearGradient id="binGlassSide" x1="0" y1="0" x2="1" y2="0.15">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.72)"/>
+                  <stop offset="22%" stop-color="rgba(230,242,255,0.38)"/>
+                  <stop offset="50%" stop-color="rgba(200,225,245,0.14)"/>
+                  <stop offset="78%" stop-color="rgba(220,235,250,0.32)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0.58)"/>
+                </linearGradient>
+                <linearGradient id="binGlassDepth" x1="0.5" y1="0" x2="0.5" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.25)"/>
+                  <stop offset="100%" stop-color="rgba(120,150,180,0.18)"/>
+                </linearGradient>
+                <filter id="binShadowBlur" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur stdDeviation="1.3"/>
+                </filter>
+                <filter id="binGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="0.6" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                <filter id="binSymbolSoft" x="-15%" y="-15%" width="130%" height="130%">
+                  <feGaussianBlur stdDeviation="0.35" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+                <clipPath id="binGlassClip">
+                  <path d="M 10.5 20.5 L 37.5 20.5 L 32 48.8 Q 24 50.5 16 48.8 Z"/>
+                </clipPath>
+              </defs>
+
+              <!-- Interior / fondo visible a través del vidrio -->
+              <path d="M 13 21 L 35 21 L 30 47.8 Q 24 49.2 18 47.8 Z" fill="rgba(255,255,255,0.14)"/>
+              <ellipse cx="24" cy="47.6" rx="6.5" ry="1.5" fill="#f4f7fa" opacity="0.92"/>
+              <ellipse cx="24" cy="47" rx="5.2" ry="1" fill="rgba(255,255,255,0.85)"/>
+
+              <!-- Cuerpo de vidrio (lados conectan con las puntas de la base) -->
+              <path d="M 10.5 20.5 L 37.5 20.5 L 32 48.8 Q 24 50.5 16 48.8 Z"
+                    fill="url(#binGlassSide)" stroke="rgba(140,165,190,0.55)" stroke-width="0.75"/>
+              <path d="M 12 21.5 L 36 21.5 L 30.5 48.2 Q 24 49.5 17.5 48.2 Z"
+                    fill="url(#binGlassDepth)" opacity="0.85"/>
+
+              <!-- Símbolo de reciclaje (logo universal Mobius — tres flechas curvas) -->
+              <g transform="translate(24, 35.5)">
+                <ellipse cx="0" cy="6" rx="4.2" ry="1" fill="rgba(0,40,80,0.1)" filter="url(#binShadowBlur)"/>
+                <g transform="scale(0.021) translate(-388.5, -366.5)" fill="#0084E0" opacity="0.92" filter="url(#binSymbolSoft)">
+                  <path d="M280 272  C134 187 134 187 134 187  C210 54 210 54 210 54  C231 17 309 16 336 48  C373 110 373 110 373 110z"/>
+                  <path d="M162 475  C84 475 84 475 84 475  C54 471.75 4 410 34 354  C68 297 68 297 68 297  C15 266 15 266 15 266  C183 266 183 266 183 266  C268 412 268 412 268 412  C215 383 215 383 215 383z"/>
+                  <path d="M363 496  C363 667 363 667 363 667  C176 667 176 667 176 667  C165 668 157 657 151 648  C63 492 64 493 60 488  C64.75 492 70 496 85 496z"/>
+                  <path d="M687 496  C706 494 709 489 714 486  C620 652 620 652 620 652  C616 660 608 667 596 667  C492 667 492 667 492 667  C492 728 492 728 492 728  C407 583 407 583 407 583  C492 437 492 437 492 437  C492 496 492 496 492 496z"/>
+                  <path d="M519 315  C666 231 666 231 666 231  C743 362 743 362 743 362  C771 416 723 468 691 474  C612 474 612 474 612 474z"/>
+                  <path d="M357 35  C351 27 339 17 328 15  C525 15 525 15 525 15  C536 15 546 19 551 28  C602 118 602 118 602 118  C653 89 653 89 653 89  C570 233 570 233 570 233  C404 233 404 233 404 233  C454 203 454 203 454 203z"/>
+                </g>
+              </g>
+
+              <!-- Brillos líquidos (siguen la forma cónica del vaso) -->
+              <g clip-path="url(#binGlassClip)">
+                <!-- Borde izquierdo: hasta la punta de la base (x=16) -->
+                <path d="M 12.2 22.5 L 17 48.8"
+                      stroke="rgba(255,255,255,0.88)" stroke-width="2.6" stroke-linecap="round" filter="url(#binGlow)"/>
+                <path d="M 13.2 23.5 L 17.8 47.5"
+                      stroke="rgba(255,255,255,0.42)" stroke-width="1.1" stroke-linecap="round"/>
+                <!-- Borde derecho: hasta la punta de la base (x=32) -->
+                <path d="M 35.5 23 Q 33.5 36 31 48.8"
+                      fill="none" stroke="rgba(255,255,255,0.52)" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M 34 24.5 L 31.2 47.5"
+                      stroke="rgba(0,40,80,0.08)" stroke-width="1.4" stroke-linecap="round"/>
+                <!-- Reflejo central alargado -->
+                <ellipse cx="25.5" cy="34.5" rx="3" ry="9" fill="rgba(255,255,255,0.07)"/>
+                <!-- Brillo superior interno -->
+                <path d="M 14 24 Q 24 27 34 24"
+                      fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="0.9" stroke-linecap="round"/>
+              </g>
+
+              <!-- Base metálica inferior (más pequeña) -->
+              <ellipse cx="24" cy="48.8" rx="8" ry="2.4" fill="url(#binChrome)" stroke="#7a848e" stroke-width="0.65"/>
+              <ellipse cx="24" cy="48.2" rx="7" ry="1.7" fill="url(#binChromeShine)" opacity="0.85"/>
+              <path d="M 16 48.8 Q 24 49.3 32 48.8"
+                    stroke="rgba(255,255,255,0.55)" stroke-width="0.55" stroke-linecap="round"/>
+
+              <!-- Aro superior cromado -->
+              <ellipse cx="24" cy="20.2" rx="14.5" ry="4.6" fill="url(#binChrome)" stroke="#7a848e" stroke-width="0.7"/>
+              <ellipse cx="24" cy="18.8" rx="13.6" ry="4" fill="url(#binChromeShine)"/>
+              <ellipse cx="24" cy="17.6" rx="12.8" ry="3.5" fill="url(#binChrome)" stroke="#8a939d" stroke-width="0.55"/>
+              <ellipse cx="24" cy="16.8" rx="11" ry="2.6" fill="rgba(195,210,225,0.45)"/>
+              <path d="M12 18.5 Q24 14.5 36 18.5" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.1" stroke-linecap="round"/>
+              <ellipse cx="24" cy="17.2" rx="13.8" ry="4.2" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="0.6"/>
+            </svg>
+          }
+          @case ('github') {
+            <svg class="icon-svg icon-svg--github" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <filter id="deskGhShadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="1.2" stdDeviation="1" flood-color="#000000" flood-opacity="0.35"/>
+                </filter>
+                <linearGradient id="deskGhShine" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.75)"/>
+                  <stop offset="50%" stop-color="rgba(255,255,255,0.15)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+              </defs>
+              <rect x="4" y="4" width="40" height="40" rx="7" fill="#ffffff" stroke="rgba(170,180,190,0.55)" stroke-width="0.75" filter="url(#deskGhShadow)"/>
+              <g transform="translate(24, 24) scale(1.55) translate(-12, -12)">
+                <path fill="#24292f" d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386C24 5.373 18.626.001 12 .001z"/>
+              </g>
+              <path d="M 6 12 Q 24 6 42 24 L 42 42 L 6 42 Z" fill="url(#deskGhShine)" opacity="0.35"/>
+            </svg>
+          }
+          @case ('linkedin') {
+            <svg class="icon-svg icon-svg--linkedin" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="deskLiGlass" x1="0.12" y1="0" x2="0.88" y2="1">
+                  <stop offset="0%" stop-color="#6eb5ea"/>
+                  <stop offset="38%" stop-color="#3d94d4"/>
+                  <stop offset="100%" stop-color="#0a5fa8"/>
+                </linearGradient>
+                <linearGradient id="deskLiGlassShine" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.68)"/>
+                  <stop offset="42%" stop-color="rgba(255,255,255,0.16)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </linearGradient>
+                <linearGradient id="deskLiGlassRim" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.95)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0.2)"/>
+                </linearGradient>
+                <radialGradient id="deskLiGlint" cx="0.28" cy="0.22" r="0.58">
+                  <stop offset="0%" stop-color="rgba(255,255,255,0.88)"/>
+                  <stop offset="45%" stop-color="rgba(255,255,255,0.32)"/>
+                  <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                </radialGradient>
+                <filter id="deskLiShadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="1.2" stdDeviation="1" flood-color="#003d6b" flood-opacity="0.42"/>
+                </filter>
+                <clipPath id="deskLiClip">
+                  <rect x="4" y="4" width="40" height="40" rx="7"/>
+                </clipPath>
+              </defs>
+              <g filter="url(#deskLiShadow)">
+                <rect x="4" y="4" width="40" height="40" rx="7" fill="url(#deskLiGlass)" stroke="rgba(40,120,190,0.55)" stroke-width="0.65"/>
+              </g>
+              <g clip-path="url(#deskLiClip)">
+                <g transform="translate(24, 24) scale(1.65) translate(-12, -13.5)">
+                  <path fill="#ffffff" d="M18.2 18.2h-2.9v-4.6c0-1.1-.02-2.5-1.5-2.5-1.5 0-1.7 1.2-1.7 2.4v4.7H9.4V9.6h2.8v1.3h.04c.39-.74 1.34-1.52 2.76-1.52 2.95 0 3.5 1.94 3.5 4.47v6.35zM6.6 8.4a1.68 1.68 0 11-.01-3.36 1.68 1.68 0 01.01 3.36zM8.1 18.2H5.1V9.6h3v8.6z"/>
+                </g>
+                <path d="M 8 8 H 38" fill="none" stroke="url(#deskLiGlassRim)" stroke-width="1.1" stroke-linecap="round"/>
+                <path d="M 6 12 Q 24 6 42 24 L 42 42 L 6 42 Z" fill="url(#deskLiGlassShine)" opacity="0.44"/>
+                <ellipse cx="12.5" cy="10.5" rx="7.5" ry="5" fill="url(#deskLiGlint)" opacity="0.78"/>
+              </g>
+            </svg>
+          }
+          @case ('gadget') {
+            <svg class="icon-svg icon-svg--gadget" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="gadgetIconChrome" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="28%" stop-color="#d8e2ec"/>
+                  <stop offset="72%" stop-color="#8898a8"/>
+                  <stop offset="100%" stop-color="#5a6878"/>
+                </linearGradient>
+                <radialGradient id="gadgetIconFace" cx="38%" cy="32%" r="70%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="100%" stop-color="#e4e9ef"/>
+                </radialGradient>
+              </defs>
+              <!-- Medidor pequeño (atrás) -->
+              <g transform="translate(31, 13)">
+                <circle r="10.5" fill="url(#gadgetIconChrome)"/>
+                <circle r="9" fill="url(#gadgetIconFace)" stroke="rgba(100,120,140,0.35)" stroke-width="0.4"/>
+                <path d="M -5 -2 A 9 9 0 0 1 5 -2" fill="none" stroke="#f09828" stroke-width="1.8" opacity="0.55"/>
+                <line x1="0" y1="0" x2="4" y2="-6.5" stroke="#d62828" stroke-width="1.3" stroke-linecap="round"/>
+                <circle r="1.2" fill="#2a2a2a"/>
+              </g>
+              <!-- Medidor grande (delante) -->
+              <g transform="translate(17, 24)">
+                <circle r="14.5" fill="url(#gadgetIconChrome)"/>
+                <circle r="12.5" fill="url(#gadgetIconFace)" stroke="rgba(100,120,140,0.35)" stroke-width="0.45"/>
+                <path d="M -8 -3 A 12.5 12.5 0 0 1 8 -3" fill="none" stroke="#e88830" stroke-width="2" opacity="0.55"/>
+                <rect x="-2.2" y="5.5" width="4.4" height="2.2" rx="0.3" fill="#1a1a1a"/>
+                <text x="0" y="7.3" text-anchor="middle" fill="#6dff6d" font-size="2.2" font-weight="700" font-family="Consolas, monospace">6</text>
+                <line x1="0" y1="0" x2="5.5" y2="-9" stroke="#d62828" stroke-width="1.5" stroke-linecap="round"/>
+                <circle r="1.6" fill="#2a2a2a"/>
+              </g>
+            </svg>
+          }
+        }
+        <span class="icon-label">{{ icon.label }}</span>
+      </div>
+    }
+  </div>
+
+  <!-- Taskbar -->
+  <div class="taskbar">
+    <button class="start-button" title="Inicio" (click)="toggleStartMenu()">
+      <!-- BGM7 Logo -->
+      <svg class="start-logo" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="tileRed-desk" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ef3848"/>
+            <stop offset="100%" stop-color="#c81828"/>
+          </linearGradient>
+          <linearGradient id="tileBlue-desk" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3a9ef0"/>
+            <stop offset="100%" stop-color="#1070c8"/>
+          </linearGradient>
+          <linearGradient id="tileDark-desk" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#505050"/>
+            <stop offset="100%" stop-color="#2c2c2c"/>
+          </linearGradient>
+          <linearGradient id="tileSilver-desk" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#c0c0c0"/>
+            <stop offset="100%" stop-color="#8a8a8a"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="21" height="21" rx="3.5" ry="3.5" fill="url(#tileRed-desk)"/>
+        <text x="10.5" y="15.5" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="14" font-weight="400">B</text>
+        <rect x="23" y="0" width="21" height="21" rx="3.5" ry="3.5" fill="url(#tileBlue-desk)"/>
+        <text x="33.5" y="15.5" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="14" font-weight="400">G</text>
+        <rect x="0" y="23" width="21" height="21" rx="3.5" ry="3.5" fill="url(#tileDark-desk)"/>
+        <text x="10.5" y="38.5" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="14" font-weight="400">M</text>
+        <rect x="23" y="23" width="21" height="21" rx="3.5" ry="3.5" fill="url(#tileSilver-desk)"/>
+        <text x="33.5" y="38.5" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="14" font-weight="400">7</text>
+      </svg>
+    </button>
+
+    <div class="taskbar-apps">
+      <button
+        class="taskbar-app taskbar-app--pinned"
+        type="button"
+        title="GitHub — breinergg"
+        aria-label="Abrir perfil de GitHub"
+        (click)="openGithubProfile()"
+      >
+        <svg class="taskbar-app-icon taskbar-app-icon--github" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path fill="#24292f" d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386C24 5.373 18.626.001 12 .001z"/>
+        </svg>
+      </button>
+
+      <button
+        class="taskbar-app taskbar-app--pinned"
+        type="button"
+        title="LinkedIn — Breiner Gonzalez Machado"
+        aria-label="Abrir perfil de LinkedIn"
+        (click)="openLinkedInProfile()"
+      >
+        <svg class="taskbar-app-icon taskbar-app-icon--linkedin" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="tbLiGlass" x1="0.12" y1="0" x2="0.88" y2="1">
+              <stop offset="0%" stop-color="#6eb5ea"/>
+              <stop offset="38%" stop-color="#3d94d4"/>
+              <stop offset="100%" stop-color="#0a5fa8"/>
+            </linearGradient>
+            <linearGradient id="tbLiGlassShine" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.68)"/>
+              <stop offset="42%" stop-color="rgba(255,255,255,0.16)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </linearGradient>
+            <linearGradient id="tbLiGlassRim" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.95)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0.2)"/>
+            </linearGradient>
+            <radialGradient id="tbLiGlint" cx="0.28" cy="0.22" r="0.58">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.88)"/>
+              <stop offset="45%" stop-color="rgba(255,255,255,0.32)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+            <filter id="tbLiShadow" x="-18%" y="-18%" width="136%" height="136%">
+              <feDropShadow dx="0" dy="0.55" stdDeviation="0.32" flood-color="#003d6b" flood-opacity="0.42"/>
+            </filter>
+            <clipPath id="tbLiClip">
+              <rect x="1" y="1" width="22" height="22" rx="4.2"/>
+            </clipPath>
+          </defs>
+          <g filter="url(#tbLiShadow)">
+            <rect x="1" y="1" width="22" height="22" rx="4.2" fill="url(#tbLiGlass)" stroke="rgba(40,120,190,0.55)" stroke-width="0.35"/>
+          </g>
+          <g clip-path="url(#tbLiClip)">
+            <path fill="#ffffff" d="M18.2 18.2h-2.9v-4.6c0-1.1-.02-2.5-1.5-2.5-1.5 0-1.7 1.2-1.7 2.4v4.7H9.4V9.6h2.8v1.3h.04c.39-.74 1.34-1.52 2.76-1.52 2.95 0 3.5 1.94 3.5 4.47v6.35zM6.6 8.4a1.68 1.68 0 11-.01-3.36 1.68 1.68 0 01.01 3.36zM8.1 18.2H5.1V9.6h3v8.6z"/>
+            <path d="M 2.2 2.2 H 20.5" fill="none" stroke="url(#tbLiGlassRim)" stroke-width="0.65" stroke-linecap="round"/>
+            <path d="M 1.5 6.5 Q 9 2.5 22 13.5 L 22 22.5 L 1.5 22.5 Z" fill="url(#tbLiGlassShine)" opacity="0.44"/>
+            <ellipse cx="5.8" cy="4.8" rx="4.2" ry="2.8" fill="url(#tbLiGlint)" opacity="0.78"/>
+          </g>
+        </svg>
+      </button>
+
+      <!-- Explorador de archivos -->
+      <button
+        class="taskbar-app taskbar-app--pinned"
+        type="button"
+        title="Explorador de archivos"
+        aria-label="Abrir explorador de archivos"
+        (click)="openExplorerWindow()"
+      >
+        <svg class="taskbar-app-icon taskbar-app-icon--explorer" viewBox="0 1.5 22 19.5" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="tbLibFolderBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fff9e6"/>
+              <stop offset="50%" stop-color="#f5e8b0"/>
+              <stop offset="100%" stop-color="#e2cc78"/>
+            </linearGradient>
+            <linearGradient id="tbLibFolderTab" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#fffef8"/>
+              <stop offset="100%" stop-color="#f2e4a8"/>
+            </linearGradient>
+            <linearGradient id="tbLibGlass" x1="0.15" y1="0" x2="0.85" y2="1">
+              <stop offset="0%" stop-color="rgba(210,245,255,0.95)"/>
+              <stop offset="35%" stop-color="rgba(120,205,245,0.78)"/>
+              <stop offset="100%" stop-color="rgba(55,155,215,0.88)"/>
+            </linearGradient>
+            <linearGradient id="tbLibGlassRim" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.98)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0.2)"/>
+            </linearGradient>
+            <linearGradient id="tbLibGlassShade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0)"/>
+              <stop offset="100%" stop-color="rgba(20,80,130,0.25)"/>
+            </linearGradient>
+            <radialGradient id="tbLibGlint" cx="0.3" cy="0.4" r="0.65">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.98)"/>
+              <stop offset="40%" stop-color="rgba(255,255,255,0.42)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+            <filter id="tbLibFolderShadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0.35" dy="0.45" stdDeviation="0.28" flood-color="#000000" flood-opacity="0.2"/>
+            </filter>
+          </defs>
+
+          <!-- Carpeta trasera -->
+          <g filter="url(#tbLibFolderShadow)">
+            <path d="M 1.6 4 H 5.1 L 6.4 2.4 H 15.2 V 12.6 H 1.6 Z"
+                  fill="url(#tbLibFolderBody)" stroke="#b89848" stroke-width="0.32" stroke-linejoin="round"/>
+            <path d="M 1.6 6 H 15.2 V 7.15 H 1.6 Z" fill="url(#tbLibFolderTab)"/>
+            <rect x="2.15" y="2.95" width="2.6" height="1" rx="0.15" fill="#43a047"/>
+            <rect x="2.15" y="3.05" width="1.1" height="0.35" rx="0.1" fill="rgba(255,255,255,0.45)"/>
+            <path d="M 2.2 7.4 H 14.2 V 10.8 H 2.2 Z" fill="rgba(255,255,255,0.14)"/>
+          </g>
+
+          <!-- Carpeta media -->
+          <g filter="url(#tbLibFolderShadow)">
+            <path d="M 3 6.6 H 6.6 L 8 5 H 16.8 V 15.2 H 3 Z"
+                  fill="url(#tbLibFolderBody)" stroke="#b89848" stroke-width="0.32" stroke-linejoin="round"/>
+            <path d="M 3 8.6 H 16.8 V 9.75 H 3 Z" fill="url(#tbLibFolderTab)"/>
+            <rect x="3.55" y="5.55" width="2.6" height="1" rx="0.15" fill="#ff7043"/>
+            <rect x="3.55" y="5.65" width="1.1" height="0.35" rx="0.1" fill="rgba(255,255,255,0.45)"/>
+            <path d="M 3.6 10 H 15.8 V 13.4 H 3.6 Z" fill="rgba(255,255,255,0.14)"/>
+          </g>
+
+          <!-- Carpeta frontal -->
+          <path d="M 4.6 9 H 8.4 L 9.8 7.4 H 18.8 V 18.2 H 4.6 Z"
+                fill="url(#tbLibFolderBody)" stroke="#b89848" stroke-width="0.35" stroke-linejoin="round"/>
+          <path d="M 4.6 11 H 18.8 V 12.2 H 4.6 Z" fill="url(#tbLibFolderTab)"/>
+          <rect x="5.15" y="7.95" width="2.8" height="1.05" rx="0.15" fill="#1e88e5"/>
+          <rect x="5.15" y="8.05" width="1.15" height="0.35" rx="0.1" fill="rgba(255,255,255,0.5)"/>
+          <path d="M 5 12.6 H 18 V 16.2 H 5 Z" fill="rgba(255,255,255,0.16)"/>
+          <path d="M 5.4 12.8 L 8.8 13" stroke="rgba(255,255,255,0.55)" stroke-width="0.45" stroke-linecap="round"/>
+
+          <!-- Funda azul Aero (giro 180°: barra superior + piernas con abertura inferior) -->
+          <path fill-rule="evenodd"
+                d="M 4.2 12.4
+                   Q 4.2 12 4.7 12
+                   H 18.8
+                   Q 19.3 12 19.3 12.4
+                   V 18.5
+                   Q 19.3 19.1 18.7 19.1
+                   H 4.8
+                   Q 4.2 19.1 4.2 18.5
+                   Z
+                   M 7.4 15 H 16.1 V 19.6 H 7.4 Z"
+                fill="url(#tbLibGlass)" stroke="rgba(70,150,210,0.55)" stroke-width="0.28"/>
+          <path d="M 4.7 12.2 H 18.8"
+                fill="none" stroke="url(#tbLibGlassRim)" stroke-width="0.7" stroke-linecap="round"/>
+          <path d="M 4.8 18.3 H 7.3 M 16.2 18.3 H 18.7"
+                fill="none" stroke="url(#tbLibGlassShade)" stroke-width="0.85" stroke-linecap="round" opacity="0.7"/>
+
+          <!-- Destello / lens flare -->
+          <ellipse cx="6.8" cy="13.1" rx="3.8" ry="2.6" fill="url(#tbLibGlint)" opacity="0.88"/>
+          <ellipse cx="6.2" cy="12.6" rx="1.5" ry="0.9" fill="rgba(255,255,255,0.78)"/>
+          <path d="M 5 12.3 L 9.2 14.8" stroke="rgba(255,255,255,0.72)" stroke-width="0.55" stroke-linecap="round"/>
+          <path d="M 6.5 12.1 L 8.8 14" stroke="rgba(255,255,255,0.35)" stroke-width="0.35" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="taskbar-tray">
+      <button class="language-button" title="Idioma del teclado">ES</button>
+
+      <div class="tray-icons">
+        <!-- Iconos ocultos: triángulo sólido con contorno -->
+        <button class="tray-icon tray-icon--chevron" title="Mostrar iconos ocultos" aria-label="Iconos ocultos">
+          <svg class="tray-icon-svg" viewBox="0 0 16 16" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="trayChevronFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="55%" stop-color="#f0f0f0"/>
+                <stop offset="100%" stop-color="#b8b8b8"/>
+              </linearGradient>
+            </defs>
+            <path d="M3.2 10.4 L8 4.6 L12.8 10.4 Z" fill="url(#trayChevronFill)" stroke="#2b2b2b" stroke-width="0.9" stroke-linejoin="round"/>
+            <path d="M4.2 9.6 L8 5.4 L11.8 9.6 Z" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="0.5" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- Red: monitor + cable ethernet (estilo Win7) -->
+        <button class="tray-icon tray-icon--network" title="Red" aria-label="Red">
+          <svg class="tray-icon-svg" viewBox="0 0 32 24" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="trayMonitorBezel" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="45%" stop-color="#ececec"/>
+                <stop offset="100%" stop-color="#b6b6b6"/>
+              </linearGradient>
+              <linearGradient id="trayMonitorScreen" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#525252"/>
+                <stop offset="35%" stop-color="#383838"/>
+                <stop offset="100%" stop-color="#121212"/>
+              </linearGradient>
+              <linearGradient id="trayPlugFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#fafafa"/>
+                <stop offset="100%" stop-color="#c6c6c6"/>
+              </linearGradient>
+              <linearGradient id="trayCableFill" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#e8e8e8"/>
+                <stop offset="50%" stop-color="#ffffff"/>
+                <stop offset="100%" stop-color="#d4d4d4"/>
+              </linearGradient>
+              <filter id="trayNetShadow" x="-15%" y="-15%" width="130%" height="140%">
+                <feDropShadow dx="0.4" dy="0.9" stdDeviation="0.55" flood-color="#000000" flood-opacity="0.42"/>
+              </filter>
+            </defs>
+
+            <g filter="url(#trayNetShadow)">
+              <!-- Monitor -->
+              <rect x="12" y="1" width="17.5" height="13.5" rx="1" fill="url(#trayMonitorBezel)" stroke="#1a1a1a" stroke-width="1.2"/>
+              <rect x="14.2" y="3.1" width="13.1" height="9.3" rx="0.4" fill="url(#trayMonitorScreen)" stroke="#0a0a0a" stroke-width="0.65"/>
+              <path d="M12.8 1.8 L28.2 1.8" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="0.6" stroke-linecap="round"/>
+              <path d="M14.5 11.8 L27 11.8" fill="none" stroke="rgba(0,0,0,0.25)" stroke-width="0.45" stroke-linecap="round"/>
+              <!-- Soporte -->
+              <rect x="18.2" y="14.5" width="5" height="2.3" fill="url(#trayMonitorBezel)" stroke="#1a1a1a" stroke-width="1.05"/>
+              <rect x="15" y="16.6" width="11.5" height="2.2" rx="0.45" fill="url(#trayMonitorBezel)" stroke="#1a1a1a" stroke-width="1.05"/>
+              <path d="M15.5 16.9 L26 16.9" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="0.45"/>
+
+              <!-- Conector RJ45 (superpuesto al borde izquierdo del monitor) -->
+              <rect x="6.2" y="4" width="8.8" height="5.4" rx="0.5" fill="url(#trayPlugFill)" stroke="#1a1a1a" stroke-width="1.15"/>
+              <rect x="7.2" y="2.6" width="5.8" height="1.5" rx="0.35" fill="#e4e4e4" stroke="#1a1a1a" stroke-width="0.95"/>
+              <path d="M7.8 3.3 L12.6 3.3" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="0.45" stroke-linecap="round"/>
+              <!-- Entrada al lateral del monitor -->
+              <rect x="11.6" y="5.4" width="2.2" height="2.4" rx="0.25" fill="url(#trayPlugFill)" stroke="#1a1a1a" stroke-width="0.9"/>
+
+              <!-- Cable vertical -->
+              <rect x="9.3" y="9.4" width="2.6" height="9.8" rx="0.35" fill="url(#trayCableFill)" stroke="#1a1a1a" stroke-width="1.05"/>
+              <path d="M9.7 9.8 L11.5 9.8" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="0.4" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </button>
+
+        <!-- Volumen: altavoz con ondas -->
+        <button class="tray-icon tray-icon--volume" title="Volumen" aria-label="Volumen">
+          <svg class="tray-icon-svg" viewBox="0 0 24 16" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="traySpeakerFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="50%" stop-color="#eeeeee"/>
+                <stop offset="100%" stop-color="#aaaaaa"/>
+              </linearGradient>
+            </defs>
+            <!-- Cuerpo del altavoz -->
+            <rect x="1.2" y="4.8" width="3.4" height="6.4" rx="0.3" fill="url(#traySpeakerFill)" stroke="#2b2b2b" stroke-width="0.85"/>
+            <path d="M4.6 4.8 L4.6 11.2 L10.2 14.2 L10.2 2 L4.6 4.8 Z"
+                  fill="url(#traySpeakerFill)" stroke="#2b2b2b" stroke-width="0.85" stroke-linejoin="round"/>
+            <path d="M5.2 5.6 L5.2 10.4 L9.2 12.6 L9.2 3.4 L5.2 5.6 Z" fill="rgba(255,255,255,0.35)"/>
+            <!-- Ondas de sonido -->
+            <path d="M11.2 5.8 Q 13.4 8 11.2 10.2" fill="none" stroke="#2b2b2b" stroke-width="1.15" stroke-linecap="round"/>
+            <path d="M11.2 5.8 Q 13.4 8 11.2 10.2" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-linecap="round"/>
+            <path d="M12.8 4 Q 16 8 12.8 12" fill="none" stroke="#2b2b2b" stroke-width="1.15" stroke-linecap="round"/>
+            <path d="M12.8 4 Q 16 8 12.8 12" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-linecap="round"/>
+            <path d="M14.4 2.2 Q 19 8 14.4 13.8" fill="none" stroke="#2b2b2b" stroke-width="1.15" stroke-linecap="round"/>
+            <path d="M14.4 2.2 Q 19 8 14.4 13.8" fill="none" stroke="#ffffff" stroke-width="0.75" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="clock-container" title="Fecha y hora">
+        <div class="clock-time">{{ currentTime }}</div>
+        <div class="clock-date">{{ currentDate }}</div>
+      </div>
+
+      <button class="show-desktop" title="Mostrar el escritorio" aria-label="Mostrar el escritorio"></button>
+    </div>
+  </div>
+
+  <!-- Start Menu -->
+  <app-start-menu
+    [isVisible]="isStartMenuVisible"
+    (documentOpen)="onStartMenuDocumentOpen($event)"
+  ></app-start-menu>
+
+  @if (historiaWindow.isOpen && !historiaWindow.isMinimized) {
+    <app-win7-window
+      title="Mi Historia.docx - Word"
+      icon="word"
+      [left]="historiaWindow.left"
+      [top]="historiaWindow.top"
+      [width]="760"
+      [height]="540"
+      [zIndex]="historiaWindow.zIndex"
+      (closed)="closeHistoriaWindow()"
+      (minimized)="minimizeHistoriaWindow()"
+      (focused)="focusHistoriaWindow()"
+      (positionChange)="onHistoriaPositionChange($event)"
+    >
+      <app-mi-historia />
+    </app-win7-window>
+  }
+
+  @if (gonzaiWindow.isOpen && !gonzaiWindow.isMinimized) {
+    <app-win7-window
+      title="Gonzai.docx - Word"
+      icon="word"
+      [left]="gonzaiWindow.left"
+      [top]="gonzaiWindow.top"
+      [width]="820"
+      [height]="620"
+      [zIndex]="gonzaiWindow.zIndex"
+      (closed)="closeGonzaiWindow()"
+      (minimized)="minimizeGonzaiWindow()"
+      (focused)="focusGonzaiWindow()"
+      (positionChange)="onGonzaiPositionChange($event)"
+    >
+      <app-gonzai />
+    </app-win7-window>
+  }
+
+  @if (previdocsWindow.isOpen && !previdocsWindow.isMinimized) {
+    <app-win7-window
+      title="PreviDocs.docx - Word"
+      icon="word"
+      [left]="previdocsWindow.left"
+      [top]="previdocsWindow.top"
+      [width]="820"
+      [height]="620"
+      [zIndex]="previdocsWindow.zIndex"
+      (closed)="closePrevidocsWindow()"
+      (minimized)="minimizePrevidocsWindow()"
+      (focused)="focusPrevidocsWindow()"
+      (positionChange)="onPrevidocsPositionChange($event)"
+    >
+      <app-previdocs />
+    </app-win7-window>
+  }
+
+  @if (contactoWindow.isOpen && !contactoWindow.isMinimized) {
+    <app-win7-window
+      title="Correo"
+      icon="mail"
+      [left]="contactoWindow.left"
+      [top]="contactoWindow.top"
+      [width]="700"
+      [height]="500"
+      [zIndex]="contactoWindow.zIndex"
+      (closed)="closeContactoWindow()"
+      (minimized)="minimizeContactoWindow()"
+      (focused)="focusContactoWindow()"
+      (positionChange)="onContactoPositionChange($event)"
+    >
+      <app-contacto />
+    </app-win7-window>
+  }
+
+  @if (proyectosWindow.isOpen && !proyectosWindow.isMinimized) {
+    <app-win7-window
+      title="Proyectos FullStack"
+      icon="folder"
+      [left]="proyectosWindow.left"
+      [top]="proyectosWindow.top"
+      [width]="780"
+      [height]="520"
+      [zIndex]="proyectosWindow.zIndex"
+      (closed)="closeProyectosWindow()"
+      (minimized)="minimizeProyectosWindow()"
+      (focused)="focusProyectosWindow()"
+      (positionChange)="onProyectosPositionChange($event)"
+    >
+      <app-proyectos-fullstack
+        [initialLocation]="'proyectos'"
+        (documentOpen)="onExplorerDocumentOpen($event)"
+      />
+    </app-win7-window>
+  }
+
+  @if (explorerWindow.isOpen && !explorerWindow.isMinimized) {
+    <app-win7-window
+      title="Equipo"
+      icon="folder"
+      [left]="explorerWindow.left"
+      [top]="explorerWindow.top"
+      [width]="780"
+      [height]="520"
+      [zIndex]="explorerWindow.zIndex"
+      (closed)="closeExplorerWindow()"
+      (minimized)="minimizeExplorerWindow()"
+      (focused)="focusExplorerWindow()"
+      (positionChange)="onExplorerPositionChange($event)"
+    >
+      <app-proyectos-fullstack
+        [initialLocation]="'disco-local'"
+        (documentOpen)="onExplorerDocumentOpen($event)"
+      />
+    </app-win7-window>
+  }
+
+  @if (habilidadesWindow.isOpen && !habilidadesWindow.isMinimized) {
+    <app-win7-window
+      title="Habilidades.xlsx - Excel"
+      icon="excel"
+      [left]="habilidadesWindow.left"
+      [top]="habilidadesWindow.top"
+      [width]="760"
+      [height]="560"
+      [zIndex]="habilidadesWindow.zIndex"
+      (closed)="closeHabilidadesWindow()"
+      (minimized)="minimizeHabilidadesWindow()"
+      (focused)="focusHabilidadesWindow()"
+      (positionChange)="onHabilidadesPositionChange($event)"
+    >
+      <app-habilidades />
+    </app-win7-window>
+  }
+
+  @if (galeriaWindow.isOpen && !galeriaWindow.isMinimized) {
+    <app-win7-window
+      title="Galería"
+      icon="photo"
+      [left]="galeriaWindow.left"
+      [top]="galeriaWindow.top"
+      [width]="700"
+      [height]="520"
+      [zIndex]="galeriaWindow.zIndex"
+      (closed)="closeGaleriaWindow()"
+      (minimized)="minimizeGaleriaWindow()"
+      (focused)="focusGaleriaWindow()"
+      (positionChange)="onGaleriaPositionChange($event)"
+    >
+      <app-galeria />
+    </app-win7-window>
+  }
+
+  @if (papeleraWindow.isOpen && !papeleraWindow.isMinimized) {
+    <app-win7-window
+      title="Papelera de reciclaje"
+      icon="bin"
+      [left]="papeleraWindow.left"
+      [top]="papeleraWindow.top"
+      [width]="680"
+      [height]="460"
+      [zIndex]="papeleraWindow.zIndex"
+      (closed)="closePapeleraWindow()"
+      (minimized)="minimizePapeleraWindow()"
+      (focused)="focusPapeleraWindow()"
+      (positionChange)="onPapeleraPositionChange($event)"
+    >
+      <app-papelera />
+    </app-win7-window>
+  }
+
+  <!-- Gadget Flotante -->
+  <app-gadget></app-gadget>
+</div>

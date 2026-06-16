@@ -1,0 +1,400 @@
+/* ==================== CONTENEDOR PRINCIPAL ==================== */
+.start-menu-container {
+  position: fixed;
+  bottom: 28px;
+  left: 0;
+  width: 520px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, bottom 0.25s ease, visibility 0s linear 0.25s;
+  z-index: 9999;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  overflow: visible;
+}
+
+.start-menu-container.visible {
+  opacity: 1;
+  visibility: visible;
+  bottom: 48px;
+  transition: opacity 0.25s ease, bottom 0.25s ease;
+}
+
+/* ==================== AVATAR USUARIO (mitad dentro / mitad fuera) ==================== */
+.start-menu-container .user-avatar-container {
+  position: absolute;
+  top: -27px;
+  right: calc(105px - 27px);
+  z-index: 4;
+}
+
+.user-avatar {
+  display: block;
+}
+
+/* ==================== PANEL PRINCIPAL (AERO GLASS) ==================== */
+.start-menu-panel {
+  position: relative;
+  display: flex;
+  min-height: 500px;
+  background: linear-gradient(
+    to bottom,
+    rgba(148, 172, 198, 0.78) 0%,
+    rgba(118, 148, 178, 0.72) 42%,
+    rgba(92, 122, 152, 0.76) 100%
+  );
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.58),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  overflow: visible;
+}
+
+.start-menu-panel::before {
+  content: '';
+  position: absolute;
+  inset: 1px 1px auto 1px;
+  height: 42%;
+  border-radius: 7px 7px 0 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.32) 0%,
+    rgba(255, 255, 255, 0.08) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==================== COLUMNA IZQUIERDA (APPS) ==================== */
+.left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 6px 2px 6px 6px;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.apps-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: #ffffff;
+  border: 1px solid #b4b4b4;
+  border-radius: 4px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 1px 2px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.apps-list {
+  flex: 1;
+  padding: 3px 2px;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.app-item {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 6px);
+  margin: 0 3px;
+  padding: 5px 8px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: #2b2b2b;
+  text-align: left;
+  transition: all 0.12s ease;
+  position: relative;
+}
+
+.app-item:hover {
+  background: linear-gradient(to bottom, #fff4d9 0%, #ffe9a6 50%, #ffd24d 100%);
+  border-color: #e5a533;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.app-icon-slot {
+  margin-right: 8px;
+}
+
+.app-name {
+  flex: 1;
+  font-weight: 400;
+}
+
+.submenu-arrow {
+  margin-left: 8px;
+  font-size: 8px;
+  color: #1a1a1a;
+}
+
+/* ==================== TODOS LOS PROGRAMAS + BÚSQUEDA ==================== */
+.all-programs-btn {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 10px);
+  margin: 2px 5px 0;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+  color: #2b2b2b;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-weight: 400;
+  text-align: left;
+  border-radius: 3px;
+  transition: all 0.12s ease;
+  flex-shrink: 0;
+}
+
+.all-programs-btn:hover {
+  background: linear-gradient(to bottom, #fff4d9 0%, #ffe9a6 50%, #ffd24d 100%);
+  border-color: #e5a533;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.arrow-right {
+  margin-right: 8px;
+  font-size: 8px;
+  color: #1a1a1a;
+}
+
+.search-footer {
+  margin: 4px 5px 5px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 5px 30px 5px 10px;
+  border: 1px solid #9aabb8;
+  border-radius: 3px;
+  font-size: 12px;
+  font-style: italic;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: #2b2b2b;
+  background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #8a9aa8;
+  font-style: italic;
+}
+
+.search-input:focus {
+  border-color: #4a9eff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08), 0 0 0 2px rgba(74, 158, 255, 0.25);
+}
+
+.search-icon {
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  width: 17px;
+  height: 17px;
+  transform: translateY(calc(-50% + 1px));
+  pointer-events: none;
+  filter: drop-shadow(0 0 1.5px rgba(100, 200, 240, 0.5));
+}
+
+/* ==================== COLUMNA DERECHA (SISTEMA) ==================== */
+.right-column {
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px 8px 2px;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.system-links {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 30px;
+}
+
+.system-link {
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 13px;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background 0.12s ease;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.system-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.system-link.with-divider::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+/* ==================== BOTÓN APAGAR (AERO GLASS) ==================== */
+.shutdown-section {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: auto;
+  padding: 6px 0 0 8px;
+}
+
+.shutdown-controls {
+  display: inline-flex;
+  align-items: stretch;
+  height: 26px;
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(25, 45, 75, 0.72);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.38) 0%,
+    rgba(200, 220, 242, 0.3) 55%,
+    rgba(70, 95, 130, 0.38) 100%
+  );
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+    0 1px 3px rgba(0, 0, 0, 0.28);
+}
+
+.shutdown-controls:hover {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.46) 0%,
+    rgba(210, 228, 248, 0.34) 55%,
+    rgba(80, 105, 145, 0.42) 100%
+  );
+}
+
+.shutdown-controls:active {
+  background: linear-gradient(
+    to bottom,
+    rgba(170, 190, 215, 0.35) 0%,
+    rgba(120, 145, 180, 0.3) 55%,
+    rgba(55, 75, 110, 0.45) 100%
+  );
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.shutdown-btn {
+  padding: 0 12px;
+  min-width: 72px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 12px;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+  transition: background 0.12s ease;
+}
+
+.shutdown-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.shutdown-btn:active {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.shutdown-text {
+  display: block;
+  line-height: 26px;
+}
+
+.shutdown-menu-btn {
+  width: 22px;
+  padding: 0;
+  border: none;
+  border-left: 1px solid rgba(0, 0, 0, 0.22);
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.28);
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s ease;
+}
+
+.shutdown-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.shutdown-menu-btn:active {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.shutdown-arrow {
+  width: 7px;
+  height: 7px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+
+/* ==================== SCROLLBAR ==================== */
+.apps-list::-webkit-scrollbar {
+  width: 14px;
+}
+
+.apps-list::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-left: 1px solid #d0d0d0;
+}
+
+.apps-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #c8c8c8, #b0b0b0);
+  border: 1px solid #909090;
+  border-radius: 2px;
+}
+
+.apps-list::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, #a8a8a8, #909090);
+}

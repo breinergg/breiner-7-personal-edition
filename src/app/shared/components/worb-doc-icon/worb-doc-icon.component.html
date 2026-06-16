@@ -1,0 +1,65 @@
+<svg class="worb-doc-icon" viewBox="0 0 48 52" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient [id]="'docSheetGrad-' + iconId" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#edf3fb"/>
+      <stop offset="35%" stop-color="#dce9f7"/>
+      <stop offset="100%" stop-color="#b8cfe8"/>
+    </linearGradient>
+    <linearGradient [id]="'docFoldGrad-' + iconId" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9eb5cf"/>
+      <stop offset="100%" stop-color="#6d88a8"/>
+    </linearGradient>
+    <linearGradient [id]="'docWFrameGrad-' + iconId" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6ea3db"/>
+      <stop offset="45%" stop-color="#4a7ebb"/>
+      <stop offset="100%" stop-color="#1e4a7a"/>
+    </linearGradient>
+    <linearGradient [id]="'docWFrameShine-' + iconId" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+    <linearGradient [id]="'docWLetterGrad-' + iconId" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5b9bd5"/>
+      <stop offset="100%" stop-color="#2b579a"/>
+    </linearGradient>
+    <filter [id]="'docWShadow-' + iconId" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0.7" dy="1" stdDeviation="0.35" flood-color="#163456" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <path d="M 11.5 6.5 H 32.5 L 38.5 12.5 V 45.5 H 11.5 Z"
+        [attr.fill]="'url(#docSheetGrad-' + iconId + ')'" stroke="#587a9e" stroke-width="1.15" stroke-linejoin="round"/>
+  <path d="M 32.5 6.5 H 38.5 V 12.5 Z" [attr.fill]="'url(#docFoldGrad-' + iconId + ')'" stroke="#587a9e" stroke-width="0.6"/>
+  <path d="M 32.5 6.5 L 38.5 12.5 L 32.5 12.5 Z" fill="#7a95b3" opacity="0.85"/>
+  <path d="M 12.5 7.5 H 31.5" stroke="rgba(255,255,255,0.65)" stroke-width="0.7" stroke-linecap="round"/>
+
+  <g fill="#4a7ebb">
+    <rect x="14" y="17" width="10" height="1.3" rx="0.3"/>
+    <rect x="14" y="19.8" width="9" height="1.3" rx="0.3"/>
+    <rect x="14" y="22.6" width="10.5" height="1.3" rx="0.3"/>
+    <rect x="14" y="25.4" width="8.5" height="1.3" rx="0.3"/>
+    <rect x="14" y="28.2" width="9.5" height="1.3" rx="0.3"/>
+  </g>
+  <rect x="28.5" y="17" width="8.5" height="8.5" rx="0.4"
+        fill="rgba(255,255,255,0.35)" stroke="#4a7ebb" stroke-width="0.65"/>
+  <g fill="#4a7ebb">
+    <rect x="14" y="31.5" width="23" height="1.3" rx="0.3"/>
+    <rect x="14" y="34" width="23" height="1.3" rx="0.3"/>
+    <rect x="14" y="36.5" width="23" height="1.3" rx="0.3"/>
+    <rect x="14" y="39" width="23" height="1.3" rx="0.3"/>
+    <rect x="14" y="41.5" width="20" height="1.3" rx="0.3"/>
+  </g>
+
+  <rect x="5.5" y="10" width="22.5" height="22.5" rx="1"
+        [attr.fill]="'url(#docWFrameGrad-' + iconId + ')'" stroke="#1a4470" stroke-width="0.55"/>
+  <rect x="5.5" y="10" width="22.5" height="5" rx="1"
+        [attr.fill]="'url(#docWFrameShine-' + iconId + ')'" opacity="0.9"/>
+  <rect x="8" y="12.5" width="17.5" height="17.5" fill="#ffffff" stroke="#c8d8ea" stroke-width="0.35"/>
+  <text x="16.75" y="25.5"
+        font-family="'Segoe UI', Arial, sans-serif"
+        font-size="13.5"
+        font-weight="700"
+        [attr.fill]="'url(#docWLetterGrad-' + iconId + ')'"
+        [attr.filter]="'url(#docWShadow-' + iconId + ')'"
+        text-anchor="middle">W</text>
+</svg>

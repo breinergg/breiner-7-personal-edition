@@ -1,0 +1,665 @@
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  cursor: default;
+  overflow: hidden;
+}
+
+.login-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===================== BACKGROUND ===================== */
+
+.bg-base {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 50% at 88% 85%, rgba(248, 255, 255, 0.9) 0%, transparent 48%),
+    radial-gradient(ellipse 70% 60% at 85% 82%, rgba(210, 245, 255, 0.75) 0%, transparent 52%),
+    radial-gradient(ellipse 85% 70% at 82% 78%, rgba(140, 220, 255, 0.55) 0%, transparent 58%),
+    radial-gradient(ellipse 100% 80% at 78% 74%, rgba(100, 195, 245, 0.35) 0%, transparent 62%),
+    radial-gradient(ellipse 100% 90% at 10% 10%, rgba(8, 35, 70, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 90% at 10% 90%, rgba(8, 35, 70, 0.5) 0%, transparent 52%),
+    radial-gradient(ellipse 100% 90% at 25% 25%, rgba(8, 35, 70, 0.3) 0%, transparent 50%),
+    linear-gradient(170deg,
+      #1a5a8d 0%,
+      #2068a8 8%,
+      #2878bd 16%,
+      #3088d2 24%,
+      #3898e8 32%,
+      #48acf8 40%,
+      #58bcff 48%,
+      #48acf8 56%,
+      #3898e8 64%,
+      #2878bd 72%,
+      #2068a8 80%,
+      #1a5a8d 88%,
+      #134875 96%
+    );
+  z-index: 0;
+}
+
+.bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 92% 82% at 86% 84%, transparent 48%, rgba(5, 25, 55, 0.28) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===================== AURORA ===================== */
+
+.aurora-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* ===================== MAIN CONTENT ===================== */
+
+.main-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  padding-bottom: 36px;
+}
+
+/* ===================== USER CARD ===================== */
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 24px;
+  position: relative;
+  cursor: pointer;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===================== AVATAR ===================== */
+
+.avatar-frame {
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+/* ===================== USERNAME ===================== */
+
+.username {
+  margin-top: 8px;
+  color: #ffffff;
+  font-size: 16.5px;
+  font-weight: 400;
+  letter-spacing: 0.15px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ===================== LOADING STATE ===================== */
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: loadingFadeIn 0.5s ease-out;
+}
+
+@keyframes loadingFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.loading-text {
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ===================== AERO SPINNER ===================== */
+
+.aero-spinner {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.spinner-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #ffffff 0deg,
+    #f0fbff 18deg,
+    #80e8ff 45deg,
+    #33ccff 80deg,
+    #00b4ff 120deg,
+    #0099ff 165deg,
+    #0088f0 210deg,
+    rgba(0, 130, 255, 0.55) 260deg,
+    rgba(0, 145, 255, 0.25) 310deg,
+    #ffffff 360deg
+  );
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 2.5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 2.5px));
+  animation: aeroSpin 1s linear infinite;
+  filter:
+    drop-shadow(0 0 5px rgba(0, 180, 255, 0.85))
+    drop-shadow(0 0 12px rgba(0, 153, 255, 0.55))
+    drop-shadow(0 0 20px rgba(0, 140, 255, 0.25));
+}
+
+@keyframes aeroSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ===================== BOTTOM BAR ===================== */
+
+.bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  background: linear-gradient(to bottom,
+    rgba(0, 12, 28, 0.02) 0%,
+    rgba(0, 8, 22, 0.08) 50%,
+    rgba(0, 6, 18, 0.15) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  z-index: 20;
+}
+
+.bottom-left,
+.bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 140px;
+}
+
+.bottom-right {
+  justify-content: flex-end;
+}
+
+.bottom-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+/* ===================== BRAND / LOGO ===================== */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-logo {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.brand-text {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  white-space: nowrap;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.brand-title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  line-height: 1;
+  text-shadow:
+    0 0 6px rgba(255, 255, 255, 0.55),
+    0 0 14px rgba(255, 255, 255, 0.35),
+    0 0 24px rgba(255, 255, 255, 0.2);
+}
+
+.brand-edition {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.15px;
+  line-height: 1;
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.5),
+    0 0 12px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+/* ===================== ACCESSIBILITY BUTTON ===================== */
+
+.btn-accessibility {
+  width: 28px;
+  height: 24px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(20, 50, 90, 0.9);
+  background:
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.52) 0%,
+      rgba(255, 255, 255, 0.28) 18%,
+      rgba(255, 255, 255, 0.08) 42%,
+      transparent 49%,
+      transparent 51%,
+      rgba(0, 0, 0, 0.08) 78%,
+      rgba(255, 255, 255, 0.14) 92%,
+      rgba(255, 255, 255, 0.28) 100%
+    ),
+    linear-gradient(to bottom,
+      #6898c8 0%,
+      #5888b8 22%,
+      #4878a8 46%,
+      #386898 50%,
+      #285888 72%,
+      #204878 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(200, 230, 255, 0.18),
+    inset 0 0 0 1px rgba(180, 220, 255, 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.95);
+  transition: background 0.12s, box-shadow 0.12s, color 0.12s;
+}
+
+.btn-accessibility svg {
+  width: 14px;
+  height: 14px;
+  filter:
+    drop-shadow(0 0 1px rgba(255, 255, 255, 0.5))
+    drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+
+.btn-accessibility:hover {
+  background:
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.58) 0%,
+      rgba(255, 255, 255, 0.32) 18%,
+      rgba(255, 255, 255, 0.1) 42%,
+      transparent 49%,
+      transparent 51%,
+      rgba(0, 0, 0, 0.06) 78%,
+      rgba(255, 255, 255, 0.16) 92%,
+      rgba(255, 255, 255, 0.32) 100%
+    ),
+    linear-gradient(to bottom,
+      #78a8d8 0%,
+      #6898c8 22%,
+      #5888b8 46%,
+      #4878a8 50%,
+      #386898 72%,
+      #285888 100%
+    );
+  color: #ffffff;
+}
+
+.btn-accessibility:active {
+  background:
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 45%,
+      rgba(0, 0, 0, 0.15) 100%
+    ),
+    linear-gradient(to bottom,
+      #285888 0%,
+      #204878 50%,
+      #183868 100%
+    );
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.45),
+    inset 0 -1px 0 rgba(200, 230, 255, 0.08);
+}
+
+/* ===================== LANGUAGE BUTTON ===================== */
+
+.btn-language {
+  background: none;
+  border: 1px solid transparent;
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  padding: 2px 6px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  border-radius: 2px;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  letter-spacing: 0.3px;
+}
+
+.btn-language:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ===================== POWER BUTTON GROUP ===================== */
+
+.power-group {
+  display: flex;
+  align-items: stretch;
+  height: 24px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.btn-power,
+.btn-power-arrow {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(35, 0, 0, 0.9);
+  background:
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.52) 0%,
+      rgba(255, 255, 255, 0.28) 18%,
+      rgba(255, 255, 255, 0.08) 42%,
+      transparent 49%,
+      transparent 51%,
+      rgba(0, 0, 0, 0.08) 78%,
+      rgba(255, 255, 255, 0.14) 92%,
+      rgba(255, 255, 255, 0.28) 100%
+    ),
+    linear-gradient(to bottom,
+      #dc6860 0%,
+      #cc5048 22%,
+      #c04038 46%,
+      #9a2820 50%,
+      #882018 72%,
+      #701410 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(255, 210, 200, 0.18),
+    inset 0 0 0 1px rgba(255, 180, 170, 0.12);
+  transition: background 0.12s, box-shadow 0.12s;
+}
+
+.btn-power {
+  width: 28px;
+  height: 24px;
+  border-right: none;
+  border-radius: 3px 0 0 3px;
+}
+
+.btn-power-arrow {
+  width: 16px;
+  height: 24px;
+  border-left: 1px solid rgba(50, 0, 0, 0.65);
+  border-radius: 0 3px 3px 0;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -1px 0 rgba(255, 210, 200, 0.18),
+    inset 1px 0 0 rgba(255, 180, 170, 0.08),
+    inset 0 0 0 1px rgba(255, 180, 170, 0.12);
+}
+
+.btn-power svg {
+  width: 12px;
+  height: 12px;
+  filter:
+    drop-shadow(0 0 2px rgba(255, 255, 255, 0.7))
+    drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+
+.btn-power-arrow svg {
+  width: 7px;
+  height: 5px;
+  filter:
+    drop-shadow(0 0 1px rgba(255, 255, 255, 0.5))
+    drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35));
+}
+
+.btn-power:hover,
+.btn-power-arrow:hover {
+  background:
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.58) 0%,
+      rgba(255, 255, 255, 0.32) 18%,
+      rgba(255, 255, 255, 0.1) 42%,
+      transparent 49%,
+      transparent 51%,
+      rgba(0, 0, 0, 0.06) 78%,
+      rgba(255, 255, 255, 0.16) 92%,
+      rgba(255, 255, 255, 0.32) 100%
+    ),
+    linear-gradient(to bottom,
+      #e87870 0%,
+      #d85850 22%,
+      #cc4840 46%,
+      #a83028 50%,
+      #942820 72%,
+      #7c1814 100%
+    );
+}
+
+.btn-power:active,
+.btn-power-arrow:active {
+  background:
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.15) 0%,
+      transparent 45%,
+      rgba(0, 0, 0, 0.15) 100%
+    ),
+    linear-gradient(to bottom,
+      #7a1810 0%,
+      #681008 50%,
+      #580804 100%
+    );
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.45),
+    inset 0 -1px 0 rgba(255, 180, 170, 0.08);
+}
+
+/* ===================== DROPDOWN MENUS ===================== */
+
+.dropdown-menu {
+  position: absolute;
+  background: rgba(12, 36, 68, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(60, 120, 190, 0.35);
+  border-radius: 3px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(80, 140, 210, 0.1);
+  padding: 3px 0;
+  z-index: 100;
+  min-width: 190px;
+  animation: menuFadeIn 0.12s ease-out;
+}
+
+@keyframes menuFadeIn {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-header {
+  padding: 6px 12px 4px;
+  color: rgba(150, 190, 230, 0.75);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.dropdown-separator {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(60, 120, 190, 0.25), transparent);
+  margin: 2px 6px;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 5px 12px;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  border: none;
+  background: none;
+  text-align: left;
+  transition: background 0.1s;
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background: rgba(50, 110, 190, 0.3);
+}
+
+.dropdown-item:active {
+  background: rgba(35, 90, 160, 0.4);
+}
+
+.dropdown-item.active {
+  background: rgba(40, 100, 180, 0.25);
+}
+
+.dropdown-item.active::before {
+  content: '';
+  width: 2px;
+  height: 14px;
+  background: #5ab0f0;
+  border-radius: 1px;
+  margin-right: 3px;
+}
+
+.menu-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.check-mark {
+  width: 14px;
+  font-size: 12px;
+  color: rgba(100, 200, 120, 0.85);
+  opacity: 0;
+  transition: opacity 0.12s;
+  flex-shrink: 0;
+}
+
+.check-mark.visible {
+  opacity: 1;
+}
+
+.lang-code {
+  display: inline-block;
+  width: 22px;
+  font-weight: 600;
+  font-size: 10px;
+  color: rgba(150, 190, 230, 0.65);
+  flex-shrink: 0;
+}
+
+/* ===================== MENU POSITIONS ===================== */
+
+.power-menu {
+  bottom: 40px;
+  right: 12px;
+}
+
+.accessibility-menu {
+  bottom: 40px;
+  left: 12px;
+}
+
+.language-menu {
+  bottom: 40px;
+  right: 65px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media screen and (max-width: 768px) {
+  .win7-avatar-frame--login {
+    width: 84px;
+    height: 84px;
+  }
+
+  .brand-title {
+    font-size: 17px;
+  }
+
+  .brand-edition {
+    font-size: 9px;
+  }
+
+  .brand-logo {
+    width: 20px;
+    height: 20px;
+  }
+
+  .bottom-bar {
+    padding: 0 8px;
+  }
+
+  .bottom-left,
+  .bottom-right {
+    min-width: auto;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .bottom-center {
+    display: none;
+  }
+
+  .user-card {
+    padding: 12px 16px;
+  }
+}

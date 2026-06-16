@@ -1,0 +1,123 @@
+<div
+  class="win7-window"
+  [style.left.px]="positionLeft"
+  [style.top.px]="positionTop"
+  [style.width.px]="displayWidth"
+  [style.height.px]="displayHeight"
+  [style.zIndex]="zIndex"
+  (pointerdown)="onWindowPointerDown()"
+>
+  <div
+    class="win7-window-titlebar"
+    (pointerdown)="onTitlePointerDown($event)"
+    (pointermove)="onTitlePointerMove($event)"
+    (pointerup)="onTitlePointerUp($event)"
+  >
+    <div class="win7-window-title">
+      @if (icon === 'word') {
+        <svg class="win7-window-icon" viewBox="0 0 16 16" aria-hidden="true">
+          <defs>
+            <linearGradient id="winTitleWordFrame" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#6ea3db"/>
+              <stop offset="100%" stop-color="#1e4a7a"/>
+            </linearGradient>
+            <linearGradient id="winTitleWordW" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#5b9bd5"/>
+              <stop offset="100%" stop-color="#2b579a"/>
+            </linearGradient>
+          </defs>
+          <rect x="1" y="2" width="14" height="12" rx="0.5" fill="url(#winTitleWordFrame)" stroke="#1a4470" stroke-width="0.4"/>
+          <rect x="2.5" y="3.5" width="11" height="9" fill="#fff" stroke="#c8d8ea" stroke-width="0.25"/>
+          <text x="8" y="10.5" font-family="Segoe UI, Arial, sans-serif" font-size="8" font-weight="700" fill="url(#winTitleWordW)" text-anchor="middle">W</text>
+        </svg>
+      } @else if (icon === 'mail') {
+        <svg class="win7-window-icon win7-window-icon--mail" viewBox="6 18 38 30" aria-hidden="true">
+          <defs>
+            <linearGradient id="winTitleMailFill" x1="0.5" y1="0" x2="0.5" y2="1">
+              <stop offset="0%" stop-color="#3d7db8"/>
+              <stop offset="100%" stop-color="#1e5088"/>
+            </linearGradient>
+            <linearGradient id="winTitleMailGlass" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+              <stop offset="35%" stop-color="rgba(255,255,255,0.12)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </linearGradient>
+          </defs>
+          <rect x="7.5" y="20" width="33" height="25.5" rx="1.2" fill="url(#winTitleMailFill)"/>
+          <path d="M 7.5 20 L 40.5 20 L 24 34.5 Z" fill="url(#winTitleMailFill)"/>
+          <path d="M 7.5 20 L 24 34.5 L 40.5 20" fill="none" stroke="rgba(255,255,255,0.32)" stroke-width="0.5"/>
+          <path d="M 8.5 20.8 L 8.5 43.5" stroke="rgba(255,255,255,0.58)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 8.5 20.2 L 40.5 20.2" stroke="rgba(255,255,255,0.52)" stroke-width="0.75" stroke-linecap="round"/>
+          <path d="M 7.5 20 L 24 34.5 L 40.5 20" fill="url(#winTitleMailGlass)" opacity="0.4"/>
+          <path d="M 7.5 20 L 24 34.5 L 40.5 20" fill="none" stroke="rgba(255,255,255,0.42)" stroke-width="0.55" stroke-linejoin="round"/>
+          <path d="M 7.5 20 L 7.5 44.5 Q 7.5 45.5 8.5 45.5 L 39.5 45.5 Q 40.5 45.5 40.5 44.5 L 40.5 20" fill="none" stroke="rgba(255,255,255,0.42)" stroke-width="0.55" stroke-linejoin="round"/>
+        </svg>
+      } @else if (icon === 'folder') {
+        <svg class="win7-window-icon win7-window-icon--folder" viewBox="0 0 48 44" aria-hidden="true">
+          <defs>
+            <linearGradient id="winTitleFolderBody" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="rgba(255,252,238,0.95)"/>
+              <stop offset="40%" stop-color="rgba(255,232,170,0.78)"/>
+              <stop offset="100%" stop-color="rgba(220,185,110,0.72)"/>
+            </linearGradient>
+            <linearGradient id="winTitleFolderTab" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.92)"/>
+              <stop offset="100%" stop-color="rgba(255,228,160,0.75)"/>
+            </linearGradient>
+            <linearGradient id="winTitleFolderFront" x1="0" y1="0" x2="0.3" y2="1">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.88)"/>
+              <stop offset="100%" stop-color="rgba(235,200,130,0.68)"/>
+            </linearGradient>
+          </defs>
+          <path d="M 8 38 L 8 17 L 8 14.5 L 11.5 11.5 L 24 11.5 L 27.5 15 L 39.5 15 L 39.5 38 Z" fill="url(#winTitleFolderBody)" stroke="rgba(190,160,95,0.55)" stroke-width="0.65" stroke-linejoin="round"/>
+          <path d="M 8 14.5 L 8 12 L 11.5 11.5 L 24 11.5 L 27.5 15 L 8 15 Z" fill="url(#winTitleFolderTab)" stroke="rgba(255,255,255,0.45)" stroke-width="0.45"/>
+          <path d="M 8 38 L 8 24.5 L 10 22.5 L 38.5 22.5 L 39.5 38 Z" fill="url(#winTitleFolderFront)" stroke="rgba(190,160,95,0.5)" stroke-width="0.6" stroke-linejoin="round"/>
+        </svg>
+      } @else if (icon === 'excel') {
+        <svg class="win7-window-icon" viewBox="0 0 16 16" aria-hidden="true">
+          <defs>
+            <linearGradient id="winTitleExcelBadge" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#33a867"/>
+              <stop offset="100%" stop-color="#185c32"/>
+            </linearGradient>
+          </defs>
+          <rect x="1" y="2" width="14" height="12" rx="0.5" fill="#ffffff" stroke="#8a8a8a" stroke-width="0.4"/>
+          <rect x="1.5" y="2.5" width="13" height="11" fill="#fafafa" stroke="#d8d8d8" stroke-width="0.25"/>
+          <rect x="1.5" y="2.5" width="7" height="7" fill="url(#winTitleExcelBadge)" stroke="#1f6b34" stroke-width="0.35"/>
+          <text x="5" y="7.2" font-family="Segoe UI, Arial, sans-serif" font-size="5.5" font-weight="700" fill="#ffffff" text-anchor="middle">X</text>
+        </svg>
+      } @else if (icon === 'photo') {
+        <svg class="win7-window-icon win7-window-icon--photo" viewBox="0 0 16 14" aria-hidden="true">
+          <rect x="1" y="1" width="14" height="12" rx="0.5" fill="#e8f4fc" stroke="#5a9fd4" stroke-width="0.6"/>
+          <circle cx="5" cy="5" r="1.5" fill="#ffd060"/>
+          <path d="M1 10 L5 7 L8 9 L12 5 L15 10 Z" fill="#68c068"/>
+        </svg>
+      } @else if (icon === 'bin') {
+        <svg class="win7-window-icon win7-window-icon--bin" viewBox="0 0 16 16" aria-hidden="true">
+          <ellipse cx="8" cy="12.5" rx="5" ry="1.2" fill="#c8c8c8"/>
+          <path d="M4.5 5.5 H11.5 L11 12 H5 Z" fill="#dce8f2" stroke="#7a95b3" stroke-width="0.5"/>
+          <ellipse cx="8" cy="5.5" rx="4.5" ry="1.4" fill="#e8e8e8" stroke="#888" stroke-width="0.4"/>
+          <path d="M6.5 4 H9.5" stroke="#888" stroke-width="0.7" stroke-linecap="round"/>
+          <path d="M6.5 7.5 V10" stroke="#0084e0" stroke-width="0.6" stroke-linecap="round"/>
+          <path d="M8 7 V10.5" stroke="#0084e0" stroke-width="0.6" stroke-linecap="round"/>
+          <path d="M9.5 7.5 V10" stroke="#0084e0" stroke-width="0.6" stroke-linecap="round"/>
+        </svg>
+      } @else {
+        <svg class="win7-window-icon" viewBox="0 0 16 16" aria-hidden="true">
+          <rect x="2" y="2" width="12" height="12" rx="1" fill="#e8eef4" stroke="#8898a8" stroke-width="0.6"/>
+        </svg>
+      }
+      <span class="win7-window-title-text">{{ title }}</span>
+    </div>
+
+    <div class="win7-window-controls">
+      <button type="button" class="win7-window-btn win7-window-btn--minimize" (click)="onMinimize($event)" title="Minimizar" aria-label="Minimizar"></button>
+      <button type="button" class="win7-window-btn win7-window-btn--maximize" title="Maximizar" aria-label="Maximizar" disabled></button>
+      <button type="button" class="win7-window-btn win7-window-btn--close" (click)="onClose($event)" title="Cerrar" aria-label="Cerrar"></button>
+    </div>
+  </div>
+
+  <div class="win7-window-body">
+    <ng-content />
+  </div>
+</div>

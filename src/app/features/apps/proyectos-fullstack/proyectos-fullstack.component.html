@@ -1,0 +1,268 @@
+<div class="explorer-app">
+  <div class="explorer-menubar">
+    <span class="explorer-menu-item">Archivo</span>
+    <span class="explorer-menu-item">Editar</span>
+    <span class="explorer-menu-item">Ver</span>
+    <span class="explorer-menu-item">Herramientas</span>
+    <span class="explorer-menu-item">Ayuda</span>
+  </div>
+
+  <div class="explorer-toolbar">
+    <button type="button" class="explorer-nav-btn" disabled title="Atrás" aria-label="Atrás">◀</button>
+    <button type="button" class="explorer-nav-btn" disabled title="Adelante" aria-label="Adelante">▶</button>
+    <button
+      type="button"
+      class="explorer-nav-btn"
+      [disabled]="!canNavigateUp"
+      title="Subir"
+      aria-label="Subir"
+      (click)="navigateUp()"
+    >▲</button>
+    <span class="explorer-toolbar-separator"></span>
+    <div class="explorer-address">
+      <span class="explorer-address-label">Dirección:</span>
+      <div class="explorer-address-bar">
+        @if (currentLocation === 'disco-local') {
+          <span class="explorer-breadcrumb">Equipo</span>
+          <span class="explorer-breadcrumb-sep">▸</span>
+          <span class="explorer-breadcrumb explorer-breadcrumb--current">Disco local (C:)</span>
+        } @else if (currentLocation === 'documentos' || currentLocation === 'imagenes') {
+          <span class="explorer-breadcrumb">Equipo</span>
+          <span class="explorer-breadcrumb-sep">▸</span>
+          <span class="explorer-breadcrumb">Disco local (C:)</span>
+          <span class="explorer-breadcrumb-sep">▸</span>
+          <span class="explorer-breadcrumb">Usuarios</span>
+          <span class="explorer-breadcrumb-sep">▸</span>
+          <span class="explorer-breadcrumb">Breiner</span>
+          <span class="explorer-breadcrumb-sep">▸</span>
+          <span class="explorer-breadcrumb explorer-breadcrumb--current">{{ currentFolderLabel }}</span>
+        } @else {
+          <span class="explorer-breadcrumb">Equipo</span>
+          <span class="explorer-breadcrumb-sep">▸</span>
+          <span class="explorer-breadcrumb">Disco local (C:)</span>
+          <span class="explorer-breadcrumb-sep">▸</span>
+          <span class="explorer-breadcrumb">Usuarios</span>
+          <span class="explorer-breadcrumb-sep">▸</span>
+          <span class="explorer-breadcrumb">Breiner</span>
+          @if (currentLocation === 'proyectos') {
+            <span class="explorer-breadcrumb-sep">▸</span>
+            <span class="explorer-breadcrumb">Escritorio</span>
+          }
+          <span class="explorer-breadcrumb-sep">▸</span>
+          <span class="explorer-breadcrumb explorer-breadcrumb--current">{{ currentFolderLabel }}</span>
+        }
+      </div>
+    </div>
+    <div class="explorer-search">
+      <input
+        type="text"
+        class="explorer-search-input"
+        [placeholder]="'Buscar en ' + currentFolderLabel"
+        readonly
+      />
+    </div>
+  </div>
+
+  <div class="explorer-body">
+    <aside class="explorer-nav-pane">
+      <div class="explorer-nav-section">
+        <div class="explorer-nav-title">Favoritos</div>
+        <ul class="explorer-nav-list">
+          <li
+            class="explorer-nav-item"
+            [class.explorer-nav-item--active]="isActiveLocation('desktop')"
+            (click)="navigateToDesktop()"
+          >
+            <span class="explorer-nav-icon explorer-nav-icon--desktop" aria-hidden="true"></span>
+            Escritorio
+          </li>
+          <li
+            class="explorer-nav-item"
+            [class.explorer-nav-item--active]="isActiveLocation('proyectos')"
+            (click)="navigateToProyectos()"
+          >
+            <span class="explorer-nav-icon explorer-nav-icon--folder" aria-hidden="true"></span>
+            Proyectos FullStack
+          </li>
+        </ul>
+      </div>
+      <div class="explorer-nav-section">
+        <div class="explorer-nav-title">Bibliotecas</div>
+        <ul class="explorer-nav-list">
+          <li
+            class="explorer-nav-item"
+            [class.explorer-nav-item--active]="isActiveLocation('documentos')"
+            (click)="navigateToDocumentos()"
+          >
+            <span class="explorer-nav-icon explorer-nav-icon--documents" aria-hidden="true"></span>
+            Documentos
+          </li>
+          <li
+            class="explorer-nav-item"
+            [class.explorer-nav-item--active]="isActiveLocation('imagenes')"
+            (click)="navigateToImagenes()"
+          >
+            <span class="explorer-nav-icon explorer-nav-icon--pictures" aria-hidden="true"></span>
+            Imágenes
+          </li>
+        </ul>
+      </div>
+      <div class="explorer-nav-section">
+        <div class="explorer-nav-title">Equipo</div>
+        <ul class="explorer-nav-list">
+          <li
+            class="explorer-nav-item"
+            [class.explorer-nav-item--active]="isActiveLocation('disco-local')"
+            (click)="navigateToDiscoLocal()"
+          >
+            <span class="explorer-nav-icon explorer-nav-icon--drive" aria-hidden="true"></span>
+            Disco local (C:)
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <section class="explorer-content">
+      @if (showDiskPanel) {
+        <div class="explorer-disk-panel">
+          <div class="explorer-disk-header">
+            <svg class="explorer-disk-drive-icon" viewBox="0 0 48 48" aria-hidden="true">
+              <defs>
+                <linearGradient id="driveBodyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#e8eef4"/>
+                  <stop offset="100%" stop-color="#b8c8d8"/>
+                </linearGradient>
+                <linearGradient id="drivePlatterGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#8898a8"/>
+                  <stop offset="100%" stop-color="#5a6878"/>
+                </linearGradient>
+              </defs>
+              <rect x="6" y="10" width="36" height="28" rx="2" fill="url(#driveBodyGrad)" stroke="#687888" stroke-width="1"/>
+              <rect x="10" y="14" width="28" height="4" rx="0.5" fill="#5a9fd4"/>
+              <circle cx="24" cy="28" r="9" fill="url(#drivePlatterGrad)" stroke="#4a5868" stroke-width="0.8"/>
+              <circle cx="24" cy="28" r="2.5" fill="#3a4858"/>
+              <rect x="8" y="38" width="32" height="3" rx="0.5" fill="#98a8b8"/>
+            </svg>
+            <div class="explorer-disk-meta">
+              <div class="explorer-disk-title">Disco local (C:)</div>
+              <div class="explorer-disk-subtitle">Disco duro local</div>
+            </div>
+          </div>
+          <div class="explorer-disk-meter">
+            <div class="explorer-disk-bar">
+              <div class="explorer-disk-bar-fill" [style.width.%]="diskUsedPercent"></div>
+            </div>
+            <div class="explorer-disk-stats">
+              <span><strong>{{ diskUsedGb }} GB</strong> usados de {{ diskTotalGb }} GB</span>
+              <span class="explorer-disk-free">{{ diskFreeGb }} GB disponibles</span>
+            </div>
+          </div>
+        </div>
+      }
+
+      <div class="explorer-details">
+        <table class="explorer-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Fecha de modificación</th>
+              <th>Tipo</th>
+              <th>Tamaño</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (currentItems.length === 0) {
+              <tr>
+                <td colspan="4" class="explorer-empty">Esta carpeta está vacía.</td>
+              </tr>
+            } @else {
+              @for (file of currentItems; track file.id) {
+                <tr
+                  [class.explorer-table-row--selected]="selectedFileId === file.id"
+                  (click)="selectFile(file)"
+                  (dblclick)="onFileDoubleClick(file)"
+                >
+                  <td>
+                    <span class="explorer-table-name">
+                      @switch (file.iconKind) {
+                        @case ('worb') {
+                          <app-worb-doc-icon class="explorer-table-icon" [iconId]="file.id" />
+                        }
+                        @case ('folder') {
+                          <svg class="explorer-table-icon explorer-table-icon--svg" viewBox="0 0 16 14" aria-hidden="true">
+                            <path d="M1 12V5h4l1.5-2H14v9H1Z" fill="#f0d070" stroke="#c8a040" stroke-width="0.6"/>
+                            <path d="M1 5h4.2l1.3-1.8H14" fill="#ffe8a0" stroke="#c8a040" stroke-width="0.4"/>
+                          </svg>
+                        }
+                        @case ('img') {
+                          <svg class="explorer-table-icon explorer-table-icon--svg" viewBox="0 0 16 14" aria-hidden="true">
+                            <rect x="1" y="1" width="14" height="12" rx="0.5" fill="#e8f4fc" stroke="#5a9fd4" stroke-width="0.6"/>
+                            <circle cx="5" cy="5" r="1.5" fill="#ffd060"/>
+                            <path d="M1 10 L5 7 L8 9 L12 5 L15 10 Z" fill="#68c068"/>
+                          </svg>
+                        }
+                        @case ('xls') {
+                          <svg class="explorer-table-icon explorer-table-icon--svg" viewBox="0 0 16 16" aria-hidden="true">
+                            <rect x="2" y="1" width="12" height="14" rx="0.5" fill="#e8f5e9" stroke="#4caf50" stroke-width="0.6"/>
+                            <rect x="3" y="3" width="10" height="10" fill="#fff"/>
+                            <text x="8" y="10" font-size="6" font-weight="700" fill="#217346" text-anchor="middle">X</text>
+                          </svg>
+                        }
+                        @case ('pdf') {
+                          <svg class="explorer-table-icon explorer-table-icon--svg" viewBox="0 0 16 16" aria-hidden="true">
+                            <rect x="2" y="1" width="12" height="14" rx="0.5" fill="#fdecea" stroke="#e53935" stroke-width="0.6"/>
+                            <text x="8" y="10" font-size="5" font-weight="700" fill="#c62828" text-anchor="middle">PDF</text>
+                          </svg>
+                        }
+                        @case ('mail') {
+                          <svg class="explorer-table-icon explorer-table-icon--svg" viewBox="6 18 38 30" aria-hidden="true">
+                            <rect x="7.5" y="20" width="33" height="25.5" rx="1.2" fill="#3d7db8"/>
+                            <path d="M 7.5 20 L 40.5 20 L 24 34.5 Z" fill="#1e5088"/>
+                          </svg>
+                        }
+                        @case ('bin') {
+                          <svg class="explorer-table-icon explorer-table-icon--svg" viewBox="0 0 16 16" aria-hidden="true">
+                            <path d="M4 5h8l-.8 9H4.8L4 5Z" fill="#c8c8c8" stroke="#888" stroke-width="0.5"/>
+                            <rect x="3" y="3" width="10" height="2" rx="0.3" fill="#aaa"/>
+                            <path d="M6 2h4v1H6V2Z" fill="#999"/>
+                          </svg>
+                        }
+                        @case ('gadget') {
+                          <svg class="explorer-table-icon explorer-table-icon--svg" viewBox="0 0 16 16" aria-hidden="true">
+                            <circle cx="8" cy="8" r="6.5" fill="#d8dce0" stroke="#8898a8" stroke-width="0.6"/>
+                            <circle cx="8" cy="8" r="4.5" fill="#f4f6f8"/>
+                            <line x1="8" y1="8" x2="8" y2="4.5" stroke="#e74c3c" stroke-width="0.8" stroke-linecap="round"/>
+                          </svg>
+                        }
+                        @default {
+                          <svg class="explorer-table-icon explorer-table-icon--svg" viewBox="0 0 16 14" aria-hidden="true">
+                            <rect x="1" y="1" width="14" height="12" rx="0.5" fill="#e8f4fc" stroke="#5a9fd4" stroke-width="0.6"/>
+                          </svg>
+                        }
+                      }
+                      {{ file.name }}
+                    </span>
+                  </td>
+                  <td>{{ file.modified }}</td>
+                  <td>{{ file.type }}</td>
+                  <td>{{ file.size }}</td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <div class="explorer-statusbar">
+    @if (showDiskPanel) {
+      <span>{{ diskFreeGb }} GB disponibles de {{ diskTotalGb }} GB</span>
+    } @else {
+      <span>{{ currentItems.length }} elementos</span>
+    }
+    @if (selectedFileId) {
+      <span class="explorer-statusbar-selected">1 elemento seleccionado</span>
+    }
+  </div>
+</div>

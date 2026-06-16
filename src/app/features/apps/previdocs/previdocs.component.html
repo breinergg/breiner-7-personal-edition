@@ -1,0 +1,199 @@
+<div class="word-app">
+  <div class="word-ribbon">
+    <span class="word-ribbon-tab word-ribbon-tab--active">Inicio</span>
+    <span class="word-ribbon-tab">Insertar</span>
+    <span class="word-ribbon-tab">Diseño de página</span>
+  </div>
+
+  <div class="word-workspace">
+    <article class="word-page">
+      <h1 class="word-title">PreviDocs — Sistema Especializado de Gestión de Historias Clínicas</h1>
+
+      <h2 class="word-heading">Descripción General</h2>
+      <p>
+        PreviDocs es un sistema integral de gestión de historias clínicas diseñado específicamente para
+        instituciones de salud mental y psicología clínica. Esta aplicación web cliente-servidor optimiza el
+        registro, seguimiento y consulta de información médica, abarcando desde los datos de pacientes hasta
+        las sesiones terapéuticas y las evoluciones clínicas o familiares. Además, agiliza los procesos
+        administrativos e informativos mediante la generación automatizada de reportes detallados en formato
+        PDF.
+      </p>
+
+      <h2 class="word-heading">Características Principales</h2>
+      <ul class="word-list">
+        <li>
+          <strong>Gestión de Pacientes e Historias Clínicas:</strong> Sistema avanzado de búsqueda
+          inteligente que integra bases de datos locales y externas (como sistemas de enfermería),
+          permitiendo la creación de historias clínicas mediante formularios exhaustivos que documentan
+          diagnósticos, antecedentes y planes de tratamiento.
+        </li>
+        <li>
+          <strong>Seguimiento de Sesiones y Evoluciones:</strong> Módulo dedicado para registrar sesiones
+          terapéuticas con numeración secuencial automática, así como el seguimiento de la evolución clínica
+          de cada paciente por sesión. Incluye autocompletado dinámico de diagnósticos y profesionales
+          consultando un catálogo externo.
+        </li>
+        <li>
+          <strong>Generación de Reportes y Dashboard:</strong> Capacidad para generar documentos PDF
+          multipágina completos que incluyen desde el diagrama familiar hasta la impresión diagnóstica y la
+          firma digital. El sistema también cuenta con un panel de control interactivo (Dashboard) con
+          animaciones de métricas en tiempo real sobre pacientes, historias y sesiones totales.
+        </li>
+        <li>
+          <strong>Seguridad y Control de Acceso:</strong> Implementación de un esquema de seguridad mediante
+          tokens JWT con expiración. Cuenta con protección de rutas en el cliente y control de acceso basado
+          en roles específicos (Administrador, Médico, Facturador) para garantizar la confidencialidad de la
+          información clínica.
+        </li>
+      </ul>
+
+      <h2 class="word-heading">Arquitectura y Tecnologías (Stack Tecnológico)</h2>
+      <p>
+        El proyecto fue construido bajo una arquitectura robusta de dos capas, garantizando la escalabilidad,
+        separación de responsabilidades y el bajo acoplamiento mediante inyección de dependencias.
+      </p>
+
+      <h3 class="word-subheading">Frontend (Client-Side)</h3>
+      <ul class="word-list">
+        <li>
+          <strong>Framework:</strong> Desarrollado como una Single Page Application (SPA) con Angular 19.2
+          utilizando Standalone Components.
+        </li>
+        <li>
+          <strong>Arquitectura y Estado:</strong> Diseño modular jerárquico basado en páginas/componentes, con
+          gestión de estado reactiva apoyada en RxJS para la sesión de usuario.
+        </li>
+        <li>
+          <strong>Seguridad:</strong> Uso de guards funcionales para proteger el acceso a rutas privadas y un
+          interceptor HTTP que inyecta automáticamente los tokens JWT en cada petición.
+        </li>
+        <li>
+          <strong>UI/UX:</strong> Interfaz fluida con formularios reactivos, validaciones, paginación del lado
+          del cliente, filtros dinámicos y autocompletado optimizado con debounce para no saturar el servidor.
+        </li>
+      </ul>
+
+      <h3 class="word-subheading">Backend (Server-Side)</h3>
+      <ul class="word-list">
+        <li>
+          <strong>Framework:</strong> API REST de alto rendimiento construida con ASP.NET Core 8.0 y C# 12.
+        </li>
+        <li>
+          <strong>Patrones de Diseño:</strong> Arquitectura fuertemente tipada estructurada en capas
+          (Controladores, Servicios y Repositorios), complementada con el uso extensivo de DTOs (mapeados
+          mediante Mapster) para gestionar eficientemente las transferencias de datos.
+        </li>
+        <li>
+          <strong>Base de Datos y ORM:</strong> Persistencia implementada sobre una base de datos relacional
+          Firebird, utilizando Dapper como micro-ORM para ejecutar consultas SQL directas y de gran velocidad.
+        </li>
+      </ul>
+
+      <h2 class="word-heading word-heading--carousel">Imágenes de demostración</h2>
+      <p class="word-carousel-intro">
+        A continuación se presenta una selección de capturas representativas de la interfaz de PreviDocs,
+        ilustrando el dashboard clínico, la gestión de historias, el seguimiento de sesiones y la generación
+        de reportes en un entorno de producción.
+      </p>
+
+      <section class="word-carousel" aria-label="Carrusel de capturas de PreviDocs">
+        <div class="word-carousel-frame">
+          <button
+            type="button"
+            class="word-carousel-nav word-carousel-nav--prev"
+            aria-label="Imagen anterior"
+            (click)="prevSlide()"
+          >
+            &#8249;
+          </button>
+
+          <figure class="word-carousel-slide">
+            <div class="word-carousel-media">
+              <button
+                type="button"
+                class="word-carousel-zoom"
+                aria-label="Ampliar imagen"
+                title="Ampliar imagen"
+                (click)="openZoom()"
+              >
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M14.5 14.5 L20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  <path d="M10 7.2 V12.8 M7.2 10 H12.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="word-carousel-image-btn"
+                aria-label="Ver imagen ampliada"
+                (click)="openZoom()"
+              >
+                <img
+                  [src]="demoSlides[activeSlide].src"
+                  [alt]="demoSlides[activeSlide].alt"
+                  class="word-carousel-image"
+                />
+              </button>
+            </div>
+            <figcaption class="word-carousel-caption">
+              {{ demoSlides[activeSlide].caption }}
+            </figcaption>
+          </figure>
+
+          <button
+            type="button"
+            class="word-carousel-nav word-carousel-nav--next"
+            aria-label="Imagen siguiente"
+            (click)="nextSlide()"
+          >
+            &#8250;
+          </button>
+        </div>
+
+        <div class="word-carousel-dots" role="tablist" aria-label="Seleccionar captura">
+          @for (slide of demoSlides; track slide.src; let i = $index) {
+            <button
+              type="button"
+              class="word-carousel-dot"
+              [class.word-carousel-dot--active]="activeSlide === i"
+              [attr.aria-selected]="activeSlide === i"
+              [attr.aria-label]="'Captura ' + (i + 1)"
+              (click)="goToSlide(i)"
+            ></button>
+          }
+        </div>
+
+        <p class="word-carousel-counter">
+          {{ activeSlide + 1 }} / {{ demoSlides.length }}
+        </p>
+      </section>
+    </article>
+  </div>
+
+  @if (zoomOpen) {
+    <div class="word-zoom-overlay" role="dialog" aria-modal="true" aria-label="Vista ampliada de captura">
+      <div class="word-zoom-window">
+        <div class="word-zoom-titlebar">
+          <span class="word-zoom-title">Vista ampliada — Captura {{ activeSlide + 1 }}</span>
+          <button
+            type="button"
+            class="word-zoom-restore"
+            aria-label="Restaurar tamaño normal"
+            title="Restaurar"
+            (click)="closeZoom()"
+          >
+            <span class="word-zoom-restore-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="word-zoom-body">
+          <img
+            [src]="demoSlides[activeSlide].src"
+            [alt]="demoSlides[activeSlide].alt"
+            class="word-zoom-image"
+          />
+          <p class="word-zoom-caption">{{ demoSlides[activeSlide].caption }}</p>
+        </div>
+      </div>
+    </div>
+  }
+</div>

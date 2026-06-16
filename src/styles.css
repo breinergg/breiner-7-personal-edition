@@ -1,0 +1,31 @@
+@import './app/shared/styles/win7-avatar-frame.css';
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', 'Segoe UI Variable', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background: #0b3c6d;
+}
+
+body {
+  display: flex;
+  align-items: stretch;
+}
+
+app-root {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

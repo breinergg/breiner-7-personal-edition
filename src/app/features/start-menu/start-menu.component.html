@@ -1,0 +1,101 @@
+<div class="start-menu-container" [class.visible]="isVisible">
+  <div class="user-avatar-container win7-avatar-frame win7-avatar-frame--menu">
+    <div class="win7-avatar-inner">
+      <img
+        [src]="userAvatar"
+        alt="Breiner Gonzalez Machado"
+        class="user-avatar"
+        width="128"
+        height="128"
+        decoding="async"
+      />
+    </div>
+  </div>
+
+  <div class="start-menu-panel">
+    <!-- Columna Izquierda: Aplicaciones -->
+    <div class="left-column">
+      <div class="apps-panel">
+        <div class="apps-list">
+          <button
+            *ngFor="let app of recentApps"
+            class="app-item"
+            (click)="onAppClick(app)"
+          >
+            <app-start-menu-app-icon [icon]="app.icon" class="app-icon-slot"></app-start-menu-app-icon>
+            <span class="app-name">{{ app.name }}</span>
+            <span *ngIf="app.hasSubmenu" class="submenu-arrow">▶</span>
+          </button>
+        </div>
+
+        <button class="all-programs-btn" (click)="onAllProgramsClick()">
+          <span class="arrow-right">▶</span>
+          <span>Todos los programas</span>
+        </button>
+
+        <div class="search-footer">
+          <div class="search-box">
+            <input
+              type="text"
+              placeholder="Buscar programas y archivos"
+              class="search-input"
+              (input)="onSearch($event)"
+            />
+            <svg class="search-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="smSearchGlass" x1="20" y1="3" x2="7" y2="19" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#a8f4ff"/>
+                  <stop offset="42%" stop-color="#4eb8e8"/>
+                  <stop offset="100%" stop-color="#173d75"/>
+                </linearGradient>
+                <radialGradient id="smSearchLens" cx="0.68" cy="0.32" r="0.58">
+                  <stop offset="0%" stop-color="rgba(210, 245, 255, 0.55)"/>
+                  <stop offset="100%" stop-color="rgba(255, 255, 255, 0.04)"/>
+                </radialGradient>
+              </defs>
+              <circle cx="14.6" cy="7.4" r="5.35" fill="url(#smSearchLens)"/>
+              <circle cx="14.6" cy="7.4" r="5.35" fill="none" stroke="url(#smSearchGlass)" stroke-width="2.45" stroke-linecap="round"/>
+              <path d="M 10.8 11.2 L 4.8 17.2" stroke="url(#smSearchGlass)" stroke-width="2.45" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Sistema y Carpetas -->
+    <div class="right-column">
+      <div class="system-links">
+        <button
+          *ngFor="let link of systemLinks"
+          class="system-link"
+          (click)="onSystemLinkClick(link)"
+        >
+          {{ link.name }}
+        </button>
+      </div>
+
+      <div class="shutdown-section">
+        <div class="shutdown-controls">
+          <button class="shutdown-btn" (click)="onShutdownClick()">
+            <span class="shutdown-text">Apagar</span>
+          </button>
+          <button class="shutdown-menu-btn" (click)="onShutdownMenuClick()" aria-label="Opciones de apagado">
+            <svg class="shutdown-arrow" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M1.5 0.8 L6.8 4 L1.5 7.2 Z" fill="currentColor"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (showRecommendationsModal) {
+  <app-modal
+    titulo="Recomendaciones"
+    [mensaje]="recommendationsMessage"
+    [mostrarCancelar]="false"
+    (onAceptar)="closeRecommendationsModal()"
+    (onCancelar)="closeRecommendationsModal()"
+  ></app-modal>
+}

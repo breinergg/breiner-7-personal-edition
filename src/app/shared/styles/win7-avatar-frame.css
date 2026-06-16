@@ -1,0 +1,101 @@
+/* Marco de foto de usuario estilo Windows 7 Aero / liquid glass */
+.win7-avatar-frame {
+  position: relative;
+  padding: 3px;
+  border-radius: 5px;
+  background: linear-gradient(
+    165deg,
+    rgba(225, 242, 255, 0.98) 0%,
+    rgba(165, 205, 235, 0.94) 38%,
+    rgba(105, 145, 185, 0.92) 72%,
+    rgba(82, 118, 158, 0.96) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.82),
+    0 0 0 2px rgba(55, 95, 135, 0.42),
+    0 3px 12px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+}
+
+.win7-avatar-frame::before {
+  content: '';
+  position: absolute;
+  inset: 3px 3px 52% 3px;
+  border-radius: 3px 3px 0 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.52) 0%,
+    rgba(255, 255, 255, 0.12) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.win7-avatar-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.win7-avatar-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px rgba(18, 38, 58, 0.62);
+  z-index: 1;
+}
+
+.win7-avatar-inner img,
+.win7-avatar-inner svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: scale(1);
+  transform-origin: center 36%;
+}
+
+.win7-avatar-frame--login .win7-avatar-inner img {
+  transform: scale(1.24);
+  transform-origin: center 34%;
+}
+
+.win7-avatar-frame--menu {
+  width: 54px;
+  height: 54px;
+}
+
+.win7-avatar-frame--login {
+  width: 96px;
+  height: 96px;
+}
+
+.win7-avatar-frame--login:hover {
+  background: linear-gradient(
+    165deg,
+    rgba(235, 248, 255, 1) 0%,
+    rgba(180, 218, 245, 0.96) 38%,
+    rgba(120, 160, 200, 0.94) 72%,
+    rgba(92, 128, 168, 0.98) 100%
+  );
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.92),
+    0 0 0 2px rgba(90, 150, 210, 0.45),
+    0 0 0 4px rgba(100, 180, 255, 0.22),
+    0 4px 14px rgba(0, 0, 0, 0.38),
+    0 0 16px rgba(120, 200, 255, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+}

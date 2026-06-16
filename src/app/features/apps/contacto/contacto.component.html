@@ -1,0 +1,97 @@
+<div class="mail-app">
+  <div class="mail-toolbar">
+    <button type="button" class="mail-toolbar-btn mail-toolbar-btn--primary" (click)="sendPersonalEmail()">
+      <span class="mail-toolbar-icon" aria-hidden="true">✉</span>
+      Enviar correo
+    </button>
+    <span class="mail-toolbar-separator"></span>
+    <button type="button" class="mail-toolbar-btn" disabled title="Próximamente">Responder</button>
+    <button type="button" class="mail-toolbar-btn" disabled title="Próximamente">Reenviar</button>
+  </div>
+
+  <div class="mail-workspace">
+    <aside class="mail-sidebar">
+      <div class="mail-sidebar-header">Correo</div>
+      <ul class="mail-folder-list">
+        <li class="mail-folder mail-folder--active">
+          <span class="mail-folder-icon" aria-hidden="true">👤</span>
+          Información de contacto
+        </li>
+        <li class="mail-folder mail-folder--disabled">
+          <span class="mail-folder-icon" aria-hidden="true">📥</span>
+          Bandeja de entrada
+        </li>
+      </ul>
+    </aside>
+
+    <section class="mail-reading-pane">
+      <header class="mail-message-header">
+        <h1 class="mail-subject">Información de contacto — Breiner Gonzalez Machado</h1>
+        <div class="mail-meta">
+          <div class="mail-meta-row">
+            <span class="mail-meta-label">De:</span>
+            <span class="mail-meta-value">
+              <strong>Breiner Gonzalez Machado</strong>
+              &lt;{{ personalEmail }}&gt;
+            </span>
+          </div>
+          <div class="mail-meta-row">
+            <span class="mail-meta-label">Para:</span>
+            <span class="mail-meta-value mail-meta-value--muted">Visitante del portafolio</span>
+          </div>
+          <div class="mail-meta-row">
+            <span class="mail-meta-label">Fecha:</span>
+            <span class="mail-meta-value">Disponible para contacto</span>
+          </div>
+        </div>
+      </header>
+
+      <article class="mail-message-body">
+        <p class="mail-greeting">¡Hola! Gracias por visitar mi portafolio. Aquí tienes mis datos de contacto:</p>
+
+        <dl class="contact-card">
+          <div class="contact-row">
+            <dt>Nombre</dt>
+            <dd>Breiner Gonzalez Machado</dd>
+          </div>
+          <div class="contact-row">
+            <dt>Edad</dt>
+            <dd>22 años</dd>
+          </div>
+          <div class="contact-row">
+            <dt>Correo institucional</dt>
+            <dd>
+              <a class="contact-link" [href]="'mailto:' + institutionalEmail">{{ institutionalEmail }}</a>
+            </dd>
+          </div>
+          <div class="contact-row">
+            <dt>Correo personal</dt>
+            <dd>
+              <a class="contact-link" [href]="'mailto:' + personalEmail">{{ personalEmail }}</a>
+            </dd>
+          </div>
+          <div class="contact-row">
+            <dt>Teléfono de contacto</dt>
+            <dd>
+              <a class="contact-link" [href]="'tel:+57' + phone">{{ phone }}</a>
+            </dd>
+          </div>
+        </dl>
+
+        <p class="mail-closing">
+          Si deseas escribirme, usa el botón <strong>Enviar correo</strong> en la barra superior.
+          Se abrirá tu aplicación de correo predeterminada con mi dirección personal lista para enviar el mensaje.
+        </p>
+
+        <div class="mail-actions">
+          <button type="button" class="mail-action-btn mail-action-btn--primary" (click)="sendPersonalEmail()">
+            Enviar correo a {{ personalEmail }}
+          </button>
+          <button type="button" class="mail-action-btn" (click)="sendInstitutionalEmail()">
+            Escribir al correo institucional
+          </button>
+        </div>
+      </article>
+    </section>
+  </div>
+</div>

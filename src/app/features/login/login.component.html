@@ -1,0 +1,255 @@
+<div class="login-screen">
+
+  <!-- ============ BACKGROUND LAYERS ============ -->
+  <div class="bg-base"></div>
+  <div class="bg-vignette"></div>
+
+  <!-- Aurora Effect: Líneas fluidas desde bottom-right (Windows 7 style) -->
+  <svg class="aurora-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="auroraGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur1"/>
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur2"/>
+        <feMerge>
+          <feMergeNode in="blur2"/>
+          <feMergeNode in="blur1"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+      
+      <filter id="auroraGlowSoft" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur1"/>
+        <feMerge>
+          <feMergeNode in="blur1"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <!-- LÍNEAS HACIA TOP-LEFT -->
+    <path d="M 1880,1060 C 1650,920 1480,780 1320,680 C 1160,580 980,520 820,480 C 660,440 480,420 320,380 C 160,340 20,280 -100,180"
+          stroke="rgba(255, 255, 255, 0.15)" stroke-width="3.5" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <path d="M 1870,1070 C 1600,900 1380,720 1180,600 C 980,480 760,400 560,360 C 360,320 180,320 20,300 C -140,280 -280,240 -400,160"
+          stroke="rgba(140, 220, 255, 0.18)" stroke-width="2.8" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <path d="M 1890,1055 C 1700,950 1560,860 1420,780 C 1280,700 1120,640 960,600 C 800,560 620,540 460,520 C 300,500 140,470 -20,420"
+          stroke="rgba(165, 255, 180, 0.14)" stroke-width="2.2" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <path d="M 1865,1065 C 1580,880 1320,680 1080,560 C 840,440 580,380 360,360 C 140,340 -60,340 -200,320"
+          stroke="rgba(220, 245, 255, 0.16)" stroke-width="3.2" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <!-- LÍNEAS HACIA TOP-RIGHT -->
+    <path d="M 1875,1060 C 1820,940 1780,820 1760,700 C 1740,580 1740,460 1760,340 C 1780,220 1820,100 1880,-20"
+          stroke="rgba(255, 255, 255, 0.12)" stroke-width="1.8" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <path d="M 1885,1065 C 1860,920 1850,780 1860,640 C 1870,500 1900,360 1940,220 C 1980,80 2030,-60 2080,-200"
+          stroke="rgba(140, 220, 255, 0.14)" stroke-width="2.0" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <path d="M 1890,1070 C 1880,950 1890,830 1920,710 C 1950,590 2000,470 2060,350 C 2120,230 2180,110 2240,-10"
+          stroke="rgba(165, 255, 180, 0.11)" stroke-width="1.6" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <path d="M 1870,1055 C 1840,900 1840,750 1860,600 C 1880,450 1920,300 1980,150 C 2040,0 2100,-150 2160,-300"
+          stroke="rgba(220, 245, 255, 0.13)" stroke-width="2.2" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <!-- Aurora verde hacia TOP-RIGHT con hojas (Windows 7 nature accent) -->
+    <path d="M 1895,1068 C 1925,900 1945,720 1955,540 C 1965,360 1958,200 1925,70"
+          stroke="rgba(164, 217, 49, 0.38)" stroke-width="2.0" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <path d="M 1898,1065 C 1928,880 1948,690 1958,500 C 1968,310 1962,160 1935,55"
+          stroke="rgba(139, 195, 74, 0.30)" stroke-width="1.4" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <!-- Hojas al final de la aurora verde -->
+    <g opacity="0.8" filter="url(#auroraGlow)">
+      <ellipse cx="1928" cy="78" rx="10" ry="5" fill="#8bc34a" transform="rotate(-35 1928 78)" opacity="0.85"/>
+      <ellipse cx="1945" cy="58" rx="8" ry="4" fill="#a5d86e" transform="rotate(25 1945 58)" opacity="0.8"/>
+      <path d="M 1955 48 C 1962 42 1970 44 1972 50 C 1968 54 1960 52 1955 48Z" fill="#7cb342" opacity="0.75"/>
+      <ellipse cx="1938" cy="92" rx="7" ry="3.5" fill="#9ccc65" transform="rotate(-10 1938 92)" opacity="0.7"/>
+    </g>
+
+    <!-- Acento blanco (flor/mariposa) -->
+    <g opacity="0.85">
+      <circle cx="1965" cy="38" r="2.5" fill="rgba(255,255,255,0.9)"/>
+      <ellipse cx="1968" cy="36" rx="4" ry="1.8" fill="rgba(255,255,255,0.55)" transform="rotate(-25 1968 36)"/>
+      <ellipse cx="1963" cy="40" rx="3.5" ry="1.5" fill="rgba(255,255,255,0.45)" transform="rotate(40 1963 40)"/>
+    </g>
+
+    <!-- Acentos ultra-finos -->
+    <path d="M 1875,1058 C 1640,910 1420,760 1200,640 C 980,520 740,440 520,400 C 300,360 80,340 -80,300"
+          stroke="rgba(180, 240, 200, 0.10)" stroke-width="1.2" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+
+    <path d="M 1880,1063 C 1870,940 1880,820 1910,700 C 1940,580 1990,460 2050,340"
+          stroke="rgba(200, 230, 255, 0.11)" stroke-width="1.4" fill="none" stroke-linecap="round" filter="url(#auroraGlow)"/>
+  </svg>
+
+
+  <!-- ============ MAIN CONTENT ============ -->
+
+  <div class="main-content">
+
+    <!-- User profile card (estado inicial) -->
+    @if (!loading) {
+      <div class="user-card" (click)="selectUser(); $event.stopPropagation()">
+        <div class="avatar-frame win7-avatar-frame win7-avatar-frame--login">
+          <div class="avatar-inner win7-avatar-inner">
+            <img
+              [src]="userAvatar"
+              alt="Breiner Gonzalez Machado"
+              class="avatar-photo"
+              width="256"
+              height="256"
+              decoding="async"
+            />
+          </div>
+        </div>
+        <span class="username">Breiner Gonzalez Machado</span>
+      </div>
+    }
+
+    <!-- Loading state (Iniciando... / Preparando el escritorio...) -->
+    @if (loading) {
+      <div class="loading-container">
+        <div class="aero-spinner">
+          <div class="spinner-ring"></div>
+        </div>
+        <span class="loading-text">{{ loadingText }}</span>
+      </div>
+    }
+
+  </div>
+
+
+  <!-- ============ BOTTOM BAR ============ -->
+
+  <div class="bottom-bar">
+
+    <div class="bottom-left">
+      <button class="btn-accessibility" (click)="toggleAccessibilityMenu($event)" aria-label="Facilidad de acceso" title="Facilidad de acceso">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="4.5" r="2.5" fill="currentColor"/>
+          <path d="M12 8C8 8 4.5 9.5 4.5 9.5L5.5 12.5C5.5 12.5 8.5 11.5 12 11.5S18.5 12.5 18.5 12.5L19.5 9.5C19.5 9.5 16 8 12 8Z" fill="currentColor"/>
+          <path d="M10.5 12.5L9 21H11L12 16L13 21H15L13.5 12.5" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="bottom-center">
+      <div class="brand">
+        <svg class="brand-logo" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="tileRed" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ef3848"/>
+              <stop offset="100%" stop-color="#c81828"/>
+            </linearGradient>
+            <linearGradient id="tileBlue" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3a9ef0"/>
+              <stop offset="100%" stop-color="#1070c8"/>
+            </linearGradient>
+            <linearGradient id="tileDark" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#505050"/>
+              <stop offset="100%" stop-color="#2c2c2c"/>
+            </linearGradient>
+            <linearGradient id="tileSilver" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#c0c0c0"/>
+              <stop offset="100%" stop-color="#8a8a8a"/>
+            </linearGradient>
+          </defs>
+
+          <!-- B -->
+          <rect x="0" y="0" width="21" height="21" rx="3.5" ry="3.5" fill="url(#tileRed)"/>
+          <text x="10.5" y="15.5" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="14" font-weight="400">B</text>
+
+          <!-- G -->
+          <rect x="23" y="0" width="21" height="21" rx="3.5" ry="3.5" fill="url(#tileBlue)"/>
+          <text x="33.5" y="15.5" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="14" font-weight="400">G</text>
+
+          <!-- M -->
+          <rect x="0" y="23" width="21" height="21" rx="3.5" ry="3.5" fill="url(#tileDark)"/>
+          <text x="10.5" y="38.5" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="14" font-weight="400">M</text>
+
+          <!-- 7 -->
+          <rect x="23" y="23" width="21" height="21" rx="3.5" ry="3.5" fill="url(#tileSilver)"/>
+          <text x="33.5" y="38.5" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Tahoma, sans-serif" font-size="14" font-weight="400">7</text>
+        </svg>
+
+        <div class="brand-text">
+          <span class="brand-title">Breiner 7</span>
+          <span class="brand-edition">Personal Edition</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-right">
+      <button class="btn-language" (click)="toggleLanguageMenu($event)" title="Idioma">
+        {{ selectedLanguage }}
+      </button>
+
+      <div class="power-group">
+        <button class="btn-power" (click)="shutdown(); $event.stopPropagation()" title="Apagar sistema" aria-label="Apagar sistema">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3v9" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M6.7 6.7A8 8 0 1 0 17.3 6.7" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <button class="btn-power-arrow" (click)="togglePowerMenu($event)" aria-label="Más opciones de energía" title="Opciones de energía">
+          <svg viewBox="0 0 12 8" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 2l4 4 4-4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============ DROPDOWN MENUS ============ -->
+
+  @if (showPowerMenu) {
+    <div class="dropdown-menu power-menu" (click)="stopPropagation($event)">
+      <button class="dropdown-item" (click)="shutdown()">
+        <svg viewBox="0 0 20 20" class="menu-icon"><path d="M10 2v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M6.5 5.5A6 6 0 1013.5 5.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+        Apagar sistema
+      </button>
+      <button class="dropdown-item" (click)="restart()">
+        <svg viewBox="0 0 20 20" class="menu-icon"><path d="M4 10a6 6 0 0111.3-3H13v-2h5v5h-2V7.7A8 8 0 102 10h2z" fill="currentColor"/></svg>
+        Reiniciar experiencia
+      </button>
+    </div>
+  }
+
+  @if (showAccessibilityMenu) {
+    <div class="dropdown-menu accessibility-menu" (click)="stopPropagation($event)">
+      <button class="dropdown-item" (click)="aboutBreiner7()">
+        Acerca de Breiner 7
+      </button>
+    </div>
+  }
+
+  @if (showLanguageMenu) {
+    <div class="dropdown-menu language-menu" (click)="stopPropagation($event)">
+      <div class="dropdown-header">Idioma</div>
+      <div class="dropdown-separator"></div>
+      @for (lang of languages; track lang.code) {
+        <button
+          class="dropdown-item"
+          [class.active]="lang.code === selectedLanguage"
+          (click)="selectLanguage(lang)"
+        >
+          <span class="lang-code">{{ lang.code }}</span>
+          {{ lang.name }}
+        </button>
+      }
+    </div>
+  }
+
+  <!-- Modal Windows 7 - Acerca de -->
+  @if (showAboutModal) {
+    <app-modal
+      titulo="Acerca de Breiner 7"
+      [mensaje]="aboutModalMessage"
+      [mostrarCancelar]="false"
+      (onAceptar)="closeAboutModal()"
+      (onCancelar)="closeAboutModal()"
+    ></app-modal>
+  }
+
+</div>

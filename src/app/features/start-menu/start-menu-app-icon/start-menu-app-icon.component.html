@@ -1,0 +1,222 @@
+@switch (icon) {
+  @case ('word') {
+    <svg class="app-icon-svg" viewBox="4 8 26 26" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="smWordFrameGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6ea3db"/>
+          <stop offset="45%" stop-color="#4a7ebb"/>
+          <stop offset="100%" stop-color="#1e4a7a"/>
+        </linearGradient>
+        <linearGradient id="smWordFrameShine" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+        <linearGradient id="smWordLetterGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#5b9bd5"/>
+          <stop offset="100%" stop-color="#2b579a"/>
+        </linearGradient>
+        <filter id="smWordShadow" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0.7" dy="1" stdDeviation="0.35" flood-color="#163456" flood-opacity="0.5"/>
+        </filter>
+      </defs>
+      <rect x="5.5" y="10" width="22.5" height="22.5" rx="1" fill="url(#smWordFrameGrad)" stroke="#1a4470" stroke-width="0.55"/>
+      <rect x="5.5" y="10" width="22.5" height="5" rx="1" fill="url(#smWordFrameShine)" opacity="0.9"/>
+      <rect x="8" y="12.5" width="17.5" height="17.5" fill="#ffffff" stroke="#c8d8ea" stroke-width="0.35"/>
+      <text x="16.75" y="25.5" font-family="'Segoe UI', Arial, sans-serif" font-size="13.5" font-weight="700"
+            fill="url(#smWordLetterGrad)" filter="url(#smWordShadow)" text-anchor="middle">W</text>
+    </svg>
+  }
+  @case ('excel') {
+    <svg class="app-icon-svg" viewBox="3 7 28 29" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="smXlsBadgeBg" x1="0" y1="0" x2="0.2" y2="1">
+          <stop offset="0%" stop-color="#f3faf4"/>
+          <stop offset="28%" stop-color="#dff3e2"/>
+          <stop offset="65%" stop-color="#b9deb8"/>
+          <stop offset="100%" stop-color="#7bc47e"/>
+        </linearGradient>
+        <linearGradient id="smXlsBadgeGlass" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.75)"/>
+          <stop offset="45%" stop-color="rgba(255,255,255,0.18)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+        <linearGradient id="smXlsXDarkGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3d8f4a"/>
+          <stop offset="100%" stop-color="#145a32"/>
+        </linearGradient>
+        <filter id="smXlsXShadow" x="-30%" y="-30%" width="160%" height="160%">
+          <feDropShadow dx="0.5" dy="0.75" stdDeviation="0.25" flood-color="#0a3018" flood-opacity="0.55"/>
+        </filter>
+        <filter id="smXlsSheetStackShadow" x="-40%" y="-40%" width="180%" height="180%">
+          <feDropShadow dx="0.4" dy="0.55" stdDeviation="0.2" flood-color="#1a3d22" flood-opacity="0.35"/>
+        </filter>
+      </defs>
+      <path d="M 9.2 9.5 Q 4.8 9.8 4.8 14.2 V 33.2 Q 4.8 35.2 6.8 35.2 H 27.2 Q 29.2 35.2 29.2 33.2 V 10.2 Q 29.2 8.2 27.2 8.2 H 11.2 Q 9.5 8.2 9.2 9.5 Z"
+            fill="url(#smXlsBadgeBg)" stroke="#1f6b34" stroke-width="0.65"/>
+      <path d="M 6.5 10.5 L 24 10.5 L 15 24 L 6.5 18 Z" fill="url(#smXlsBadgeGlass)" opacity="0.55"/>
+      <path d="M 6.5 10.5 Q 6.5 8.8 8.5 8.8 H 27.2 Q 29 8.8 29 10.5 V 13.5 H 6.5 Z" fill="rgba(255,255,255,0.38)"/>
+      <g transform="translate(20.8, 26.5) rotate(28)" filter="url(#smXlsSheetStackShadow)">
+        <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35" fill="#ffffff" opacity="0.42" transform="translate(1.35, 1.25)"/>
+        <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35" fill="#ffffff" opacity="0.68" transform="translate(0.65, 0.6)"/>
+        <rect x="-5.8" y="-4.6" width="12.2" height="10.2" rx="0.35" fill="#ffffff" stroke="#c8e6c9" stroke-width="0.45"/>
+        <g stroke="#b2dfaa" stroke-width="0.38">
+          <line x1="-5.2" y1="-2.8" x2="5.8" y2="-2.8"/>
+          <line x1="-5.2" y1="-0.8" x2="5.8" y2="-0.8"/>
+          <line x1="-5.2" y1="1.2" x2="5.8" y2="1.2"/>
+          <line x1="-3.2" y1="-4" x2="-3.2" y2="4.2"/>
+          <line x1="-0.8" y1="-4" x2="-0.8" y2="4.2"/>
+          <line x1="1.6" y1="-4" x2="1.6" y2="4.2"/>
+        </g>
+      </g>
+      <text x="11.8" y="27.5" font-family="'Segoe UI', Arial, sans-serif" font-size="17.5" font-weight="800"
+            fill="url(#smXlsXDarkGrad)" filter="url(#smXlsXShadow)" text-anchor="middle">X</text>
+      <path d="M 7.6 14.2 L 9.4 16.4" stroke="rgba(255,255,255,0.6)" stroke-width="0.75" stroke-linecap="round"/>
+    </svg>
+  }
+  @case ('paint') {
+    <svg class="app-icon-svg app-icon-svg--paint" viewBox="2 1.5 22 19" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="smPaintPalette" x1="0.15" y1="0.1" x2="0.85" y2="1">
+          <stop offset="0%" stop-color="#eef4f8"/>
+          <stop offset="45%" stop-color="#d3e0ea"/>
+          <stop offset="100%" stop-color="#a8bac8"/>
+        </linearGradient>
+        <radialGradient id="smPaintRed" cx="0.32" cy="0.28" r="0.72">
+          <stop offset="0%" stop-color="#ff8a80"/>
+          <stop offset="55%" stop-color="#e53935"/>
+          <stop offset="100%" stop-color="#b71c1c"/>
+        </radialGradient>
+        <radialGradient id="smPaintGreen" cx="0.32" cy="0.28" r="0.72">
+          <stop offset="0%" stop-color="#a5d6a7"/>
+          <stop offset="55%" stop-color="#43a047"/>
+          <stop offset="100%" stop-color="#2e7d32"/>
+        </radialGradient>
+        <radialGradient id="smPaintYellow" cx="0.32" cy="0.28" r="0.72">
+          <stop offset="0%" stop-color="#fff59d"/>
+          <stop offset="55%" stop-color="#fdd835"/>
+          <stop offset="100%" stop-color="#f9a825"/>
+        </radialGradient>
+        <linearGradient id="smPaintHandle" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#c9956a"/>
+          <stop offset="35%" stop-color="#e8c090"/>
+          <stop offset="65%" stop-color="#b87d45"/>
+          <stop offset="100%" stop-color="#8b5a2b"/>
+        </linearGradient>
+        <linearGradient id="smPaintFerrule" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f0f0f0"/>
+          <stop offset="50%" stop-color="#b0b0b0"/>
+          <stop offset="100%" stop-color="#808080"/>
+        </linearGradient>
+        <linearGradient id="smPaintBristle" x1="0.2" y1="0" x2="0.8" y2="1">
+          <stop offset="0%" stop-color="#f5ead8"/>
+          <stop offset="100%" stop-color="#c8b898"/>
+        </linearGradient>
+        <linearGradient id="smPaintBristleRoot" x1="0.5" y1="1" x2="0.5" y2="0">
+          <stop offset="0%" stop-color="#9a8868"/>
+          <stop offset="100%" stop-color="rgba(154,136,104,0)"/>
+        </linearGradient>
+        <clipPath id="smPaintBristleClip">
+          <path d="M 20.5 8.7 L 23.4 5.7 L 24.7 5.5 L 25.1 7.6 L 24.5 9.9 L 23.3 10.9 L 20.7 10.6 Z"/>
+        </clipPath>
+      </defs>
+      <path fill-rule="evenodd"
+            d="M 9.2 3.2 C 13.8 1.8 19.5 3.5 21.2 8.4 C 22.4 12.2 21.2 17.2 16.2 19.6 C 11.5 21.8 5.8 20.2 4.2 15.2 C 3.2 11.8 4.8 7.8 9.2 3.2 Z
+               M 7.1 12.6 m -1.65 0 a 1.65 1.65 0 1 0 3.3 0 a 1.65 1.65 0 1 0 -3.3 0"
+            fill="url(#smPaintPalette)" stroke="#8fa8b8" stroke-width="0.4"/>
+      <path d="M 10 4.8 Q 15.5 3.8 18.8 7.5" fill="none" stroke="rgba(255,255,255,0.65)" stroke-width="0.55" stroke-linecap="round"/>
+      <ellipse cx="7.1" cy="12.6" rx="1.35" ry="1.2" fill="url(#smPaintRed)"/>
+      <ellipse cx="6.7" cy="12.1" rx="0.48" ry="0.35" fill="rgba(255,255,255,0.58)"/>
+      <ellipse cx="10.2" cy="6.8" rx="2" ry="1.65" fill="url(#smPaintGreen)"/>
+      <ellipse cx="9.7" cy="6.2" rx="0.7" ry="0.42" fill="rgba(255,255,255,0.55)"/>
+      <ellipse cx="15.8" cy="7.2" rx="1.9" ry="1.55" fill="url(#smPaintYellow)"/>
+      <ellipse cx="15.3" cy="6.6" rx="0.65" ry="0.4" fill="rgba(255,255,255,0.55)"/>
+      <path d="M 10.8 17.2 L 21.8 10.2" stroke="rgba(0,0,0,0.16)" stroke-width="3.6" stroke-linecap="round"/>
+      <path d="M 10.4 17.6 L 21.4 10.6" stroke="url(#smPaintHandle)" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M 11.2 16.6 L 20.2 11" stroke="rgba(255,255,255,0.45)" stroke-width="0.95" stroke-linecap="round"/>
+      <rect x="19.85" y="9.35" width="3.3" height="1.35" rx="0.25"
+            transform="rotate(-32 21.5 10.02)" fill="url(#smPaintFerrule)" stroke="#606060" stroke-width="0.3"/>
+      <path d="M 20.5 8.7 L 23.4 5.7 L 24.7 5.5 L 25.1 7.6 L 24.5 9.9 L 23.3 10.9 L 20.7 10.6 Z"
+            fill="url(#smPaintBristle)" stroke="#9a8868" stroke-width="0.32" stroke-linejoin="round"/>
+      <path d="M 20.7 9.8 L 24 9.1" stroke="url(#smPaintBristleRoot)" stroke-width="1.1" stroke-linecap="round"/>
+      <g clip-path="url(#smPaintBristleClip)">
+        <g stroke="#8a7858" stroke-width="0.22" stroke-linecap="round" opacity="0.85">
+          <path d="M 20.55 9.55 L 22.05 6.75"/>
+          <path d="M 20.75 9.65 L 22.35 6.55"/>
+          <path d="M 20.95 9.7 L 22.65 6.45"/>
+          <path d="M 21.15 9.75 L 22.95 6.35"/>
+          <path d="M 21.35 9.8 L 23.25 6.3"/>
+          <path d="M 21.55 9.85 L 23.5 6.35"/>
+          <path d="M 21.75 9.9 L 23.7 6.45"/>
+          <path d="M 21.95 9.95 L 23.85 6.6"/>
+          <path d="M 22.15 10 L 23.95 6.75"/>
+          <path d="M 22.35 10.05 L 24.2 6.95"/>
+          <path d="M 22.55 10.1 L 24.45 7.15"/>
+          <path d="M 22.75 10.15 L 24.65 7.35"/>
+          <path d="M 22.95 10.22 L 24.85 7.55"/>
+          <path d="M 23.15 10.28 L 24.95 7.75"/>
+        </g>
+        <g stroke="#b8a888" stroke-width="0.2" stroke-linecap="round" opacity="0.9">
+          <path d="M 20.65 9.5 L 22.2 6.65"/>
+          <path d="M 20.85 9.58 L 22.5 6.48"/>
+          <path d="M 21.05 9.62 L 22.8 6.38"/>
+          <path d="M 21.25 9.68 L 23.1 6.32"/>
+          <path d="M 21.45 9.72 L 23.35 6.28"/>
+          <path d="M 21.65 9.78 L 23.58 6.38"/>
+          <path d="M 21.85 9.82 L 23.78 6.52"/>
+          <path d="M 22.05 9.88 L 23.92 6.68"/>
+          <path d="M 22.25 9.92 L 24.15 6.85"/>
+          <path d="M 22.45 9.96 L 24.35 7.05"/>
+          <path d="M 22.65 10.02 L 24.55 7.25"/>
+          <path d="M 22.85 10.08 L 24.72 7.45"/>
+          <path d="M 23.05 10.14 L 24.88 7.65"/>
+        </g>
+        <g stroke="#f0e6d0" stroke-width="0.16" stroke-linecap="round">
+          <path d="M 20.7 9.45 L 22.15 6.7"/>
+          <path d="M 20.9 9.52 L 22.42 6.52"/>
+          <path d="M 21.1 9.58 L 22.72 6.4"/>
+          <path d="M 21.3 9.64 L 23 6.34"/>
+          <path d="M 21.5 9.7 L 23.28 6.3"/>
+          <path d="M 21.7 9.75 L 23.52 6.4"/>
+          <path d="M 21.9 9.8 L 23.75 6.55"/>
+          <path d="M 22.1 9.86 L 23.9 6.72"/>
+          <path d="M 22.3 9.9 L 24.15 6.9"/>
+          <path d="M 22.5 9.95 L 24.35 7.1"/>
+          <path d="M 22.7 10.02 L 24.52 7.3"/>
+          <path d="M 22.9 10.08 L 24.68 7.5"/>
+          <path d="M 23.1 10.14 L 24.82 7.7"/>
+          <path d="M 23.3 10.2 L 24.95 7.9"/>
+        </g>
+        <g stroke="#a09070" stroke-width="0.14" stroke-linecap="round" opacity="0.75">
+          <path d="M 22.05 6.75 L 21.95 6.45 M 22.05 6.75 L 22.18 6.48"/>
+          <path d="M 22.65 6.42 L 22.52 6.15 M 22.65 6.42 L 22.78 6.18"/>
+          <path d="M 23.25 6.32 L 23.12 6.05 M 23.25 6.32 L 23.38 6.08"/>
+          <path d="M 23.85 6.55 L 23.72 6.28 M 23.85 6.55 L 23.98 6.32"/>
+          <path d="M 24.45 7.15 L 24.3 6.85 M 24.45 7.15 L 24.6 6.92"/>
+          <path d="M 24.85 7.55 L 24.7 7.25 M 24.85 7.55 L 25 7.32"/>
+        </g>
+      </g>
+      <path d="M 23.2 6.4 L 24.8 5.9" stroke="rgba(255,255,255,0.5)" stroke-width="0.38" stroke-linecap="round"/>
+    </svg>
+  }
+  @default {
+    <svg class="app-icon-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="smCmdBody" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3a3a3a"/>
+          <stop offset="18%" stop-color="#1e1e1e"/>
+          <stop offset="100%" stop-color="#0a0a0a"/>
+        </linearGradient>
+        <linearGradient id="smCmdBezel" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(255,255,255,0.22)"/>
+          <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+        </linearGradient>
+      </defs>
+      <rect x="2.5" y="4" width="19" height="16" rx="1.4" fill="url(#smCmdBody)" stroke="#555" stroke-width="0.45"/>
+      <rect x="2.5" y="4" width="19" height="3.2" rx="1.4" fill="url(#smCmdBezel)"/>
+      <g transform="translate(12, 12)">
+        <text font-family="Consolas, 'Courier New', monospace" font-size="8.5" font-weight="600"
+              fill="#f2f2f2" text-anchor="middle" dominant-baseline="middle" x="0" y="0">&gt;_</text>
+      </g>
+    </svg>
+  }
+}

@@ -1,0 +1,47 @@
+<div class="gallery-app">
+  <div class="gallery-toolbar">
+    <span class="gallery-toolbar-group">
+      <button type="button" class="gallery-toolbar-btn" disabled>Organizar</button>
+      <button type="button" class="gallery-toolbar-btn" disabled>Compartir</button>
+      <button type="button" class="gallery-toolbar-btn" disabled>Inicio</button>
+    </span>
+    <span class="gallery-toolbar-separator"></span>
+    <span class="gallery-toolbar-group">
+      <button type="button" class="gallery-toolbar-btn" disabled>Corregir</button>
+      <button type="button" class="gallery-toolbar-btn" disabled>Presentación</button>
+    </span>
+  </div>
+
+  <div class="gallery-layout">
+    <aside class="gallery-sidebar" aria-label="Miniaturas">
+      @for (photo of photos; track photo.src; let index = $index) {
+        <button
+          type="button"
+          class="gallery-thumb"
+          [class.gallery-thumb--active]="activeIndex === index"
+          [title]="photo.title"
+          (click)="scrollToPhoto(index)"
+        >
+          <img [src]="photo.src" [alt]="photo.title" loading="lazy" />
+        </button>
+      }
+    </aside>
+
+    <div class="gallery-scroll" #scrollContainer (scroll)="onScroll($event)">
+      @for (photo of photos; track photo.src; let index = $index) {
+        <figure class="gallery-photo">
+          <figcaption class="gallery-photo-caption">{{ photo.title }}</figcaption>
+          <div class="gallery-photo-frame">
+            <img [src]="photo.src" [alt]="photo.title" loading="lazy" />
+          </div>
+          <span class="gallery-photo-index">{{ index + 1 }} / {{ photos.length }}</span>
+        </figure>
+      }
+    </div>
+  </div>
+
+  <div class="gallery-statusbar">
+    <span>{{ photos.length }} fotos</span>
+    <span class="gallery-statusbar-current">{{ photos[activeIndex].title }}</span>
+  </div>
+</div>

@@ -1,0 +1,551 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  cursor: default;
+  overflow: hidden;
+}
+
+.desktop-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===================== BACKGROUND ===================== */
+
+.bg-base {
+  position: absolute;
+  inset: 0;
+  background:
+    /* White glow moved to BOTTOM-LEFT corner */
+    radial-gradient(ellipse 55% 50% at 12% 85%, rgba(248, 255, 255, 0.9) 0%, transparent 48%),
+    radial-gradient(ellipse 70% 60% at 15% 82%, rgba(210, 245, 255, 0.75) 0%, transparent 52%),
+    radial-gradient(ellipse 85% 70% at 18% 78%, rgba(140, 220, 255, 0.55) 0%, transparent 58%),
+    radial-gradient(ellipse 100% 80% at 22% 74%, rgba(100, 195, 245, 0.35) 0%, transparent 62%),
+    /* Darker areas for depth */
+    radial-gradient(ellipse 100% 90% at 90% 10%, rgba(8, 35, 70, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse 100% 90% at 90% 90%, rgba(8, 35, 70, 0.5) 0%, transparent 52%),
+    radial-gradient(ellipse 100% 90% at 75% 25%, rgba(8, 35, 70, 0.3) 0%, transparent 50%),
+    /* Main gradient */
+    linear-gradient(170deg,
+      #1a5a8d 0%,
+      #2068a8 8%,
+      #2878bd 16%,
+      #3088d2 24%,
+      #3898e8 32%,
+      #48acf8 40%,
+      #58bcff 48%,
+      #48acf8 56%,
+      #3898e8 64%,
+      #2878bd 72%,
+      #2068a8 80%,
+      #1a5a8d 88%,
+      #134875 96%
+    );
+  z-index: 0;
+}
+
+.bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 92% 82% at 14% 84%, transparent 48%, rgba(5, 25, 55, 0.28) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===================== AURORA ===================== */
+
+.aurora-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* ===================== DESKTOP ICONS ===================== */
+
+.desktop-icons {
+  position: absolute;
+  inset: 0 0 40px 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.desktop-icon {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 88px;
+  padding: 8px 6px;
+  border-radius: 4px;
+  cursor: default;
+  touch-action: none;
+  user-select: none;
+  transition:
+    background-color 0.15s ease,
+    top 0.15s ease,
+    left 0.15s ease;
+  pointer-events: auto;
+}
+
+.desktop-icon:hover {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(4px);
+}
+
+.desktop-icon--selected {
+  background: rgba(58, 158, 240, 0.28);
+  backdrop-filter: blur(4px);
+}
+
+.desktop-icon--dragging {
+  z-index: 20;
+  cursor: grabbing;
+  transition: background-color 0.15s ease;
+  opacity: 0.94;
+}
+
+.desktop-icon--dragging:hover {
+  background: rgba(58, 158, 240, 0.28);
+}
+
+.icon-svg {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  margin-bottom: 6px;
+}
+
+.icon-svg--doc {
+  height: 48px;
+  width: auto;
+}
+
+.icon-svg--xls {
+  height: 48px;
+  width: auto;
+}
+
+.icon-svg--img {
+  height: 48px;
+  width: auto;
+}
+
+.icon-svg--msg {
+  height: 48px;
+  width: auto;
+  filter: none;
+}
+
+.icon-svg--pdf {
+  height: 48px;
+  width: auto;
+}
+
+.icon-svg--folder {
+  height: 48px;
+  width: auto;
+  filter: none;
+}
+
+.icon-svg--bin {
+  height: 68px;
+  width: auto;
+  filter: none;
+}
+
+.icon-svg--github,
+.icon-svg--linkedin {
+  height: 48px;
+  width: 48px;
+}
+
+.icon-label {
+  font-size: 11px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.9),
+    0 0 4px rgba(0, 0, 0, 0.7);
+  line-height: 1.3;
+  word-wrap: break-word;
+  white-space: pre-line;
+  max-width: 100%;
+}
+
+/* ===================== TASKBAR ===================== */
+
+.taskbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  display: flex;
+  align-items: stretch;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background:
+    /* Borde luminoso superior (Aero glass edge) */
+    linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.72) 0%,
+      rgba(220, 240, 255, 0.45) 1px,
+      rgba(200, 230, 255, 0.12) 2px,
+      transparent 3px,
+      transparent calc(100% - 1px),
+      rgba(80, 120, 160, 0.18) calc(100% - 1px),
+      rgba(60, 100, 140, 0.22) 100%
+    ),
+    /* Cuerpo vidrio azul-gris claro */
+    linear-gradient(to bottom,
+      rgba(195, 220, 245, 0.62) 0%,
+      rgba(175, 205, 235, 0.58) 35%,
+      rgba(155, 190, 225, 0.55) 70%,
+      rgba(140, 175, 215, 0.52) 100%
+    );
+  backdrop-filter: blur(16px) saturate(1.15);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 -1px 3px rgba(0, 30, 60, 0.15);
+  z-index: 1000;
+  border-top: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+/* ===================== START BUTTON ===================== */
+
+.start-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background 0.12s ease;
+  position: relative;
+}
+
+.start-button:hover {
+  background: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.12) 48%,
+    rgba(255, 255, 255, 0.06) 52%,
+    rgba(200, 230, 255, 0.18) 100%
+  );
+}
+
+.start-button:active {
+  background: linear-gradient(to bottom,
+    rgba(120, 160, 200, 0.25) 0%,
+    rgba(140, 180, 220, 0.18) 48%,
+    rgba(255, 255, 255, 0.08) 52%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+}
+
+.start-logo {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+/* ===================== TASKBAR APPS AREA ===================== */
+
+.taskbar-apps {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  min-width: 0;
+}
+
+.taskbar-app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 2px;
+  background: transparent;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background 0.12s ease;
+  flex-shrink: 0;
+}
+
+.taskbar-app:hover {
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: none;
+}
+
+.taskbar-app:active,
+.taskbar-app--active {
+  background: rgba(255, 255, 255, 0.32);
+  box-shadow: none;
+}
+
+.taskbar-app-icon {
+  width: 24px;
+  height: 24px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.32));
+  pointer-events: none;
+}
+
+.taskbar-app-icon--explorer {
+  width: 28px;
+  height: 28px;
+}
+
+.taskbar-app-icon--github {
+  width: 24px;
+  height: 24px;
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 2px;
+  box-sizing: border-box;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.32));
+}
+
+.taskbar-app-icon--linkedin {
+  width: 26px;
+  height: 26px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.38));
+}
+
+/* ===================== TASKBAR TRAY ===================== */
+
+.taskbar-tray {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  background: transparent;
+}
+
+.tray-icons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 12px;
+  height: 20px;
+}
+
+.tray-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: default;
+  border-radius: 0;
+  transition: background 0.12s ease;
+  padding: 0 2px;
+  flex-shrink: 0;
+  line-height: 0;
+  height: 20px;
+  min-width: 0;
+}
+
+.tray-icon--chevron {
+  min-width: 14px;
+}
+
+.tray-icon--network {
+  min-width: 26px;
+}
+
+.tray-icon--volume {
+  min-width: 22px;
+}
+
+.tray-icon:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.tray-icon:active {
+  background: rgba(100, 140, 180, 0.25);
+}
+
+.tray-icon-svg {
+  display: block;
+  height: 20px;
+  width: auto;
+}
+
+.tray-icon--network .tray-icon-svg {
+  filter: none;
+  transform: translateY(1.5px);
+}
+
+.tray-icon:not(.tray-icon--network) .tray-icon-svg {
+  filter: drop-shadow(0 1px 1px rgba(0, 20, 45, 0.55));
+}
+
+/* ===================== LANGUAGE BUTTON ===================== */
+
+.language-button {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  padding: 0 12px;
+  min-width: 26px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  border-radius: 0;
+  transition: background 0.12s ease;
+  text-shadow: 0 1px 1px rgba(0, 25, 55, 0.5);
+  letter-spacing: 0;
+  margin-right: 6px;
+  line-height: 1;
+  align-self: center;
+}
+
+.language-button:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.language-button:active {
+  background: rgba(100, 140, 180, 0.25);
+}
+
+/* ===================== CLOCK ===================== */
+
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  min-width: 58px;
+  height: 100%;
+  cursor: default;
+  border-radius: 0;
+  transition: background 0.12s ease;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.clock-container:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.clock-container:active {
+  background: rgba(100, 140, 180, 0.25);
+}
+
+.clock-time {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.15;
+  text-shadow: 0 1px 1px rgba(0, 25, 55, 0.5);
+  white-space: nowrap;
+}
+
+.clock-date {
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.15;
+  text-shadow: 0 1px 1px rgba(0, 25, 55, 0.5);
+  white-space: nowrap;
+}
+
+/* ===================== SHOW DESKTOP BUTTON ===================== */
+
+.show-desktop {
+  width: 5px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.22);
+  cursor: default;
+  transition: background 0.12s ease;
+  margin-left: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.show-desktop:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.show-desktop:active {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+@media (max-width: 768px) {
+  .desktop-icon {
+    width: 76px;
+    padding: 6px 4px;
+  }
+
+  .icon-svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon-label {
+    font-size: 10px;
+  }
+
+  .taskbar {
+    height: 36px;
+  }
+
+  .start-button {
+    padding: 4px 10px;
+  }
+
+  .start-logo {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tray-icons {
+    gap: 10px;
+    height: 18px;
+  }
+
+  .tray-icon {
+    height: 18px;
+  }
+
+  .tray-icon-svg {
+    height: 18px;
+  }
+
+  .language-button {
+    height: 18px;
+  }
+
+  .clock-time,
+  .clock-date,
+  .language-button {
+    font-size: 10px;
+  }
+}
