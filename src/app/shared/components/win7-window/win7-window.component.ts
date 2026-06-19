@@ -9,6 +9,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { LanguageService } from '../../services/language.service';
+import { RecycleBinIconComponent } from '../recycle-bin-icon/recycle-bin-icon.component';
 
 export type Win7WindowIcon = 'word' | 'mail' | 'folder' | 'excel' | 'photo' | 'bin' | 'generic';
 
@@ -21,6 +22,7 @@ const MIN_WINDOW_HEIGHT = 240;
 @Component({
   selector: 'app-win7-window',
   standalone: true,
+  imports: [RecycleBinIconComponent],
   templateUrl: './win7-window.component.html',
   styleUrl: './win7-window.component.css'
 })

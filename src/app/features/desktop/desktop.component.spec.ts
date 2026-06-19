@@ -386,7 +386,7 @@ describe('DesktopComponent', () => {
 
     component.onIconDoubleClick({ preventDefault: () => undefined, stopPropagation: () => undefined } as MouseEvent, pdfIcon!);
 
-    expect(window.open).toHaveBeenCalledWith('/hv/HOJA-DE-VIDA.pdf', '_blank', 'noopener,noreferrer');
+    expect(window.open).toHaveBeenCalledWith('/hv/index.html', '_blank', 'noopener,noreferrer');
   });
 
   it('should open GitHub profile from taskbar', () => {

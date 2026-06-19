@@ -1,0 +1,40 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.recycle-bin-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+:host(.win7-window-icon--bin) {
+  width: 14px;
+  height: 16px;
+}
+
+:host(.recycle-nav-icon-svg) {
+  width: 16px;
+  height: 18px;
+}
+
+:host(.recycle-empty-icon) {
+  width: 88px;
+  height: 102px;
+  margin: 0 auto 16px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
+}
+
+:host(.icon-svg--bin) {
+  width: auto;
+  height: 68px;
+}
+
+:host(.explorer-table-icon) {
+  width: 20px;
+  height: 22px;
+}

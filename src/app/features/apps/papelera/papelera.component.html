@@ -28,16 +28,7 @@
         <div class="recycle-nav-title">{{ lang.apps.papelera.bin }}</div>
         <ul class="recycle-nav-list">
           <li class="recycle-nav-item recycle-nav-item--active">
-            <svg class="recycle-nav-icon-svg" viewBox="0 0 16 18" aria-hidden="true">
-              <ellipse cx="8" cy="15.5" rx="4.5" ry="1.1" fill="#c0c8d0"/>
-              <path d="M4 6 H12 L11.2 14 H4.8 Z" fill="rgba(200,225,245,0.85)" stroke="#7a95b3" stroke-width="0.45"/>
-              <ellipse cx="8" cy="6" rx="4.2" ry="1.3" fill="#e8eef4" stroke="#888" stroke-width="0.35"/>
-              <g transform="translate(8, 10.2) scale(0.012) translate(-388.5, -366.5)" fill="#0084E0">
-                <path d="M280 272  C134 187 134 187 134 187  C210 54 210 54 210 54  C231 17 309 16 336 48  C373 110 373 110 373 110z"/>
-                <path d="M162 475  C84 475 84 475 84 475  C54 471.75 4 410 34 354  C68 297 68 297 68 297  C15 266 15 266 15 266  C183 266 183 266 183 266  C268 412 268 412 268 412  C215 383 215 383 215 383z"/>
-                <path d="M363 496  C363 667 363 667 363 667  C176 667 176 667 176 667  C165 668 157 657 151 648  C63 492 64 493 60 488  C64.75 492 70 496 85 496z"/>
-              </g>
-            </svg>
+            <app-recycle-bin-icon class="recycle-nav-icon-svg" iconId="papelera-nav" />
             {{ lang.apps.papelera.recycleBin }}
           </li>
         </ul>
@@ -46,10 +37,7 @@
 
     <section class="recycle-content">
       <div class="recycle-empty">
-        <svg class="recycle-empty-icon" viewBox="0 0 48 56" aria-hidden="true">
-          <!-- icon paths preserved -->
-          <ellipse cx="24" cy="48.8" rx="8" ry="2.4" fill="#c8c8c8"/>
-        </svg>
+        <app-recycle-bin-icon class="recycle-empty-icon" iconId="papelera-empty" />
         <p class="recycle-empty-title">{{ lang.apps.papelera.emptyTitle }}</p>
         <p class="recycle-empty-text">{{ lang.apps.papelera.emptyText }}</p>
       </div>

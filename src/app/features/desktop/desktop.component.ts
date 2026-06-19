@@ -47,7 +47,7 @@ const ICON_HEIGHT = 100;
 const DRAG_THRESHOLD = 5;
 const DOUBLE_TAP_WINDOW_MS = 400;
 const STORAGE_KEY = 'breiner7-desktop-icon-positions';
-const CV_PDF_URL = '/hv/HOJA-DE-VIDA.pdf';
+const CV_PDF_URL = '/hv/index.html';
 const GITHUB_URL = 'https://github.com/breinergg';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/breiner-gonzalez-machado-3a5961276';
 

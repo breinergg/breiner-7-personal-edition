@@ -591,28 +591,28 @@ export const APPS_I18N: Record<AppLanguage, AppsCopy> = {
       demoSlides: [
         {
           src: GONZAI_DEMO_SLIDES[0].src,
-          alt: 'Vista general del panel principal de GonzAI',
-          caption: 'Panel principal con acceso centralizado a los módulos del sistema.'
+          alt: 'Login de GonzAI',
+          caption: 'Login'
         },
         {
           src: GONZAI_DEMO_SLIDES[1].src,
-          alt: 'Módulo de gestión de ventas e inventario',
-          caption: 'Registro de ventas y control de stock en tiempo real.'
+          alt: 'Dashboard principal de GonzAI',
+          caption: 'Dashboard Principal'
         },
         {
           src: GONZAI_DEMO_SLIDES[2].src,
-          alt: 'Administración de clientes y cartera',
-          caption: 'Seguimiento de clientes, abonos y saldos pendientes.'
+          alt: 'Módulo de productos de GonzAI',
+          caption: 'Módulo de Productos'
         },
         {
           src: GONZAI_DEMO_SLIDES[3].src,
-          alt: 'Asistente inteligente GonzAI',
-          caption: 'Interfaz del asistente con IA integrada para consultas operativas.'
+          alt: 'Módulo de clientes de GonzAI',
+          caption: 'Módulo de Clientes'
         },
         {
           src: GONZAI_DEMO_SLIDES[4].src,
-          alt: 'Dashboard estadístico de GonzAI',
-          caption: 'Indicadores y métricas para la toma de decisiones informadas.'
+          alt: 'Módulo de movimientos de clientes de GonzAI',
+          caption: 'Módulo de Movimientos de Clientes'
         }
       ]
     },
@@ -708,29 +708,28 @@ export const APPS_I18N: Record<AppLanguage, AppsCopy> = {
       demoSlides: [
         {
           src: PREVIDOCS_DEMO_SLIDES[0].src,
-          alt: 'Panel principal y dashboard de PreviDocs',
-          caption: 'Dashboard interactivo con métricas en tiempo real de pacientes, historias y sesiones.'
+          alt: 'Login de PreviDocs',
+          caption: 'Login'
         },
         {
           src: PREVIDOCS_DEMO_SLIDES[1].src,
-          alt: 'Gestión de pacientes e historias clínicas',
-          caption:
-            'Formularios exhaustivos para registro de historias clínicas, diagnósticos y planes de tratamiento.'
+          alt: 'Dashboard interactivo de PreviDocs',
+          caption: 'Dashboard interactivo'
         },
         {
           src: PREVIDOCS_DEMO_SLIDES[2].src,
-          alt: 'Seguimiento de sesiones terapéuticas',
-          caption: 'Registro secuencial de sesiones con evolución clínica y autocompletado de diagnósticos.'
+          alt: 'Módulo de pacientes de PreviDocs',
+          caption: 'Módulo de Pacientes'
         },
         {
           src: PREVIDOCS_DEMO_SLIDES[3].src,
-          alt: 'Generación de reportes PDF',
-          caption: 'Reportes multipágina con diagrama familiar, impresión diagnóstica y firma digital.'
+          alt: 'Módulo de agenda de pacientes por fecha de PreviDocs',
+          caption: 'Módulo de Agenda de Pacientes por Fecha'
         },
         {
           src: PREVIDOCS_DEMO_SLIDES[4].src,
-          alt: 'Interfaz de consulta y búsqueda inteligente',
-          caption: 'Búsqueda integrada en bases locales y externas para agilizar la consulta clínica.'
+          alt: 'Módulo del perfil del usuario de PreviDocs',
+          caption: 'Módulo del Perfil del Usuario'
         }
       ]
     }
@@ -1048,28 +1047,28 @@ export const APPS_I18N: Record<AppLanguage, AppsCopy> = {
       demoSlides: [
         {
           src: GONZAI_DEMO_SLIDES[0].src,
-          alt: 'GonzAI main dashboard overview',
-          caption: 'Main dashboard with centralized access to system modules.'
+          alt: 'GonzAI login screen',
+          caption: 'Login'
         },
         {
           src: GONZAI_DEMO_SLIDES[1].src,
-          alt: 'Sales and inventory management module',
-          caption: 'Sales recording and real-time stock control.'
+          alt: 'GonzAI main dashboard',
+          caption: 'Main Dashboard'
         },
         {
           src: GONZAI_DEMO_SLIDES[2].src,
-          alt: 'Customer and portfolio administration',
-          caption: 'Customer tracking, payments, and outstanding balances.'
+          alt: 'GonzAI products module',
+          caption: 'Products Module'
         },
         {
           src: GONZAI_DEMO_SLIDES[3].src,
-          alt: 'GonzAI intelligent assistant',
-          caption: 'Assistant interface with integrated AI for operational queries.'
+          alt: 'GonzAI customers module',
+          caption: 'Customers Module'
         },
         {
           src: GONZAI_DEMO_SLIDES[4].src,
-          alt: 'GonzAI statistical dashboard',
-          caption: 'Indicators and metrics for informed decision-making.'
+          alt: 'GonzAI customer transactions module',
+          caption: 'Customer Transactions Module'
         }
       ]
     },
@@ -1159,28 +1158,28 @@ export const APPS_I18N: Record<AppLanguage, AppsCopy> = {
       demoSlides: [
         {
           src: PREVIDOCS_DEMO_SLIDES[0].src,
-          alt: 'PreviDocs main panel and dashboard',
-          caption: 'Interactive dashboard with real-time metrics for patients, records, and sessions.'
+          alt: 'PreviDocs login screen',
+          caption: 'Login'
         },
         {
           src: PREVIDOCS_DEMO_SLIDES[1].src,
-          alt: 'Patient and clinical records management',
-          caption: 'Comprehensive forms for clinical records, diagnoses, and treatment plans.'
+          alt: 'PreviDocs interactive dashboard',
+          caption: 'Interactive Dashboard'
         },
         {
           src: PREVIDOCS_DEMO_SLIDES[2].src,
-          alt: 'Therapeutic session tracking',
-          caption: 'Sequential session recording with clinical progress and diagnosis autocomplete.'
+          alt: 'PreviDocs patient module',
+          caption: 'Patient Module'
         },
         {
           src: PREVIDOCS_DEMO_SLIDES[3].src,
-          alt: 'PDF report generation',
-          caption: 'Multi-page reports with family diagram, diagnostic impression, and digital signature.'
+          alt: 'PreviDocs patient appointment schedule module',
+          caption: 'Patient Appointment Schedule Module'
         },
         {
           src: PREVIDOCS_DEMO_SLIDES[4].src,
-          alt: 'Query interface and intelligent search',
-          caption: 'Integrated search across local and external databases to streamline clinical consultation.'
+          alt: 'PreviDocs user profile module',
+          caption: 'User Profile Module'
         }
       ]
     }

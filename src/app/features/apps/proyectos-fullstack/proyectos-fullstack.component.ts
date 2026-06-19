@@ -53,7 +53,7 @@ const DESKTOP_ITEM_DEFS: ExplorerItemDef[] = [
   { id: 'galeria', typeKey: 'photoApp', modified: '22/04/2026', size: '—', iconKind: 'img' },
   { id: 'gadget', typeKey: 'systemMeter', modified: '11/06/2026', size: '128 KB', iconKind: 'gadget' },
   { id: 'habilidades', typeKey: 'excelDocument', modified: '18/05/2026', size: '56 KB', iconKind: 'xls' },
-  { id: 'hoja-vida', typeKey: 'pdfDocument', modified: '12/06/2026', size: '28 KB', iconKind: 'pdf', opensUrl: '/hv/HOJA-DE-VIDA.pdf' },
+  { id: 'hoja-vida', typeKey: 'pdfDocument', modified: '12/06/2026', size: '28 KB', iconKind: 'pdf', opensUrl: '/hv/index.html' },
   { id: 'contacto', typeKey: 'mailShortcut', modified: '11/06/2026', size: '2 KB', iconKind: 'mail' },
   { id: 'papelera', typeKey: 'recycleBin', modified: '11/06/2026', size: '—', iconKind: 'bin' }
 ];

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { LanguageService } from '../../../shared/services/language.service';
+import { RecycleBinIconComponent } from '../../../shared/components/recycle-bin-icon/recycle-bin-icon.component';
 
 @Component({
   selector: 'app-papelera',
   standalone: true,
+  imports: [RecycleBinIconComponent],
   templateUrl: './papelera.component.html',
   styleUrl: './papelera.component.css'
 })
